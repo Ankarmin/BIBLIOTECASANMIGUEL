@@ -16,20 +16,41 @@ public class BibliotecaVista extends javax.swing.JFrame {
         setDate();
     }
 
+    private final String textoa = "<html><p> Este proyecto ha sido posible gracias al compromiso de Alejandro Rivas, director ejecutivo de la Institución, quien continúa impulsando el acceso a la educación de calidad. </p></html>";
+    private final String textob = "<html><p> Esta herramienta le permitirá llevar un control completo de su biblioteca. Tendrá acceso a herramientas específicas tal como lo son:";
+
     private void initStyles() {
-        nombreApp1.putClientProperty("FlatLaf.style", "font: 24 bold $h3.regular.font");
+        nombreApp1.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
         nombreApp1.setForeground(Color.black);
-        nombreApp2.putClientProperty("FlatLaf.style", "font: 24 bold $h3.regular.font");
+        nombreApp2.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
         nombreApp2.setForeground(Color.black);
-        saludo.putClientProperty("FlatLaf.style", "font: 14 bold $h3.regular.font");
+        saludo.putClientProperty("FlatLaf.style", "font: 20 bold $h3.regular.font");
         saludo.setForeground(Color.black);
-        fecha.putClientProperty("FlatLaf.style", "font: 24 $regular.font");
+        fecha.putClientProperty("FlatLaf.style", "font: 26 $h3.regular.font");
         fecha.setForeground(Color.black);
+        texto1.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        texto1.setForeground(Color.black);
+        texto2.setText(textoa);
+        texto2.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto2.setForeground(Color.black);
+        texto3.setText(textob);
+        texto3.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto3.setForeground(Color.black);
+        texto4.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto4.setForeground(Color.black);
+        texto5.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto5.setForeground(Color.black);
+        texto6.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto6.setForeground(Color.black);
+        texto7.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto7.setForeground(Color.black);
+        texto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        texto8.setForeground(Color.black);
     }
 
     private void setDate() {
         LocalDate now = LocalDate.now();
-        fecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es 'EEEE dd 'de' MMMM 'de' yyyy", new Locale("es", "PE"))));
+        fecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es 'EEEE dd 'de' MMMM 'de' yyyy", Locale.of("es", "PE"))));
     }
 
     private void ShowJPanel(JPanel p) {
@@ -57,16 +78,24 @@ public class BibliotecaVista extends javax.swing.JFrame {
         materiales = new javax.swing.JButton();
         solicitudes = new javax.swing.JButton();
         contenido = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        encabezado = new javax.swing.JPanel();
         saludo = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
+        texto1 = new javax.swing.JLabel();
+        texto2 = new javax.swing.JLabel();
+        texto3 = new javax.swing.JLabel();
+        texto4 = new javax.swing.JLabel();
+        texto5 = new javax.swing.JLabel();
+        texto6 = new javax.swing.JLabel();
+        texto7 = new javax.swing.JLabel();
+        texto8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1140, 640));
 
         background.setBackground(new java.awt.Color(236, 226, 208));
 
-        nombre.setBackground(new java.awt.Color(206, 190, 190));
+        nombre.setBackground(new java.awt.Color(217, 199, 199));
         nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nombreApp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,11 +118,11 @@ public class BibliotecaVista extends javax.swing.JFrame {
         nombreLayout.setVerticalGroup(
             nombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nombreLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(nombreApp1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(nombreApp1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreApp2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addComponent(nombreApp2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         menu.setBackground(new java.awt.Color(181, 141, 142));
@@ -171,32 +200,32 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addComponent(materiales, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         contenido.setBackground(new java.awt.Color(236, 226, 208));
 
-        jPanel3.setBackground(new java.awt.Color(206, 190, 190));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        encabezado.setBackground(new java.awt.Color(217, 199, 199));
+        encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         saludo.setText("¡Bueno/as (días/tardes/noches) bibliotecario encargado!");
 
         fecha.setText("Hoy es <fecha actual>.");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout encabezadoLayout = new javax.swing.GroupLayout(encabezado);
+        encabezado.setLayout(encabezadoLayout);
+        encabezadoLayout.setHorizontalGroup(
+            encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(encabezadoLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(saludo, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                     .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        encabezadoLayout.setVerticalGroup(
+            encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(encabezadoLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(saludo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -204,17 +233,57 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        texto1.setText("Sistema de gestión de biblioteca para la institución privada educativa San Miguel");
+
+        texto4.setText("• Gestión de préstamos y devoluciones");
+
+        texto5.setText("• Búsqueda avanzada de libros");
+
+        texto6.setText("• Inventario automatizado");
+
+        texto7.setText("• Gestión de actividad");
+
+        texto8.setText("• Solicitudes de libros");
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(contenidoLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(texto8, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto5, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto4, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto3, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 460, Short.MAX_VALUE))
+                .addComponent(encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(texto1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(texto8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -285,8 +354,8 @@ public class BibliotecaVista extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JPanel contenido;
     private javax.swing.JButton devolucion;
+    private javax.swing.JPanel encabezado;
     private javax.swing.JLabel fecha;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton materiales;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel nombre;
@@ -295,6 +364,14 @@ public class BibliotecaVista extends javax.swing.JFrame {
     private javax.swing.JButton prestamos;
     private javax.swing.JLabel saludo;
     private javax.swing.JButton solicitudes;
+    private javax.swing.JLabel texto1;
+    private javax.swing.JLabel texto2;
+    private javax.swing.JLabel texto3;
+    private javax.swing.JLabel texto4;
+    private javax.swing.JLabel texto5;
+    private javax.swing.JLabel texto6;
+    private javax.swing.JLabel texto7;
+    private javax.swing.JLabel texto8;
     private javax.swing.JButton usuarios;
     // End of variables declaration//GEN-END:variables
 }
