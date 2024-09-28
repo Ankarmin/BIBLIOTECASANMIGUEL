@@ -10,15 +10,15 @@ import java.util.List;
  * @author Leonidas Garcia Lescano
  */
 public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> {
-
+    
     public PrestamoLibroRepositorio() {
-        this.insertQuery = "INSERT INTO prestamoLibro (idPrestamo, isbn, idBiblio, fechaPrestamo, fechaDevolucion) VALUES (?, ?, ?, ?, ?)";
+        this.insertQuery = "INSERT INTO prestamoLibro (idPrestamo, isbn, idBiblio, fechaDevolucion) VALUES (?, ?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM prestamoLibro WHERE idPrestamo = ?";
         this.searchAllQuery = "SELECT * FROM prestamoLibro";
-        this.updateRowQuery = "UPDATE prestamoLibro SET isbn = ?, idBiblio = ?, fechaPrestamo = ?, fechaDevolucion = ? WHERE idPrestamo = ?";
+        this.updateRowQuery = "UPDATE prestamoLibro SET isbn = ?, idBiblio = ?, fechaDevolucion = ? WHERE idPrestamo = ?";
         this.deleteRowQuery = "DELETE FROM prestamoLibro WHERE idPrestamo = ?";
     }
-
+    
     @Override
     public boolean agregar(PrestamoLibro filaNueva) {
         try {
@@ -26,8 +26,7 @@ public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> 
                 pst.setInt(1, filaNueva.getIdPrestamo());
                 pst.setString(2, filaNueva.getIsbn());
                 pst.setInt(3, filaNueva.getIdBiblio());
-                pst.setString(4, filaNueva.getFechaPrestamo());
-                pst.setString(5, filaNueva.getFechaDevolucion());
+                pst.setString(4, filaNueva.getFechaDevolucion());
 
                 pst.executeUpdate();
             }
@@ -101,9 +100,8 @@ public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> 
             try (PreparedStatement pst = conexion.prepareStatement(updateRowQuery)) {
                 pst.setString(1, filaActualizada.getIsbn());
                 pst.setInt(2, filaActualizada.getIdBiblio());
-                pst.setString(3, filaActualizada.getFechaPrestamo());
-                pst.setString(4, filaActualizada.getFechaDevolucion());
-                pst.setInt(5, filaActualizada.getIdPrestamo());
+                pst.setString(3, filaActualizada.getFechaDevolucion());
+                pst.setInt(4, filaActualizada.getIdPrestamo());
 
                 pst.executeUpdate();
             }

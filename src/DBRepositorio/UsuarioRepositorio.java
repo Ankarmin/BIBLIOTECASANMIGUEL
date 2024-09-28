@@ -11,12 +11,45 @@ import java.util.List;
  */
 public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
 
+    private String hasBorrowBook;
+    private String hasBorrowMonograph;
+
     public UsuarioRepositorio() {
         this.insertQuery = "INSERT INTO usuario (idBiblio, dni, nombres) VALUES (?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM usuario WHERE idBiblio = ?";
         this.searchAllQuery = "SELECT * FROM usuario";
         this.updateRowQuery = "UPDATE usuario SET dni = ?, nombres = ? WHERE idBiblio = ?";
         this.deleteRowQuery = "DELETE FROM usuario WHERE idBiblio = ?";
+        this.hasBorrowBook = "SELECT * FROM prestamoLibro WHERE idBiblio = ?";
+        this.hasBorrowMonograph = "SELECT * FROM prestamoMonografia WHERE idBiblio = ?";
+
+    }
+
+    public boolean tienePrestamo(int idBiblio) {
+
+        boolean hasBorrow = false;
+
+        try {
+            PreparedStatement pstBook = conexion.prepareStatement(hasBorrowBook);
+            pstBook.setInt(1, idBiblio);
+
+            PreparedStatement pstMonograph = conexion.prepareStatement(hasBorrowMonograph);
+            pstMonograph.setInt(1, idBiblio);
+
+            ResultSet rsBook = pstBook.executeQuery();
+            ResultSet rsMonograph = pstMonograph.executeQuery();
+
+            while (rsBook.next() || rsMonograph.next()) {
+                hasBorrow = true;
+                break;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al evaluar si el usuario tiene prestamos: " + e.getMessage());
+        }
+
+        return hasBorrow;
+
     }
 
     @Override

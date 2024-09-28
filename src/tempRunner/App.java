@@ -6,20 +6,20 @@ import DBRepositorio.Monografia;
 import DBRepositorio.MonografiaRepositorio;
 import DBRepositorio.PrestamoLibroRepositorio;
 import DBRepositorio.PrestamoMonografiaRepositorio;
+import DBRepositorio.UsuarioRepositorio;
+import DBRepositorio.Usuario;
+import DBRepositorio.PrestamoLibro;
+import DBRepositorio.PrestamoMonografia;
 import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
 
-        MonografiaRepositorio libroDriver = new MonografiaRepositorio();
-        
-        System.out.println("Monografias");
-        Monografia nuevoLibro = new Monografia("1325324321", "jarri", "leonidas", "guayar", 1, 1);
-        libroDriver.agregar(nuevoLibro);
-        nuevoLibro.setAutor("leonidas 2");
-        libroDriver.actualizar(nuevoLibro);
-        libroDriver.eliminar("1325324321");
-        libroDriver.obtenerPorId("3132334455");
+        UsuarioRepositorio usuarioDriver = new UsuarioRepositorio();
+
+        //PrestamoMonografia pLibro = new PrestamoMonografia(0, "1234567892", 1, "", "2024-10-22");
+        //usuarioDriver.agregar(pLibro);
+
     }
 }
