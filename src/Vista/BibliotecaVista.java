@@ -333,7 +333,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
     }//GEN-LAST:event_devolucionActionPerformed
 
     private void materialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialesActionPerformed
-        ShowJPanel(new Materiales());
+        ShowJPanel(new MaterialesVista());
     }//GEN-LAST:event_materialesActionPerformed
 
     private void solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesActionPerformed
