@@ -5,13 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  * @author Leonidas Garcia Lescano
  */
 public class MonografiaRepositorio extends IConectar<Monografia, String> {
 
-    public MonografiaRepositorio() {
+    public MonografiaRepositorio(Connection openConexion) {
+        super(openConexion);
         this.insertQuery = "INSERT INTO monografia (issn, titulo, autor, tema, stockTotal, stockDisponible) VALUES (?, ?, ?, ?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM monografia WHERE issn = ?";
         this.searchAllQuery = "SELECT * FROM monografia";

@@ -1,9 +1,12 @@
 package DBRepositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Leonidas Garcia Lescano
  */
-public class PrestamoLibro {
+public class PrestamoLibro extends Entidades {
 
     private int idPrestamo, idBiblio;
     private String isbn, fechaPrestamo, fechaDevolucion;
@@ -17,6 +20,30 @@ public class PrestamoLibro {
     }
 
     public PrestamoLibro() {
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[]{getIdPrestamo(), getIsbn(), getIdBiblio(), getFechaPrestamo(), getFechaDevolucion()};
+    }
+
+    public static PrestamoLibro toPrestamoLibro(List<Object> datos) {
+        return new PrestamoLibro((Integer) datos.get(0),
+                (String) datos.get(1),
+                (Integer) datos.get(2),
+                (String) datos.get(3),
+                (String) datos.get(4));
+    }
+
+    public static List<String> getColumnas() {
+        List<String> columnas = new ArrayList<>();
+        columnas.add("ID Prestamo");
+        columnas.add("ISBN");
+        columnas.add("ID Biblioteca");
+        columnas.add("Fecha de Préstramo");
+        columnas.add("Fecha de devolución");
+
+        return columnas;
     }
 
     public int getIdPrestamo() {

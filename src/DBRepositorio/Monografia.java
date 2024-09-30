@@ -1,9 +1,12 @@
 package DBRepositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Leonidas Garcia Lescano
  */
-public class Monografia {
+public class Monografia extends Entidades {
 
     private String issn, titulo, autor, tema;
     private int stockTotal, stockDisponible;
@@ -18,6 +21,32 @@ public class Monografia {
     }
 
     public Monografia() {
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[]{getIssn(), getTitulo(), getAutor(), getTema(), getStockTotal(), getStockDisponible()};
+    }
+
+    public static Monografia toMonografia(List<Object> datos) {
+        return new Monografia((String) datos.get(0),
+                (String) datos.get(1),
+                (String) datos.get(2),
+                (String) datos.get(3),
+                (Integer) datos.get(4),
+                (Integer) datos.get(5));
+    }
+
+    public static List<String> getColumnas() {
+        List<String> columnas = new ArrayList<>();
+        columnas.add("ISSN");
+        columnas.add("Titulo");
+        columnas.add("Autor");
+        columnas.add("Tema");
+        columnas.add("Stock Total");
+        columnas.add("Stock Disponible");
+
+        return columnas;
     }
 
     public String getIssn() {

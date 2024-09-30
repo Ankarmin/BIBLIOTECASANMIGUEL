@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  * @author Leonidas Garcia Lescano
@@ -14,7 +15,8 @@ public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
     private String hasBorrowBook;
     private String hasBorrowMonograph;
 
-    public UsuarioRepositorio() {
+    public UsuarioRepositorio(Connection openConexion) {
+        super(openConexion);
         this.insertQuery = "INSERT INTO usuario (idBiblio, dni, nombres) VALUES (?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM usuario WHERE idBiblio = ?";
         this.searchAllQuery = "SELECT * FROM usuario";

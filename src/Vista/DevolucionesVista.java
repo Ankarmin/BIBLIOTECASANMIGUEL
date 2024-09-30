@@ -2,11 +2,12 @@ package Vista;
 
 import java.awt.*;
 
-public class Devolucion extends javax.swing.JPanel {
+public class DevolucionesVista extends javax.swing.JPanel {
 
-    public Devolucion() {
+    public DevolucionesVista() {
+        setSize(860, 640);
+        setLocation(0, 0);
         initComponents();
-        initStyles();
     }
 
     private void initStyles() {

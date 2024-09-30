@@ -1,15 +1,14 @@
 package Vista;
 
 import Modelo.ModeloUsuarios;
+import java.sql.Connection;
 
-public class Usuarios extends javax.swing.JPanel {
+public class UsuariosVista extends javax.swing.JPanel {
 
-    ModeloUsuarios usuarios;
-    
-    public Usuarios() {
-        this.usuarios = new ModeloUsuarios();
+    public UsuariosVista() {
+        setSize(860, 640);
+        setLocation(0, 0);
         initComponents();
-        TxtIdBiblio.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -139,19 +138,19 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_TxtNombreActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        agregarUsuario();
+        //agregarUsuario();
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnUsuarios_MorososActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuarios_MorososActionPerformed
-        cambiarUsuario();
+        //cambiarUsuario();
     }//GEN-LAST:event_BtnUsuarios_MorososActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        eliminarUsuario();
+        //eliminarUsuario();
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        buscarUsuario();
+        //buscarUsuario();
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
 
@@ -173,6 +172,8 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
+}    
+    /*
     void eliminarUsuario() {
         int IdBiblio = Integer.parseInt(TxtIdBiblio.getText());
         usuarios.eliminarUsuario(IdBiblio);
@@ -193,3 +194,4 @@ public class Usuarios extends javax.swing.JPanel {
         return true;
     }
 }
+*/
