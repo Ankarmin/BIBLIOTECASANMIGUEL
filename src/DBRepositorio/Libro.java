@@ -1,9 +1,12 @@
 package DBRepositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Leonidas Garcia Lescano
  */
-public class Libro {
+public class Libro extends Entidades {
 
     private String isbn, titulo, autor, tema;
     private int volumen, stockTotal, stockDisponible;
@@ -17,8 +20,37 @@ public class Libro {
         this.stockDisponible = stockDisponible;
         this.stockTotal = stockTotal;
     }
-    
-    public Libro() {};
+
+    public Libro() {
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[]{getIsbn(), getTitulo(), getAutor(), getVolumen(), getTema(), getStockTotal(), getStockDisponible()};
+    }
+
+    public static Libro toLibro(List<Object> datos) {
+        return new Libro((String) datos.get(0),
+                (String) datos.get(1),
+                (String) datos.get(2),
+                (Integer) datos.get(3),
+                (String) datos.get(4),
+                (Integer) datos.get(5),
+                (Integer) datos.get(6));
+    }
+
+    public static List<String> getColumnas() {
+        List<String> columnas = new ArrayList<>();
+        columnas.add("ISBN");
+        columnas.add("Titulo");
+        columnas.add("Autor");
+        columnas.add("Volumen");
+        columnas.add("Tema");
+        columnas.add("Stock Total");
+        columnas.add("Stock Disponible");
+
+        return columnas;
+    }
 
     public void setStockDisponible(int stockDisponible) {
         this.stockDisponible = stockDisponible;

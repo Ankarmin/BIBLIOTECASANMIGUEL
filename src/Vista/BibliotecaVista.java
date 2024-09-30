@@ -1,14 +1,21 @@
 package Vista;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class BibliotecaVista extends javax.swing.JFrame {
+
+    private final String textoa = "<html><p> Este proyecto ha sido posible gracias al compromiso de Alejandro Rivas, director ejecutivo de la Institución, quien continúa impulsando el acceso a la educación de calidad. </p></html>";
+    private final String textob = "<html><p> Esta herramienta le permitirá llevar un control completo de su biblioteca. Tendrá acceso a herramientas específicas tal como lo son:";
 
     public BibliotecaVista() {
         initComponents();
@@ -16,9 +23,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
         setDate();
     }
 
-    private final String textoa = "<html><p> Este proyecto ha sido posible gracias al compromiso de Alejandro Rivas, director ejecutivo de la Institución, quien continúa impulsando el acceso a la educación de calidad. </p></html>";
-    private final String textob = "<html><p> Esta herramienta le permitirá llevar un control completo de su biblioteca. Tendrá acceso a herramientas específicas tal como lo son:";
-
+    // Metodos propios
     private void initStyles() {
         nombreApp1.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
         nombreApp1.setForeground(Color.black);
@@ -46,21 +51,30 @@ public class BibliotecaVista extends javax.swing.JFrame {
         texto7.setForeground(Color.black);
         texto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         texto8.setForeground(Color.black);
+        BtnDevolucion.putClientProperty("JButton.buttonType", "roundRect");
+        BtnMateriales.putClientProperty("JButton.buttonType", "roundRect");
+        BtnPrestamos.putClientProperty("JButton.buttonType", "roundRect");
+        BtnSolicitudes.putClientProperty("JButton.buttonType", "roundRect");
+        BtnUsuarios.putClientProperty("JButton.buttonType", "roundRect");
+        BtnDevolucion.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnDevolucion.setForeground(Color.black);
+        BtnMateriales.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnMateriales.setForeground(Color.black);
+        BtnPrestamos.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnPrestamos.setForeground(Color.black);
+        BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnSolicitudes.setForeground(Color.black);
+        BtnUsuarios.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnUsuarios.setForeground(Color.black);
+        UIManager.put("Button.arc", 999);
+        UIManager.put("Component.arc", 999);
+        UIManager.put("ProgressBar.arc", 999);
+        UIManager.put("TextComponent.arc", 999);
     }
 
     private void setDate() {
         LocalDate now = LocalDate.now();
         fecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es 'EEEE dd 'de' MMMM 'de' yyyy", Locale.of("es", "PE"))));
-    }
-
-    private void ShowJPanel(JPanel p) {
-        p.setSize(860, 640);
-        p.setLocation(0, 0);
-
-        contenido.removeAll();
-        contenido.add(p, BorderLayout.CENTER);
-        contenido.revalidate();
-        contenido.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -72,12 +86,12 @@ public class BibliotecaVista extends javax.swing.JFrame {
         nombreApp1 = new javax.swing.JLabel();
         nombreApp2 = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
-        usuarios = new javax.swing.JButton();
-        devolucion = new javax.swing.JButton();
-        prestamos = new javax.swing.JButton();
-        materiales = new javax.swing.JButton();
-        solicitudes = new javax.swing.JButton();
-        contenido = new javax.swing.JPanel();
+        BtnUsuarios = new javax.swing.JButton();
+        BtnDevolucion = new javax.swing.JButton();
+        BtnPrestamos = new javax.swing.JButton();
+        BtnMateriales = new javax.swing.JButton();
+        BtnSolicitudes = new javax.swing.JButton();
+        PnlContenido = new javax.swing.JPanel();
         encabezado = new javax.swing.JPanel();
         saludo = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
@@ -96,7 +110,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(236, 226, 208));
 
         nombre.setBackground(new java.awt.Color(217, 199, 199));
-        nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         nombreApp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreApp1.setText("Biblioteca");
@@ -126,50 +140,50 @@ public class BibliotecaVista extends javax.swing.JFrame {
         );
 
         menu.setBackground(new java.awt.Color(181, 141, 142));
-        menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        usuarios.setBackground(new java.awt.Color(255, 249, 237));
-        usuarios.setText("Usuarios");
-        usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        usuarios.addActionListener(new java.awt.event.ActionListener() {
+        BtnUsuarios.setBackground(new java.awt.Color(255, 249, 237));
+        BtnUsuarios.setText("Usuarios");
+        BtnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuariosActionPerformed(evt);
+                BtnUsuariosActionPerformed(evt);
             }
         });
 
-        devolucion.setBackground(new java.awt.Color(255, 249, 237));
-        devolucion.setText("Devolución");
-        devolucion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        devolucion.addActionListener(new java.awt.event.ActionListener() {
+        BtnDevolucion.setBackground(new java.awt.Color(255, 249, 237));
+        BtnDevolucion.setText("Devolución");
+        BtnDevolucion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnDevolucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                devolucionActionPerformed(evt);
+                BtnDevolucionActionPerformed(evt);
             }
         });
 
-        prestamos.setBackground(new java.awt.Color(255, 249, 237));
-        prestamos.setText("Préstamos");
-        prestamos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        prestamos.addActionListener(new java.awt.event.ActionListener() {
+        BtnPrestamos.setBackground(new java.awt.Color(255, 249, 237));
+        BtnPrestamos.setText("Préstamos");
+        BtnPrestamos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnPrestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prestamosActionPerformed(evt);
+                BtnPrestamosActionPerformed(evt);
             }
         });
 
-        materiales.setBackground(new java.awt.Color(255, 249, 237));
-        materiales.setText("Materiales");
-        materiales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        materiales.addActionListener(new java.awt.event.ActionListener() {
+        BtnMateriales.setBackground(new java.awt.Color(255, 249, 237));
+        BtnMateriales.setText("Materiales");
+        BtnMateriales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnMateriales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialesActionPerformed(evt);
+                BtnMaterialesActionPerformed(evt);
             }
         });
 
-        solicitudes.setBackground(new java.awt.Color(255, 249, 237));
-        solicitudes.setText("Solicitudes");
-        solicitudes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        solicitudes.addActionListener(new java.awt.event.ActionListener() {
+        BtnSolicitudes.setBackground(new java.awt.Color(255, 249, 237));
+        BtnSolicitudes.setText("Solicitudes");
+        BtnSolicitudes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSolicitudes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                solicitudesActionPerformed(evt);
+                BtnSolicitudesActionPerformed(evt);
             }
         });
 
@@ -180,33 +194,33 @@ public class BibliotecaVista extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(solicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(materiales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(devolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnSolicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(BtnMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(devolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(materiales, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        contenido.setBackground(new java.awt.Color(236, 226, 208));
+        PnlContenido.setBackground(new java.awt.Color(236, 226, 208));
 
         encabezado.setBackground(new java.awt.Color(217, 199, 199));
-        encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         saludo.setText("¡Bueno/as (días/tardes/noches) bibliotecario encargado!");
 
@@ -245,14 +259,14 @@ public class BibliotecaVista extends javax.swing.JFrame {
 
         texto8.setText("• Solicitudes de libros");
 
-        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
-        contenido.setLayout(contenidoLayout);
-        contenidoLayout.setHorizontalGroup(
-            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PnlContenidoLayout = new javax.swing.GroupLayout(PnlContenido);
+        PnlContenido.setLayout(PnlContenidoLayout);
+        PnlContenidoLayout.setHorizontalGroup(
+            PnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnlContenidoLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(PnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(texto8, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,11 +277,11 @@ public class BibliotecaVista extends javax.swing.JFrame {
                     .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        contenidoLayout.setVerticalGroup(
-            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoLayout.createSequentialGroup()
+        PnlContenidoLayout.setVerticalGroup(
+            PnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnlContenidoLayout.createSequentialGroup()
                 .addComponent(encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addComponent(texto1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +308,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +316,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -320,29 +334,29 @@ public class BibliotecaVista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosActionPerformed
-        ShowJPanel(new Usuarios());
-    }//GEN-LAST:event_usuariosActionPerformed
+    private void BtnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuariosActionPerformed
+        //ShowJPanel(new Usuarios(openConexion));
+    }//GEN-LAST:event_BtnUsuariosActionPerformed
 
-    private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
-        ShowJPanel(new Prestamos());
-    }//GEN-LAST:event_prestamosActionPerformed
+    private void BtnPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrestamosActionPerformed
+        //ShowJPanel(new Prestamos());
+    }//GEN-LAST:event_BtnPrestamosActionPerformed
 
-    private void devolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolucionActionPerformed
-        ShowJPanel(new Devolucion());
-    }//GEN-LAST:event_devolucionActionPerformed
+    private void BtnDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDevolucionActionPerformed
+        //ShowJPanel(new Devolucion());
+    }//GEN-LAST:event_BtnDevolucionActionPerformed
 
-    private void materialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialesActionPerformed
-        ShowJPanel(new MaterialesVista());
-    }//GEN-LAST:event_materialesActionPerformed
+    private void BtnMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaterialesActionPerformed
+        //ShowJPanel(new MaterialesVista());
+    }//GEN-LAST:event_BtnMaterialesActionPerformed
 
-    private void solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesActionPerformed
-        ShowJPanel(new Solicitudes());
-    }//GEN-LAST:event_solicitudesActionPerformed
+    private void BtnSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSolicitudesActionPerformed
+        //ShowJPanel(new Solicitudes());
+    }//GEN-LAST:event_BtnSolicitudesActionPerformed
 
     public static void main(String args[]) {
 
-        FlatLightLaf.setup();
+        FlatSolarizedLightIJTheme.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BibliotecaVista().setVisible(true);
@@ -351,19 +365,20 @@ public class BibliotecaVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnDevolucion;
+    public javax.swing.JButton BtnMateriales;
+    public javax.swing.JButton BtnPrestamos;
+    public javax.swing.JButton BtnSolicitudes;
+    public javax.swing.JButton BtnUsuarios;
+    public javax.swing.JPanel PnlContenido;
     private javax.swing.JPanel background;
-    private javax.swing.JPanel contenido;
-    private javax.swing.JButton devolucion;
     private javax.swing.JPanel encabezado;
     private javax.swing.JLabel fecha;
-    private javax.swing.JButton materiales;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel nombre;
     private javax.swing.JLabel nombreApp1;
     private javax.swing.JLabel nombreApp2;
-    private javax.swing.JButton prestamos;
     private javax.swing.JLabel saludo;
-    private javax.swing.JButton solicitudes;
     private javax.swing.JLabel texto1;
     private javax.swing.JLabel texto2;
     private javax.swing.JLabel texto3;
@@ -372,6 +387,5 @@ public class BibliotecaVista extends javax.swing.JFrame {
     private javax.swing.JLabel texto6;
     private javax.swing.JLabel texto7;
     private javax.swing.JLabel texto8;
-    private javax.swing.JButton usuarios;
     // End of variables declaration//GEN-END:variables
 }

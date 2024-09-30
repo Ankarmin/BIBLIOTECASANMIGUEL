@@ -51,7 +51,7 @@
                       <Component id="nombre" min="-2" max="-2" attributes="0"/>
                       <Component id="menu" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="contenido" max="32767" attributes="0"/>
+                  <Component id="PnlContenido" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -62,7 +62,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="menu" max="32767" attributes="0"/>
               </Group>
-              <Component id="contenido" max="32767" attributes="0"/>
+              <Component id="PnlContenido" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -74,7 +74,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
           </Properties>
@@ -126,7 +128,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
           </Properties>
@@ -137,11 +141,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="solicitudes" pref="243" max="32767" attributes="0"/>
-                          <Component id="materiales" max="32767" attributes="0"/>
-                          <Component id="devolucion" max="32767" attributes="0"/>
-                          <Component id="prestamos" max="32767" attributes="0"/>
-                          <Component id="usuarios" max="32767" attributes="0"/>
+                          <Component id="BtnSolicitudes" pref="243" max="32767" attributes="0"/>
+                          <Component id="BtnMateriales" max="32767" attributes="0"/>
+                          <Component id="BtnDevolucion" max="32767" attributes="0"/>
+                          <Component id="BtnPrestamos" max="32767" attributes="0"/>
+                          <Component id="BtnUsuarios" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -151,22 +155,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="usuarios" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="BtnUsuarios" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="prestamos" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="BtnPrestamos" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="devolucion" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="BtnDevolucion" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="materiales" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="BtnMateriales" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="solicitudes" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="BtnSolicitudes" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="usuarios">
+            <Component class="javax.swing.JButton" name="BtnUsuarios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
@@ -177,10 +181,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUsuariosActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="devolucion">
+            <Component class="javax.swing.JButton" name="BtnDevolucion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
@@ -191,10 +198,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="devolucionActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDevolucionActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="prestamos">
+            <Component class="javax.swing.JButton" name="BtnPrestamos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
@@ -205,10 +215,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prestamosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPrestamosActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="materiales">
+            <Component class="javax.swing.JButton" name="BtnMateriales">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
@@ -219,10 +232,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMaterialesActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="solicitudes">
+            <Component class="javax.swing.JButton" name="BtnSolicitudes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
@@ -233,24 +249,30 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="solicitudesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSolicitudesActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="contenido">
+        <Container class="javax.swing.JPanel" name="PnlContenido">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="e2" red="ec" type="rgb"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="encabezado" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="texto8" min="-2" pref="381" max="-2" attributes="0"/>
                           <Component id="texto7" min="-2" pref="381" max="-2" attributes="0"/>
@@ -269,7 +291,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="encabezado" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="texto1" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="texto2" min="-2" pref="82" max="-2" attributes="0"/>
@@ -298,7 +320,9 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder>
+                      <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                    </LineBorder>
                   </Border>
                 </Property>
               </Properties>

@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.sql.Connection;
 
 public class LibroRepositorio extends IConectar<Libro, String> {
 
-    public LibroRepositorio() {
+    public LibroRepositorio(Connection openConexion) {
+        super(openConexion);
         this.insertQuery = "INSERT INTO libro (isbn, titulo, autor, volumen, tema, stockTotal, stockDisponible) VALUES (?, ?, ?, ?, ?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM libro WHERE isbn = ?";
         this.searchAllQuery = "SELECT * FROM libro";

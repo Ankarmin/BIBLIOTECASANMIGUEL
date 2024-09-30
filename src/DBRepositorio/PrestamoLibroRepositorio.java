@@ -5,13 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  * @author Leonidas Garcia Lescano
  */
 public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> {
     
-    public PrestamoLibroRepositorio() {
+    public PrestamoLibroRepositorio(Connection openConexion) {
+        super(openConexion);
         this.insertQuery = "INSERT INTO prestamoLibro (idPrestamo, isbn, idBiblio, fechaDevolucion) VALUES (?, ?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM prestamoLibro WHERE idPrestamo = ?";
         this.searchAllQuery = "SELECT * FROM prestamoLibro";

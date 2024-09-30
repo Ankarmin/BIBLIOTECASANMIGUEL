@@ -1,8 +1,10 @@
 package Vista;
 
-public class Usuarios extends javax.swing.JPanel {
+public class SolicitudesVista extends javax.swing.JPanel {
 
-    public Usuarios() {
+    public SolicitudesVista() {
+        setSize(860, 640);
+        setLocation(0, 0);
         initComponents();
     }
 

@@ -1,9 +1,12 @@
 package DBRepositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Leonidas Garcia Lescano
  */
-public class Usuario {
+public class Usuario extends Entidades {
 
     private int idBiblio;
     private String dni, nombres;
@@ -17,6 +20,26 @@ public class Usuario {
     public Usuario() {
     }
 
+    @Override
+    public Object[] toArray() {
+        return new Object[]{getIdBiblio(), getDni(), getNombres()};
+    }
+
+    public static Usuario toUsuario(List<Object> datos) {
+        return new Usuario((Integer) datos.get(0),
+                (String) datos.get(1),
+                (String) datos.get(2));
+    }
+
+    public static List<String> getColumnas() {
+        List<String> columnas = new ArrayList<>();
+        columnas.add("ID Biblioteca");
+        columnas.add("DNI");
+        columnas.add("Nombres");
+
+        return columnas;
+    }
+    
     public int getIdBiblio() {
         return idBiblio;
     }

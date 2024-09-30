@@ -5,13 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  * @author Leonidas Garcia Lescano
  */
 public class MorosoRepositorio extends IConectar<Moroso, Integer> {
 
-    public MorosoRepositorio() {
+    public MorosoRepositorio(Connection openConexion) {
+        super(openConexion);
         this.insertQuery = "INSERT INTO moroso (idBiblio, fechaRecuperacion) VALUES (?, ?)";
         this.searchIDQuery = "SELECT * FROM moroso WHERE idBiblio = ?";
         this.searchAllQuery = "SELECT * FROM moroso";
