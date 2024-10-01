@@ -7,17 +7,24 @@ import java.sql.Connection;
 
 public class PnlDevolucionesControlador {
 
+    private final FrmBibliotecaControlador bibliotecaControlador;
+    
     private final DevolucionesVista vista;
 
-    public PnlDevolucionesControlador(Connection openConexion) {
+    public PnlDevolucionesControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
         vista = new DevolucionesVista();
+        this.bibliotecaControlador = bibliotecaControlador;
     }
 
-    public void mostrar(BibliotecaVista Padre) {
-        Padre.PnlContenido.removeAll();
-        Padre.PnlContenido.add(vista, BorderLayout.CENTER);
-        Padre.PnlContenido.revalidate();
-        Padre.PnlContenido.repaint();
+    public void mostrar() {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(vista, BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
 
+    public void irAPrestamosActivos() {
+        
+    }
+    
 }

@@ -20,6 +20,9 @@ import javax.swing.table.TableModel;
 public class PnlMaterialesControlador {
 
     //ATRIBUTOS PRIVADOR
+    //AHORA TODOS SON HERMANOS
+    private final FrmBibliotecaControlador bibliotecaControlador;
+
     //LA VISTA DEL CONTROLADOR
     private MaterialesVista vista;
 
@@ -44,7 +47,11 @@ public class PnlMaterialesControlador {
     private String estado = "Libro";
 
     //Constructor
-    PnlMaterialesControlador(Connection openConexion) {
+    PnlMaterialesControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
+
+        //BIBLIOTECA VISTA DE REFERENCIA
+        this.bibliotecaControlador = bibliotecaControlador;
+
         //INICIALIZACION DE LA VISTA
         vista = new MaterialesVista();
 
@@ -83,6 +90,10 @@ public class PnlMaterialesControlador {
                 libroSeleccionado = Libro.toLibro(datos);
                 llenarCamposLibro();
 
+                if (e.getClickCount() == 2) {
+                    irAPrestamos(libroSeleccionado);
+                }
+
             }
         };
 
@@ -103,6 +114,10 @@ public class PnlMaterialesControlador {
 
                 monografiaSeleccionada = Monografia.toMonografia(datos);
                 llenarCamposMonografia();
+
+                if (e.getClickCount() == 2) {
+                    irAPrestamos(monografiaSeleccionada);
+                }
 
             }
         };
@@ -137,11 +152,11 @@ public class PnlMaterialesControlador {
     }
 
     //ESTE METODO CARGA EL PANEL DE MATERIALES EN EL FRAME QUE SE LE ENVIE COMO PARAMETRO (EN ESTE CASO, BIBLIOTECA VISTA)
-    public void mostrar(BibliotecaVista Padre) {
-        Padre.PnlContenido.removeAll();
-        Padre.PnlContenido.add(vista, BorderLayout.CENTER);
-        Padre.PnlContenido.revalidate();
-        Padre.PnlContenido.repaint();
+    public void mostrar() {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(vista, BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
 
     //QUITA EL EVENTO DE LA MONOGRAFIA QUE VIMOS MAS ARRIBA Y LO CAMBIA POR EL DE LOS LIBROS
@@ -197,6 +212,22 @@ public class PnlMaterialesControlador {
         vista.TxtVolumen.setText("");
         vista.TxtVolumen.setEnabled(false);
         vista.LblCodigoMaterial.setText("ISSN");
+    }
+
+    public void irAPrestamos(Libro libroSeleccionado) {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamos().getVista(), BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
+        bibliotecaControlador.getControladorPrestamos().setLibroEntrante(libroSeleccionado);
+    }
+
+    public void irAPrestamos(Monografia monografiaSeleccionada) {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamos().getVista(), BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
+        bibliotecaControlador.getControladorPrestamos().setMonografiaEntrante(monografiaSeleccionada);
     }
 
 }

@@ -6,10 +6,12 @@ import java.awt.BorderLayout;
 import java.sql.Connection;
 
 public class PnlSolicitudesControlador {
-
+    
     private final SolicitudesVista vista;
 
     public PnlSolicitudesControlador(Connection openConexion) {
+        
+
         vista = new SolicitudesVista();
     }
     

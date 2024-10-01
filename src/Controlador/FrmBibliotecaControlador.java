@@ -21,6 +21,7 @@ public class FrmBibliotecaControlador {
     private final PnlMaterialesControlador controladorMateriales;
     private final PnlDevolucionesControlador controladorDevoluciones;
     private final PnlPrestamosControlador controladorPrestamos;
+    private final PnlPrestamosActivosControlador controladorPrestamosActivos;
     private final PnlUsuariosControlador controladorUsuarios;
     private final PnlSolicitudesControlador controladorSolicitudes;
 
@@ -34,11 +35,12 @@ public class FrmBibliotecaControlador {
         frmBiblioteca = new BibliotecaVista();
 
         //INSTANCIACIÓN DE LOS CONTROLADORES
-        controladorUsuarios = new PnlUsuariosControlador(openConexion);
-        controladorPrestamos = new PnlPrestamosControlador(openConexion);
-        controladorDevoluciones = new PnlDevolucionesControlador(openConexion);
-        controladorMateriales = new PnlMaterialesControlador(openConexion);
+        controladorUsuarios = new PnlUsuariosControlador(openConexion, this);
+        controladorPrestamos = new PnlPrestamosControlador(openConexion, this);
+        controladorDevoluciones = new PnlDevolucionesControlador(openConexion, this);
+        controladorMateriales = new PnlMaterialesControlador(openConexion, this);
         controladorSolicitudes = new PnlSolicitudesControlador(openConexion);
+        controladorPrestamosActivos = new PnlPrestamosActivosControlador(openConexion, this);
 
         //MÉTODO QUE AGREGA LOS EVENTOS DE LOS BOTONES DE BIBLIOTECAVISTA (LO QUE APARECE EN EL MOQUPS YA TE LA SABES: USUARIOS,
         //PRESTAMOS, DEVOLUCIONES, ETC...)
@@ -60,21 +62,21 @@ public class FrmBibliotecaControlador {
         // OBSERVAMOS EL SIGUIENTE EJEMPLO: BASICAMENTE AÑADE UN EVENTO QUE "ESCUCHA" EL CLICK SOBRE EL BOTON
         frmBiblioteca.BtnUsuarios.addActionListener((e) -> {
             // POR EJEMPLO, AQUI EL EVENTO CONSISTE EN LA LLAMADA AL MÉTODO MOSTRAR DEL CONTROLADOR DE USUARIOS
-            controladorUsuarios.mostrar(frmBiblioteca);
+            controladorUsuarios.mostrar();
         } // ESTE ES EL EVENTO EN CUESTIÓN, SOBREESCRIBE UN MÉTODO YA EXISTENTE (QUIERE DECIR QUE CAMBIA EL MÉTODO
         // POR DEFECTO Y AGREGA EL QUE NOSOTROS LE INDIQUEMOS)
         );
         // Y ASI CON TODOS LOS DEMAS C:
         frmBiblioteca.BtnPrestamos.addActionListener((e) -> {
-            controladorPrestamos.mostrar(frmBiblioteca);
+            controladorPrestamos.mostrar();
         });
 
         frmBiblioteca.BtnDevolucion.addActionListener((e) -> {
-            controladorDevoluciones.mostrar(frmBiblioteca);
+            controladorDevoluciones.mostrar();
         });
 
         frmBiblioteca.BtnMateriales.addActionListener((e) -> {
-            controladorMateriales.mostrar(frmBiblioteca);
+            controladorMateriales.mostrar();
         });
 
         frmBiblioteca.BtnSolicitudes.addActionListener((e) -> {
@@ -84,8 +86,24 @@ public class FrmBibliotecaControlador {
 
     //MÉTODO QUE CENTRA Y VUELVE VISIBLE AL JFRAME BIBLIOTECAVISTA 
     public void iniciar() {
-        this.frmBiblioteca.setLocationRelativeTo(null);
-        this.frmBiblioteca.setVisible(true);
+        frmBiblioteca.setLocationRelativeTo(null);
+        frmBiblioteca.setVisible(true);
+    }
+
+    public PnlDevolucionesControlador getControladorDevoluciones() {
+        return controladorDevoluciones;
+    }
+
+    public PnlPrestamosControlador getControladorPrestamos() {
+        return controladorPrestamos;
+    }
+
+    public PnlPrestamosActivosControlador getControladorPrestamosActivos() {
+        return controladorPrestamosActivos;
+    }
+
+    public BibliotecaVista getFrmBiblioteca() {
+        return frmBiblioteca;
     }
 
 }

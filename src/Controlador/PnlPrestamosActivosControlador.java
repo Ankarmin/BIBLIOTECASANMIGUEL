@@ -7,16 +7,26 @@ import java.sql.Connection;
 
 public class PnlPrestamosActivosControlador {
 
+    private final FrmBibliotecaControlador bibliotecaControlador;
+
     private final PrestamosActivosVista vista;
 
-    public PnlPrestamosActivosControlador(Connection openConexion) {
+    public PnlPrestamosActivosControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
+
+        this.bibliotecaControlador = bibliotecaControlador;
+
         vista = new PrestamosActivosVista();
     }
 
-    public void mostrar(BibliotecaVista Padre) {
-        Padre.PnlContenido.removeAll();
-        Padre.PnlContenido.add(vista, BorderLayout.CENTER);
-        Padre.PnlContenido.revalidate();
-        Padre.PnlContenido.repaint();
+    public void mostrar() {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(vista, BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
+
+    public PrestamosActivosVista getVista() {
+        return vista;
+    }
+
 }
