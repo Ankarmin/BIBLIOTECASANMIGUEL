@@ -1,53 +1,54 @@
 package Controlador;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
+//CLASES NECESARIAS
 import Vista.BibliotecaVista;
-import Vista.DevolucionesVista;
-import Vista.MaterialesVista;
-import Vista.PrestamosVista;
-import Vista.SolicitudesVista;
-import Vista.UsuariosVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 
+//CONTROLADOR DEL JFRAME DE LA BIBLIOTECA (LA VENTANA)
 public class FrmBibliotecaControlador {
 
-    // Atributos privados
-    private Connection openConexion;
+    //ATRIBUTOS DESTINADOS A CONECTARSE CON LA BASE DE DATOS
+    private Connection openConexion; // ANOTACION: ESTA CONEXION SERÁ UTILIZADA POR TODOS LOS CONTROLADORES
     private static final String URL = "jdbc:mysql://autorack.proxy.rlwy.net:50572/railway";
     private static final String USER = "root";
     private static final String PASSWORD = "TuuSNAhxOdMuZfOaGnaMDytrIOeUpwcN";
 
-    //Vista
+    //LA VISTA DEL CONTROLADOR (ES LA VENTANA QUE APARECE AL INCIAR EL PROGRAMA)
     private BibliotecaVista frmBiblioteca;
 
-    //Controladores
+    //TODOS LOS DEMAS CONTROLADORES ESTAN AQUI
     private final PnlMaterialesControlador controladorMateriales;
     private final PnlDevolucionesControlador controladorDevoluciones;
     private final PnlPrestamosControlador controladorPrestamos;
     private final PnlUsuariosControlador controladorUsuarios;
     private final PnlSolicitudesControlador controladorSolicitudes;
 
+    //CONSTRUCTOR DEL CONTROLADOR DEL FRAME BIBLIOTECA
     public FrmBibliotecaControlador() {
+
+        //INICIALIZA CONEXION (SI ESTO FALLA SE VA TODO A LA MRD XD)
         Conectar();
 
+        //INSTANCIACIÓN DEL FRAME DE BIBLIOTECA
         frmBiblioteca = new BibliotecaVista();
 
+        //INSTANCIACIÓN DE LOS CONTROLADORES
         controladorUsuarios = new PnlUsuariosControlador(openConexion);
         controladorPrestamos = new PnlPrestamosControlador(openConexion);
         controladorDevoluciones = new PnlDevolucionesControlador(openConexion);
         controladorMateriales = new PnlMaterialesControlador(openConexion);
         controladorSolicitudes = new PnlSolicitudesControlador(openConexion);
 
+        //MÉTODO QUE AGREGA LOS EVENTOS DE LOS BOTONES DE BIBLIOTECAVISTA (LO QUE APARECE EN EL MOQUPS YA TE LA SABES: USUARIOS,
+        //PRESTAMOS, DEVOLUCIONES, ETC...)
         SetEvents();
     }
 
-    // Conexion con railway
+    //MÉTODO PARA CONECTARSE A LA BASE DE DATOS (INICIALIZA OPENCONEXION)
     private void Conectar() {
         try {
             this.openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -57,14 +58,20 @@ public class FrmBibliotecaControlador {
         }
     }
 
+    //MÉTODO QUE CONFIGURA LOS EVENTOS DE CLICK DE LOS BOTONES DE BIBLITOECAVISTA
     public final void SetEvents() {
+        // OBSERVAMOS EL SIGUIENTE EJEMPLO: BASICAMENTE AÑADE UN EVENTO QUE "ESCUCHA" EL CLICK SOBRE EL BOTON
         frmBiblioteca.BtnUsuarios.addActionListener(new ActionListener() {
+
+            // ESTE ES EL EVENTO EN CUESTIÓN, SOBREESCRIBE UN MÉTODO YA EXISTENTE (QUIERE DECIR QUE CAMBIA EL MÉTODO
+            // POR DEFECTO Y AGREGA EL QUE NOSOTROS LE INDIQUEMOS)
             @Override
             public void actionPerformed(ActionEvent e) {
+                // POR EJEMPLO, AQUI EL EVENTO CONSISTE EN LA LLAMADA AL MÉTODO MOSTRAR DEL CONTROLADOR DE USUARIOS
                 controladorUsuarios.mostrar(frmBiblioteca);
             }
         });
-
+        // Y ASI CON TODOS LOS DEMAS C:
         frmBiblioteca.BtnPrestamos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,6 +101,7 @@ public class FrmBibliotecaControlador {
         });
     }
 
+    //MÉTODO QUE CENTRA Y VUELVE VISIBLE AL JFRAME BIBLIOTECAVISTA 
     public void iniciar() {
         this.frmBiblioteca.setLocationRelativeTo(null);
         this.frmBiblioteca.setVisible(true);

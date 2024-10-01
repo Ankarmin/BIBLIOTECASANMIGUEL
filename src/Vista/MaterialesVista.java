@@ -22,7 +22,7 @@ public class MaterialesVista extends javax.swing.JPanel {
         TxtTema = new javax.swing.JTextField();
         BtnAgregar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
-        LblISBN = new javax.swing.JLabel();
+        LblCodigo = new javax.swing.JLabel();
         LblTitulo = new javax.swing.JLabel();
         LblAutor = new javax.swing.JLabel();
         LblVolumen = new javax.swing.JLabel();
@@ -46,7 +46,7 @@ public class MaterialesVista extends javax.swing.JPanel {
 
         BtnEliminar.setText("Eliminar");
 
-        LblISBN.setText("ISBN:");
+        LblCodigo.setText("ISBN:");
 
         LblTitulo.setText("Título");
 
@@ -70,7 +70,7 @@ public class MaterialesVista extends javax.swing.JPanel {
                 .addComponent(CmbTipoMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PnlIzqLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(LblISBN))
+                .addComponent(LblCodigo))
             .addGroup(PnlIzqLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,7 +112,7 @@ public class MaterialesVista extends javax.swing.JPanel {
                 .addGap(4, 4, 4)
                 .addComponent(CmbTipoMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(LblISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(TxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -188,8 +188,8 @@ public class MaterialesVista extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> CmbFiltro;
     public javax.swing.JComboBox<String> CmbTipoMaterial;
     public javax.swing.JLabel LblAutor;
+    public javax.swing.JLabel LblCodigo;
     private javax.swing.JLabel LblFiltros;
-    public javax.swing.JLabel LblISBN;
     public javax.swing.JLabel LblTema;
     private javax.swing.JLabel LblTipoMaterial;
     public javax.swing.JLabel LblTitulo;

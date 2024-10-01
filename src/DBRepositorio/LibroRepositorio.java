@@ -1,3 +1,5 @@
+//NO TIENES Q ENTENDER ESTO TIO, DEJALO SER
+//NO, MENTIRA. PRIMERO CHECA ICONECTAR
 package DBRepositorio;
 
 import java.sql.PreparedStatement;
@@ -7,9 +9,15 @@ import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
 
+//ACUERDATE DE LOS GENERICOS QUE TIENE ICONECTAR, FAMILIAR, NO?
 public class LibroRepositorio extends IConectar<Libro, String> {
 
+    //CONSTRUCTOR MAGICO
     public LibroRepositorio(Connection openConexion) {
+        // SUPER! LLAMA AL CONSTRUCTOR PADRE DE LA CLASE (ICONECTAR, LO RECUERDAS?) Y ACTUA COMO SU REPRESENTANTE PARA
+        // ENVIARLE LA CONEXION ABIERTA
+
+        // SUPER NOTA: LOS ATRIBUTOS DE ICONECTAR TAMBIEN LE PERTENECEN A LIBROREPOSITORIO
         super(openConexion);
         this.insertQuery = "INSERT INTO libro (isbn, titulo, autor, volumen, tema, stockTotal, stockDisponible) VALUES (?, ?, ?, ?, ?, ?, ?)";
         this.searchIDQuery = "SELECT * FROM libro WHERE isbn = ?";
@@ -18,6 +26,9 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         this.deleteRowQuery = "DELETE FROM libro WHERE isbn = ?";
     }
 
+    //AQUI VAMOS A OVERRADEAR (SOBREESCRIBIR) O IMPLEMENTAR LOS MÉTODOS QUE PAPI ICONECTAR NOS PIDE Q IMPLEMENTEMOS
+    //A LA FIRME TENDRIA Q EXPLICARTE SQL PARA Q SE ENTIENDA ASI Q T LO PUEDES SALTEAR
+    //DEVUELVE TRUE SI SE AGREGÓ CORRECTAMENTE Y FALSE EN CASO CONTRARIO
     @Override
     public boolean agregar(Libro filaNueva) {
         try {
@@ -42,6 +53,7 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         }
     }
 
+    //DEVUELVE EL LIBRO BUSCADO POR ID (ISBN)
     @Override
     public Libro obtenerPorId(String id) {
 
@@ -75,6 +87,7 @@ public class LibroRepositorio extends IConectar<Libro, String> {
 
     }
 
+    //TE TRAE TODITITO
     @Override
     public List<Libro> obtenerTodos() {
         List<Libro> libros = new ArrayList<>();
@@ -98,6 +111,7 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         return libros.isEmpty() ? new ArrayList<>() : libros;
     }
 
+    //ACTUALIZA EN BASE A UNA INSTANCIA DE LIBRO
     @Override
     public boolean actualizar(Libro filaActualizada) {
         try {
@@ -122,6 +136,7 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         }
     }
 
+    //ELIMINA POR ID (ISBN)
     @Override
     public boolean eliminar(String id) {
         try {
@@ -140,4 +155,6 @@ public class LibroRepositorio extends IConectar<Libro, String> {
             return false;
         }
     }
+
+    // SI SE NECESITARA, HABRAN MAS MÉTODOS. ESTOS NUEVOS METODOS SERAN SOLO DE LIBROREPOSITORIO POR LO QUE OVERRIDE NO LO UTILIZARE MAS
 }

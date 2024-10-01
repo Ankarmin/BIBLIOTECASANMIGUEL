@@ -46,11 +46,9 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="TxtFechaDevolucion" pref="143" max="32767" attributes="0"/>
                       <Component id="TxtIdPrestamo" max="32767" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="CmbMaterial" alignment="0" max="32767" attributes="0"/>
-                          <Component id="LblFechaDevolucion" alignment="1" max="32767" attributes="0"/>
-                          <Component id="LblIdPrestamos" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="CmbMaterial" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LblFechaDevolucion" alignment="1" max="32767" attributes="0"/>
+                      <Component id="LblIdPrestamos" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="643" max="32767" attributes="0"/>
               </Group>
