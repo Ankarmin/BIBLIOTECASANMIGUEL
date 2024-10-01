@@ -87,8 +87,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="nombreApp2" pref="228" max="32767" attributes="0"/>
-                          <Component id="nombreApp1" max="32767" attributes="0"/>
+                          <Component id="LblNombreApp2" pref="228" max="32767" attributes="0"/>
+                          <Component id="LblNombreApp1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
@@ -98,22 +98,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="nombreApp1" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="LblNombreApp1" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nombreApp2" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="LblNombreApp2" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="nombreApp1">
+            <Component class="javax.swing.JLabel" name="LblNombreApp1">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Biblioteca"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nombreApp2">
+            <Component class="javax.swing.JLabel" name="LblNombreApp2">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="San Miguel"/>
@@ -173,16 +173,13 @@
             <Component class="javax.swing.JButton" name="BtnUsuarios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ed" green="f9" red="ff" type="rgb"/>
+                  <Color blue="db" green="f3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUsuariosActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -190,16 +187,13 @@
             <Component class="javax.swing.JButton" name="BtnDevolucion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ed" green="f9" red="ff" type="rgb"/>
+                  <Color blue="db" green="f3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Devoluci&#xf3;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDevolucionActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -207,16 +201,13 @@
             <Component class="javax.swing.JButton" name="BtnPrestamos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ed" green="f9" red="ff" type="rgb"/>
+                  <Color blue="db" green="f3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pr&#xe9;stamos"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPrestamosActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -224,16 +215,13 @@
             <Component class="javax.swing.JButton" name="BtnMateriales">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ed" green="f9" red="ff" type="rgb"/>
+                  <Color blue="db" green="f3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Materiales"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMaterialesActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -241,16 +229,13 @@
             <Component class="javax.swing.JButton" name="BtnSolicitudes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ed" green="f9" red="ff" type="rgb"/>
+                  <Color blue="db" green="f3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Solicitudes"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSolicitudesActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -274,14 +259,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="texto8" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto7" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto6" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto5" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto4" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto3" min="-2" pref="381" max="-2" attributes="0"/>
-                          <Component id="texto1" min="-2" pref="691" max="-2" attributes="0"/>
-                          <Component id="texto2" alignment="0" min="-2" pref="681" max="-2" attributes="0"/>
+                          <Component id="LblTexto8" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto7" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto6" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto5" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto4" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto3" min="-2" pref="381" max="-2" attributes="0"/>
+                          <Component id="LblTexto1" min="-2" pref="691" max="-2" attributes="0"/>
+                          <Component id="LblTexto2" alignment="0" min="-2" pref="681" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -292,21 +277,21 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="encabezado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="texto1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="LblTexto1" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto2" min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="LblTexto2" min="-2" pref="82" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto3" min="-2" pref="89" max="-2" attributes="0"/>
+                      <Component id="LblTexto3" min="-2" pref="89" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto4" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="LblTexto4" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto5" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="LblTexto5" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto6" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="LblTexto6" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto7" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="LblTexto7" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="texto8" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="LblTexto8" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -333,8 +318,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="saludo" pref="732" max="32767" attributes="0"/>
-                              <Component id="fecha" max="32767" attributes="0"/>
+                              <Component id="LblSaludo" pref="732" max="32767" attributes="0"/>
+                              <Component id="LblFecha" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
                       </Group>
@@ -344,57 +329,57 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="saludo" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="LblSaludo" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="fecha" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="LblFecha" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace pref="38" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="saludo">
+                <Component class="javax.swing.JLabel" name="LblSaludo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#xa1;Bueno/as (d&#xed;as/tardes/noches) bibliotecario encargado!"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="fecha">
+                <Component class="javax.swing.JLabel" name="LblFecha">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hoy es &lt;fecha actual&gt;."/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="texto1">
+            <Component class="javax.swing.JLabel" name="LblTexto1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sistema de gesti&#xf3;n de biblioteca para la instituci&#xf3;n privada educativa San Miguel"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="texto2">
+            <Component class="javax.swing.JLabel" name="LblTexto2">
             </Component>
-            <Component class="javax.swing.JLabel" name="texto3">
+            <Component class="javax.swing.JLabel" name="LblTexto3">
             </Component>
-            <Component class="javax.swing.JLabel" name="texto4">
+            <Component class="javax.swing.JLabel" name="LblTexto4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2022; Gesti&#xf3;n de pr&#xe9;stamos y devoluciones"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="texto5">
+            <Component class="javax.swing.JLabel" name="LblTexto5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2022; B&#xfa;squeda avanzada de libros"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="texto6">
+            <Component class="javax.swing.JLabel" name="LblTexto6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2022; Inventario automatizado"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="texto7">
+            <Component class="javax.swing.JLabel" name="LblTexto7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2022; Gesti&#xf3;n de actividad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="texto8">
+            <Component class="javax.swing.JLabel" name="LblTexto8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2022; Solicitudes de libros"/>
               </Properties>

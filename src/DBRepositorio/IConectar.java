@@ -3,7 +3,6 @@ package DBRepositorio;
 
 import java.util.List;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 // UNA CLASE ABSTRACTA CON GENERICOS, AEA Q TROLL

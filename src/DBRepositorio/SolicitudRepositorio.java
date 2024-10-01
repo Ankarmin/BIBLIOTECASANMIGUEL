@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class SolicitudRepositorio extends IConectar<Solicitud, Integer> {
 
     public SolicitudRepositorio(Connection openConexion) {

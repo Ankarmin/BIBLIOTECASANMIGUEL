@@ -5,9 +5,6 @@ package DBRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 //HEREDA DE ENTIDADES (ENTIDADES ES UNA CLASE ABSTRACTA)
 public class Libro extends Entidades {
 

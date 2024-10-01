@@ -1,20 +1,10 @@
 package Common;
 
 import DBRepositorio.Entidades;
-import DBRepositorio.IConectar;
-import DBRepositorio.Libro;
-import DBRepositorio.PrestamoLibro;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * @author Leonidas Garcia Lescano
- * @param <T>
- */
 // Generico de tipo
 // HOLA EN ESTA CLASE USAMOS GENERICOS PARA GENERAR TABLAS ADAPTABLES A CUALQUIER TIPO DE ENTIDAD
 // ¿NO SABES QUE ES UNA ENTIDAD? PUES EN ESTE PROGRAMA UTILIZAMOS VARIOS DE ESOS, SON LAS CLASES QUE REPRESENTAN

@@ -7,24 +7,16 @@ import DBRepositorio.Libro;
 import DBRepositorio.LibroRepositorio;
 import DBRepositorio.Monografia;
 import DBRepositorio.MonografiaRepositorio;
-
 import Vista.BibliotecaVista;
 import Vista.MaterialesVista;
-
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.table.TableModel;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class PnlMaterialesControlador {
 
     //ATRIBUTOS PRIVADOR
@@ -45,8 +37,8 @@ public class PnlMaterialesControlador {
     private TableModel modeloMonografias;
 
     //EVENTOS PARA EL CLICK EN LA TABLA
-    private MouseAdapter clickLibro;
-    private MouseAdapter clickMonografia;
+    private final MouseAdapter clickLibro;
+    private final MouseAdapter clickMonografia;
 
     //EL ESTADO DE LA TABLA
     private String estado = "Libro";
@@ -61,14 +53,14 @@ public class PnlMaterialesControlador {
         monografiaDriver = new MonografiaRepositorio(openConexion);
 
         //GENERACION DE LOS MODELOS (PUEDES HACERLO ASI O RECARGAR CADA VEZ QUE SE CAMBIE DE TABLA, DEPENDIENDO DE TI AH)
-        CommonFunctions.llenarTabla(vista.TablaMateriales, Monografia.getColumnas(), monografiaDriver.obtenerTodos());
+        CommonFunctions.llenarTabla(vista.TblMateriales, Monografia.getColumnas(), monografiaDriver.obtenerTodos());
 
         //AQUI EXTRAEMOS EL MODELOD DE LA TABLA PARA TENERLO LISTO PARA EL CAMBIO
-        modeloMonografias = vista.TablaMateriales.getModel();
+        modeloMonografias = vista.TblMateriales.getModel();
 
         // COMO ES EL SEGUNDO EN SER LLAMADO, LOS LIBROS SE VERAN PRIMERO EN LA TABLA
-        CommonFunctions.llenarTabla(vista.TablaMateriales, Libro.getColumnas(), libroDriver.obtenerTodos());
-        modeloLibros = vista.TablaMateriales.getModel();
+        CommonFunctions.llenarTabla(vista.TblMateriales, Libro.getColumnas(), libroDriver.obtenerTodos());
+        modeloLibros = vista.TblMateriales.getModel();
 
         //EVENTOS DE CLICKS EN LA TABLA
         //EN ESTE CASO SE DEFINE UN EVENTO DE MOUSE QUE AUN NO ES ASIGNADO A NINGUN COMPONENTE (DIGASE BOTON, TABLA, COMBOBOX, ETC)
@@ -80,11 +72,11 @@ public class PnlMaterialesControlador {
                 // ASIGNA AL ATRIBUTO LIBROSELECCIONADO, PARA LUEGO COLOCARLO EN LOS CAMPOS
                 // TEXTFIELD
                 List<Object> datos = new ArrayList<>();
-                int filaSeleccionada = vista.TablaMateriales.getSelectedRow();
+                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
 
                 if (filaSeleccionada != -1) {
                     for (int i = 0; i < Libro.getColumnas().size(); i++) {
-                        datos.add(vista.TablaMateriales.getValueAt(filaSeleccionada, i));
+                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
                     }
                 }
 
@@ -101,11 +93,11 @@ public class PnlMaterialesControlador {
 
                 List<Object> datos = new ArrayList<>();
                 //ACCEDIENDO A LA FILA SELECCIONADA
-                int filaSeleccionada = vista.TablaMateriales.getSelectedRow();
+                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
 
                 if (filaSeleccionada != -1) {
                     for (int i = 0; i < Monografia.getColumnas().size(); i++) {
-                        datos.add(vista.TablaMateriales.getValueAt(filaSeleccionada, i));
+                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
                     }
                 }
 
@@ -120,34 +112,27 @@ public class PnlMaterialesControlador {
 
         // EVENTOS DE COMPONENTES
         //EVENTO PARA COMBOBOX, AL CAMBIAR DEBE CARGAR UNA U OTRA TABLA
-        vista.CmbTipoMaterial.addActionListener(new ActionListener() {
+        vista.CmbTipoMaterial.addActionListener((e) -> {
+            //EVALUA EL TIPO DE MATERIAL SELECCIONADO Y LO CAMBIO EN FUNCIÓN DE SU VALOR
+            String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
 
-            //ASIGNACION DEL EVENTO
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                //EVALUA EL TIPO DE MATERIAL SELECCIONADO Y LO CAMBIO EN FUNCIÓN DE SU VALOR
-                String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
-
-                if ("Libro".equals(opc) && !"Libro".equals(estado)) {
-                    vista.TablaMateriales.setModel(modeloLibros);
-                    // MÉTODOS QUE SE VEN MAS ABAJO
-                    ajustarALibros();
-                    limpiarCampos();
-                    cargarEventosTablaLibros();
-                    estado = "Libro";
-                } else if ("Monografia".equals(opc) && !"Monografia".equals(estado)) {
-                    vista.TablaMateriales.setModel(modeloMonografias);
-                    ajustarAMonografias();
-                    limpiarCampos();
-                    cargarEventosTablaMonografias();
-                    estado = "Monografia";
-
-                }
+            if ("Libro".equals(opc) && !"Libro".equals(estado)) {
+                vista.TblMateriales.setModel(modeloLibros);
+                // MÉTODOS QUE SE VEN MAS ABAJO
+                ajustarALibros();
+                limpiarCampos();
+                cargarEventosTablaLibros();
+                estado = "Libro";
+            } else if ("Monografia".equals(opc) && !"Monografia".equals(estado)) {
+                vista.TblMateriales.setModel(modeloMonografias);
+                ajustarAMonografias();
+                limpiarCampos();
+                cargarEventosTablaMonografias();
+                estado = "Monografia";
 
             }
-
-        });
+        } //ASIGNACION DEL EVENTO
+        );
 
     }
 
@@ -162,16 +147,16 @@ public class PnlMaterialesControlador {
     //QUITA EL EVENTO DE LA MONOGRAFIA QUE VIMOS MAS ARRIBA Y LO CAMBIA POR EL DE LOS LIBROS
     public void cargarEventosTablaLibros() {
 
-        vista.TablaMateriales.removeMouseListener(clickMonografia);
-        vista.TablaMateriales.addMouseListener(clickLibro);
+        vista.TblMateriales.removeMouseListener(clickMonografia);
+        vista.TblMateriales.addMouseListener(clickLibro);
 
     }
 
     //XD NO T VOY A EXPLICAR ESTO
     public void cargarEventosTablaMonografias() {
 
-        vista.TablaMateriales.removeMouseListener(clickLibro);
-        vista.TablaMateriales.addMouseListener(clickMonografia);
+        vista.TblMateriales.removeMouseListener(clickLibro);
+        vista.TblMateriales.addMouseListener(clickMonografia);
 
     }
 
@@ -204,14 +189,14 @@ public class PnlMaterialesControlador {
     //ACTIVA EL TEXTFIELD DE VOLUMEN Y CAMBIA EL LBL DE TXTCODIGO
     public void ajustarALibros() {
         vista.TxtVolumen.setEnabled(true);
-        vista.LblCodigo.setText("ISBN");
+        vista.LblCodigoMaterial.setText("ISBN");
     }
 
     //DESACTIVA EL TEXTFIELD DE VOLUMEN Y CAMBIA EL LBL DE TXTCODIGO
     public void ajustarAMonografias() {
         vista.TxtVolumen.setText("");
         vista.TxtVolumen.setEnabled(false);
-        vista.LblCodigo.setText("ISSN");
+        vista.LblCodigoMaterial.setText("ISSN");
     }
 
 }

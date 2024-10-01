@@ -1,9 +1,5 @@
 package Modelo;
 
-/**
- * @author Leonidas Garcia Lescano
- */
-
 public class ModeloMateriales {
     public void AgregarLibro () {
         
@@ -14,7 +10,6 @@ public class ModeloMateriales {
     }
     
 }
-
 
 /* 
 AGREGAR (VALIDACIONES)

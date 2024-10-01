@@ -1,9 +1,6 @@
 package Controlador;
 
-//CLASES NECESARIAS
 import Vista.BibliotecaVista;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +15,7 @@ public class FrmBibliotecaControlador {
     private static final String PASSWORD = "TuuSNAhxOdMuZfOaGnaMDytrIOeUpwcN";
 
     //LA VISTA DEL CONTROLADOR (ES LA VENTANA QUE APARECE AL INCIAR EL PROGRAMA)
-    private BibliotecaVista frmBiblioteca;
+    private final BibliotecaVista frmBiblioteca;
 
     //TODOS LOS DEMAS CONTROLADORES ESTAN AQUI
     private final PnlMaterialesControlador controladorMateriales;
@@ -61,43 +58,27 @@ public class FrmBibliotecaControlador {
     //MÉTODO QUE CONFIGURA LOS EVENTOS DE CLICK DE LOS BOTONES DE BIBLITOECAVISTA
     public final void SetEvents() {
         // OBSERVAMOS EL SIGUIENTE EJEMPLO: BASICAMENTE AÑADE UN EVENTO QUE "ESCUCHA" EL CLICK SOBRE EL BOTON
-        frmBiblioteca.BtnUsuarios.addActionListener(new ActionListener() {
-
-            // ESTE ES EL EVENTO EN CUESTIÓN, SOBREESCRIBE UN MÉTODO YA EXISTENTE (QUIERE DECIR QUE CAMBIA EL MÉTODO
-            // POR DEFECTO Y AGREGA EL QUE NOSOTROS LE INDIQUEMOS)
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // POR EJEMPLO, AQUI EL EVENTO CONSISTE EN LA LLAMADA AL MÉTODO MOSTRAR DEL CONTROLADOR DE USUARIOS
-                controladorUsuarios.mostrar(frmBiblioteca);
-            }
-        });
+        frmBiblioteca.BtnUsuarios.addActionListener((e) -> {
+            // POR EJEMPLO, AQUI EL EVENTO CONSISTE EN LA LLAMADA AL MÉTODO MOSTRAR DEL CONTROLADOR DE USUARIOS
+            controladorUsuarios.mostrar(frmBiblioteca);
+        } // ESTE ES EL EVENTO EN CUESTIÓN, SOBREESCRIBE UN MÉTODO YA EXISTENTE (QUIERE DECIR QUE CAMBIA EL MÉTODO
+        // POR DEFECTO Y AGREGA EL QUE NOSOTROS LE INDIQUEMOS)
+        );
         // Y ASI CON TODOS LOS DEMAS C:
-        frmBiblioteca.BtnPrestamos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controladorPrestamos.mostrar(frmBiblioteca);
-            }
+        frmBiblioteca.BtnPrestamos.addActionListener((e) -> {
+            controladorPrestamos.mostrar(frmBiblioteca);
         });
 
-        frmBiblioteca.BtnDevolucion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controladorDevoluciones.mostrar(frmBiblioteca);
-            }
+        frmBiblioteca.BtnDevolucion.addActionListener((e) -> {
+            controladorDevoluciones.mostrar(frmBiblioteca);
         });
 
-        frmBiblioteca.BtnMateriales.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controladorMateriales.mostrar(frmBiblioteca);
-            }
+        frmBiblioteca.BtnMateriales.addActionListener((e) -> {
+            controladorMateriales.mostrar(frmBiblioteca);
         });
 
-        frmBiblioteca.BtnSolicitudes.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controladorSolicitudes.mostrar(frmBiblioteca);
-            }
+        frmBiblioteca.BtnSolicitudes.addActionListener((e) -> {
+            controladorSolicitudes.mostrar(frmBiblioteca);
         });
     }
 

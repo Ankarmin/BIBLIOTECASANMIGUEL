@@ -3,9 +3,6 @@ package DBRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class PrestamoLibro extends Entidades {
 
     private int idPrestamo, idBiblio;

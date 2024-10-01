@@ -3,9 +3,6 @@ package DBRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class Solicitud extends Entidades {
 
     private int idSolicitud;

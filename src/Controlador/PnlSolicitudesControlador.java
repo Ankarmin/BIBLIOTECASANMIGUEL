@@ -5,19 +5,13 @@ import Vista.SolicitudesVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
-
 public class PnlSolicitudesControlador {
 
-    private SolicitudesVista vista;
+    private final SolicitudesVista vista;
 
     public PnlSolicitudesControlador(Connection openConexion) {
         vista = new SolicitudesVista();
     }
-    
-    
     
     public void mostrar(BibliotecaVista Padre) {
         Padre.PnlContenido.removeAll();

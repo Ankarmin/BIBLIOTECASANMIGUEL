@@ -1,23 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 import DBRepositorio.UsuarioRepositorio;
 import DBRepositorio.MorosoRepositorio;
 import DBRepositorio.Moroso;
 import DBRepositorio.Usuario;
-import DBRepositorio.PrestamoLibro;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
-
-/**
- *
- * @author Nick Emanuel Salcedo Alfaro
- */
 
 public class ModeloUsuarios {
 
@@ -33,6 +23,7 @@ public class ModeloUsuarios {
         List<Usuario> Usuarios = UsuarioRepo.obtenerTodos();
 
         DefaultTableModel model = new DefaultTableModel() {
+            @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -47,6 +38,7 @@ public class ModeloUsuarios {
     public List<Moroso> llenarTablaMorosos(JTable Table) {
         List<Moroso> Morosos = MorosoRepo.obtenerTodos();
         DefaultTableModel model = new DefaultTableModel() {
+            @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }

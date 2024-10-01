@@ -5,12 +5,9 @@ import Vista.UsuariosVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class PnlUsuariosControlador {
 
-    private UsuariosVista vista;
+    private final UsuariosVista vista;
 
     public PnlUsuariosControlador(Connection openConexion) {
         vista = new UsuariosVista();

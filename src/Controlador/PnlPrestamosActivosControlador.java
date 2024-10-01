@@ -1,16 +1,16 @@
 package Controlador;
 
 import Vista.BibliotecaVista;
-import Vista.DevolucionesVista;
+import Vista.PrestamosActivosVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 
-public class PnlDevolucionesControlador {
+public class PnlPrestamosActivosControlador {
 
-    private final DevolucionesVista vista;
+    private final PrestamosActivosVista vista;
 
-    public PnlDevolucionesControlador(Connection openConexion) {
-        vista = new DevolucionesVista();
+    public PnlPrestamosActivosControlador(Connection openConexion) {
+        vista = new PrestamosActivosVista();
     }
 
     public void mostrar(BibliotecaVista Padre) {
@@ -19,5 +19,4 @@ public class PnlDevolucionesControlador {
         Padre.PnlContenido.revalidate();
         Padre.PnlContenido.repaint();
     }
-
 }

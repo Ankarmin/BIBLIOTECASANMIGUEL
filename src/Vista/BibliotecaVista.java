@@ -1,20 +1,14 @@
 package Vista;
 
-import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class BibliotecaVista extends javax.swing.JFrame {
 
-    private final String textoa = "<html><p> Este proyecto ha sido posible gracias al compromiso de Alejandro Rivas, director ejecutivo de la Institución, quien continúa impulsando el acceso a la educación de calidad. </p></html>";
+    private final String textoa = "<html><p> Este proyecto ha sido posible gracias al compromiso de Alejandro Rivas, director ejecutivo de la Institución, quien continúa impulsando el acceso a la educación de calidad.";
     private final String textob = "<html><p> Esta herramienta le permitirá llevar un control completo de su biblioteca. Tendrá acceso a herramientas específicas tal como lo son:";
 
     public BibliotecaVista() {
@@ -25,56 +19,64 @@ public class BibliotecaVista extends javax.swing.JFrame {
 
     // Metodos propios
     private void initStyles() {
-        nombreApp1.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
-        nombreApp1.setForeground(Color.black);
-        nombreApp2.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
-        nombreApp2.setForeground(Color.black);
-        saludo.putClientProperty("FlatLaf.style", "font: 20 bold $h3.regular.font");
-        saludo.setForeground(Color.black);
-        fecha.putClientProperty("FlatLaf.style", "font: 26 $h3.regular.font");
-        fecha.setForeground(Color.black);
-        texto1.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
-        texto1.setForeground(Color.black);
-        texto2.setText(textoa);
-        texto2.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto2.setForeground(Color.black);
-        texto3.setText(textob);
-        texto3.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto3.setForeground(Color.black);
-        texto4.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto4.setForeground(Color.black);
-        texto5.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto5.setForeground(Color.black);
-        texto6.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto6.setForeground(Color.black);
-        texto7.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto7.setForeground(Color.black);
-        texto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
-        texto8.setForeground(Color.black);
+        LblNombreApp1.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
+        LblNombreApp1.setForeground(Color.black);
+        LblNombreApp2.putClientProperty("FlatLaf.style", "font: 30 bold $h3.regular.font");
+        LblNombreApp2.setForeground(Color.black);
+        LblSaludo.putClientProperty("FlatLaf.style", "font: 20 bold $h3.regular.font");
+        LblSaludo.setForeground(Color.black);
+        LblFecha.putClientProperty("FlatLaf.style", "font: 26 $h3.regular.font");
+        LblFecha.setForeground(Color.black);
+        LblTexto1.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        LblTexto1.setForeground(Color.black);
+        LblTexto2.setText(textoa);
+        LblTexto2.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto2.setForeground(Color.black);
+        LblTexto3.setText(textob);
+        LblTexto3.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto3.setForeground(Color.black);
+        LblTexto4.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto4.setForeground(Color.black);
+        LblTexto5.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto5.setForeground(Color.black);
+        LblTexto6.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto6.setForeground(Color.black);
+        LblTexto7.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto7.setForeground(Color.black);
+        LblTexto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        LblTexto8.setForeground(Color.black);
         BtnDevolucion.putClientProperty("JButton.buttonType", "roundRect");
-        BtnMateriales.putClientProperty("JButton.buttonType", "roundRect");
-        BtnPrestamos.putClientProperty("JButton.buttonType", "roundRect");
-        BtnSolicitudes.putClientProperty("JButton.buttonType", "roundRect");
-        BtnUsuarios.putClientProperty("JButton.buttonType", "roundRect");
-        BtnDevolucion.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnDevolucion.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
         BtnDevolucion.setForeground(Color.black);
-        BtnMateriales.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnMateriales.putClientProperty("JButton.buttonType", "roundRect");
+        BtnMateriales.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
         BtnMateriales.setForeground(Color.black);
-        BtnPrestamos.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnPrestamos.putClientProperty("JButton.buttonType", "roundRect");
+        BtnPrestamos.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
         BtnPrestamos.setForeground(Color.black);
-        BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnSolicitudes.putClientProperty("JButton.buttonType", "roundRect");
+        BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
         BtnSolicitudes.setForeground(Color.black);
-        BtnUsuarios.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnUsuarios.putClientProperty("JButton.buttonType", "roundRect");
+        BtnUsuarios.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
         BtnUsuarios.setForeground(Color.black);
-        UIManager.put("Button.arc", 999);
-        UIManager.put("Component.arc", 999);
-        UIManager.put("ProgressBar.arc", 999);
-        UIManager.put("TextComponent.arc", 999);
     }
 
     private void setDate() {
         LocalDate now = LocalDate.now();
-        fecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es 'EEEE dd 'de' MMMM 'de' yyyy", Locale.of("es", "PE"))));
+        LocalTime currentTime = LocalTime.now();
+        String saludo;
+
+        if (currentTime.isBefore(LocalTime.NOON)) {
+            saludo = "¡Buenos días bibliotecario encargado!";
+        } else if (currentTime.isBefore(LocalTime.of(18, 0))) {
+            saludo = "¡Buenas tardes bibliotecario encargado!";
+        } else {
+            saludo = "¡Buenas noches bibliotecario encargado!";
+        }
+
+        LblSaludo.setText(saludo);
+        LblFecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es 'EEEE dd 'de' MMMM 'de' yyyy", Locale.of("es", "PE"))));
     }
 
     @SuppressWarnings("unchecked")
@@ -83,8 +85,8 @@ public class BibliotecaVista extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         nombre = new javax.swing.JPanel();
-        nombreApp1 = new javax.swing.JLabel();
-        nombreApp2 = new javax.swing.JLabel();
+        LblNombreApp1 = new javax.swing.JLabel();
+        LblNombreApp2 = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
         BtnUsuarios = new javax.swing.JButton();
         BtnDevolucion = new javax.swing.JButton();
@@ -93,16 +95,16 @@ public class BibliotecaVista extends javax.swing.JFrame {
         BtnSolicitudes = new javax.swing.JButton();
         PnlContenido = new javax.swing.JPanel();
         encabezado = new javax.swing.JPanel();
-        saludo = new javax.swing.JLabel();
-        fecha = new javax.swing.JLabel();
-        texto1 = new javax.swing.JLabel();
-        texto2 = new javax.swing.JLabel();
-        texto3 = new javax.swing.JLabel();
-        texto4 = new javax.swing.JLabel();
-        texto5 = new javax.swing.JLabel();
-        texto6 = new javax.swing.JLabel();
-        texto7 = new javax.swing.JLabel();
-        texto8 = new javax.swing.JLabel();
+        LblSaludo = new javax.swing.JLabel();
+        LblFecha = new javax.swing.JLabel();
+        LblTexto1 = new javax.swing.JLabel();
+        LblTexto2 = new javax.swing.JLabel();
+        LblTexto3 = new javax.swing.JLabel();
+        LblTexto4 = new javax.swing.JLabel();
+        LblTexto5 = new javax.swing.JLabel();
+        LblTexto6 = new javax.swing.JLabel();
+        LblTexto7 = new javax.swing.JLabel();
+        LblTexto8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1140, 640));
@@ -112,11 +114,11 @@ public class BibliotecaVista extends javax.swing.JFrame {
         nombre.setBackground(new java.awt.Color(217, 199, 199));
         nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        nombreApp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreApp1.setText("Biblioteca");
+        LblNombreApp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblNombreApp1.setText("Biblioteca");
 
-        nombreApp2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreApp2.setText("San Miguel");
+        LblNombreApp2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblNombreApp2.setText("San Miguel");
 
         javax.swing.GroupLayout nombreLayout = new javax.swing.GroupLayout(nombre);
         nombre.setLayout(nombreLayout);
@@ -125,67 +127,42 @@ public class BibliotecaVista extends javax.swing.JFrame {
             .addGroup(nombreLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(nombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nombreApp2, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(nombreApp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LblNombreApp2, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(LblNombreApp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         nombreLayout.setVerticalGroup(
             nombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nombreLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(nombreApp1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblNombreApp1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreApp2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblNombreApp2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
         menu.setBackground(new java.awt.Color(181, 141, 142));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        BtnUsuarios.setBackground(new java.awt.Color(255, 249, 237));
+        BtnUsuarios.setBackground(new java.awt.Color(255, 243, 219));
         BtnUsuarios.setText("Usuarios");
         BtnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUsuariosActionPerformed(evt);
-            }
-        });
 
-        BtnDevolucion.setBackground(new java.awt.Color(255, 249, 237));
+        BtnDevolucion.setBackground(new java.awt.Color(255, 243, 219));
         BtnDevolucion.setText("Devolución");
         BtnDevolucion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnDevolucion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDevolucionActionPerformed(evt);
-            }
-        });
 
-        BtnPrestamos.setBackground(new java.awt.Color(255, 249, 237));
+        BtnPrestamos.setBackground(new java.awt.Color(255, 243, 219));
         BtnPrestamos.setText("Préstamos");
         BtnPrestamos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrestamosActionPerformed(evt);
-            }
-        });
 
-        BtnMateriales.setBackground(new java.awt.Color(255, 249, 237));
+        BtnMateriales.setBackground(new java.awt.Color(255, 243, 219));
         BtnMateriales.setText("Materiales");
         BtnMateriales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnMateriales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMaterialesActionPerformed(evt);
-            }
-        });
 
-        BtnSolicitudes.setBackground(new java.awt.Color(255, 249, 237));
+        BtnSolicitudes.setBackground(new java.awt.Color(255, 243, 219));
         BtnSolicitudes.setText("Solicitudes");
         BtnSolicitudes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnSolicitudes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSolicitudesActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -222,9 +199,9 @@ public class BibliotecaVista extends javax.swing.JFrame {
         encabezado.setBackground(new java.awt.Color(217, 199, 199));
         encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        saludo.setText("¡Bueno/as (días/tardes/noches) bibliotecario encargado!");
+        LblSaludo.setText("¡Bueno/as (días/tardes/noches) bibliotecario encargado!");
 
-        fecha.setText("Hoy es <fecha actual>.");
+        LblFecha.setText("Hoy es <fecha actual>.");
 
         javax.swing.GroupLayout encabezadoLayout = new javax.swing.GroupLayout(encabezado);
         encabezado.setLayout(encabezadoLayout);
@@ -233,31 +210,31 @@ public class BibliotecaVista extends javax.swing.JFrame {
             .addGroup(encabezadoLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(saludo, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
-                    .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LblSaludo, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                    .addComponent(LblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         encabezadoLayout.setVerticalGroup(
             encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(encabezadoLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(saludo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        texto1.setText("Sistema de gestión de biblioteca para la institución privada educativa San Miguel");
+        LblTexto1.setText("Sistema de gestión de biblioteca para la institución privada educativa San Miguel");
 
-        texto4.setText("• Gestión de préstamos y devoluciones");
+        LblTexto4.setText("• Gestión de préstamos y devoluciones");
 
-        texto5.setText("• Búsqueda avanzada de libros");
+        LblTexto5.setText("• Búsqueda avanzada de libros");
 
-        texto6.setText("• Inventario automatizado");
+        LblTexto6.setText("• Inventario automatizado");
 
-        texto7.setText("• Gestión de actividad");
+        LblTexto7.setText("• Gestión de actividad");
 
-        texto8.setText("• Solicitudes de libros");
+        LblTexto8.setText("• Solicitudes de libros");
 
         javax.swing.GroupLayout PnlContenidoLayout = new javax.swing.GroupLayout(PnlContenido);
         PnlContenido.setLayout(PnlContenidoLayout);
@@ -267,14 +244,14 @@ public class BibliotecaVista extends javax.swing.JFrame {
             .addGroup(PnlContenidoLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(PnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(texto8, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto5, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto4, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto3, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LblTexto8, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto6, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto5, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto4, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto3, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblTexto2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PnlContenidoLayout.setVerticalGroup(
@@ -282,21 +259,21 @@ public class BibliotecaVista extends javax.swing.JFrame {
             .addGroup(PnlContenidoLayout.createSequentialGroup()
                 .addComponent(encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(texto1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(texto8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LblTexto8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -334,58 +311,28 @@ public class BibliotecaVista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuariosActionPerformed
-        //ShowJPanel(new Usuarios(openConexion));
-    }//GEN-LAST:event_BtnUsuariosActionPerformed
-
-    private void BtnPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrestamosActionPerformed
-        //ShowJPanel(new Prestamos());
-    }//GEN-LAST:event_BtnPrestamosActionPerformed
-
-    private void BtnDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDevolucionActionPerformed
-        //ShowJPanel(new Devolucion());
-    }//GEN-LAST:event_BtnDevolucionActionPerformed
-
-    private void BtnMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaterialesActionPerformed
-        //ShowJPanel(new MaterialesVista());
-    }//GEN-LAST:event_BtnMaterialesActionPerformed
-
-    private void BtnSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSolicitudesActionPerformed
-        //ShowJPanel(new Solicitudes());
-    }//GEN-LAST:event_BtnSolicitudesActionPerformed
-
-    public static void main(String args[]) {
-
-        FlatSolarizedLightIJTheme.setup();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BibliotecaVista().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnDevolucion;
     public javax.swing.JButton BtnMateriales;
     public javax.swing.JButton BtnPrestamos;
     public javax.swing.JButton BtnSolicitudes;
     public javax.swing.JButton BtnUsuarios;
+    private javax.swing.JLabel LblFecha;
+    private javax.swing.JLabel LblNombreApp1;
+    private javax.swing.JLabel LblNombreApp2;
+    private javax.swing.JLabel LblSaludo;
+    private javax.swing.JLabel LblTexto1;
+    private javax.swing.JLabel LblTexto2;
+    private javax.swing.JLabel LblTexto3;
+    private javax.swing.JLabel LblTexto4;
+    private javax.swing.JLabel LblTexto5;
+    private javax.swing.JLabel LblTexto6;
+    private javax.swing.JLabel LblTexto7;
+    private javax.swing.JLabel LblTexto8;
     public javax.swing.JPanel PnlContenido;
     private javax.swing.JPanel background;
     private javax.swing.JPanel encabezado;
-    private javax.swing.JLabel fecha;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel nombre;
-    private javax.swing.JLabel nombreApp1;
-    private javax.swing.JLabel nombreApp2;
-    private javax.swing.JLabel saludo;
-    private javax.swing.JLabel texto1;
-    private javax.swing.JLabel texto2;
-    private javax.swing.JLabel texto3;
-    private javax.swing.JLabel texto4;
-    private javax.swing.JLabel texto5;
-    private javax.swing.JLabel texto6;
-    private javax.swing.JLabel texto7;
-    private javax.swing.JLabel texto8;
     // End of variables declaration//GEN-END:variables
 }

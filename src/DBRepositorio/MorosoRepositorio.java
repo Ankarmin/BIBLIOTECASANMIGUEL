@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class MorosoRepositorio extends IConectar<Moroso, Integer> {
 
     public MorosoRepositorio(Connection openConexion) {

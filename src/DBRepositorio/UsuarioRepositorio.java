@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
 
-    private String hasBorrowBook;
-    private String hasBorrowMonograph;
+    private final String hasBorrowBook;
+    private final String hasBorrowMonograph;
 
     public UsuarioRepositorio(Connection openConexion) {
         super(openConexion);

@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> {
     
     public PrestamoLibroRepositorio(Connection openConexion) {

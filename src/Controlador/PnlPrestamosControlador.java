@@ -5,15 +5,21 @@ import Vista.PrestamosVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 
-/**
- * @author Leonidas Garcia Lescano
- */
 public class PnlPrestamosControlador {
 
-    private PrestamosVista vista;
+    private final PrestamosVista vista;
+    private PnlPrestamosActivosControlador controladorPrestamosActivos;
+    private BibliotecaVista frmBiblioteca;
 
     public PnlPrestamosControlador(Connection openConexion) {
         vista = new PrestamosVista();
+        frmBiblioteca = new BibliotecaVista();
+
+        controladorPrestamosActivos = new PnlPrestamosActivosControlador(openConexion);
+
+        vista.BtnPrestamosActivos.addActionListener((e) -> {
+            controladorPrestamosActivos.mostrar(frmBiblioteca);
+        });
     }
 
     public void mostrar(BibliotecaVista Padre) {
@@ -22,5 +28,4 @@ public class PnlPrestamosControlador {
         Padre.PnlContenido.revalidate();
         Padre.PnlContenido.repaint();
     }
-
 }
