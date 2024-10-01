@@ -46,19 +46,19 @@ public class BibliotecaVista extends javax.swing.JFrame {
         LblTexto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         LblTexto8.setForeground(Color.black);
         BtnDevolucion.putClientProperty("JButton.buttonType", "roundRect");
-        BtnDevolucion.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
+        BtnDevolucion.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnDevolucion.setForeground(Color.black);
         BtnMateriales.putClientProperty("JButton.buttonType", "roundRect");
-        BtnMateriales.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
+        BtnMateriales.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnMateriales.setForeground(Color.black);
         BtnPrestamos.putClientProperty("JButton.buttonType", "roundRect");
-        BtnPrestamos.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
+        BtnPrestamos.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnPrestamos.setForeground(Color.black);
         BtnSolicitudes.putClientProperty("JButton.buttonType", "roundRect");
-        BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
+        BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnSolicitudes.setForeground(Color.black);
         BtnUsuarios.putClientProperty("JButton.buttonType", "roundRect");
-        BtnUsuarios.putClientProperty("FlatLaf.style", "font: 18 $semibold.font");
+        BtnUsuarios.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnUsuarios.setForeground(Color.black);
     }
 
@@ -141,47 +141,48 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        menu.setBackground(new java.awt.Color(181, 141, 142));
+        menu.setBackground(new java.awt.Color(196, 163, 163));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        BtnUsuarios.setBackground(new java.awt.Color(255, 243, 219));
-        BtnUsuarios.setText("Usuarios");
+        BtnUsuarios.setBackground(new java.awt.Color(255, 236, 200));
+        BtnUsuarios.setText("USUARIOS");
         BtnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BtnDevolucion.setBackground(new java.awt.Color(255, 243, 219));
-        BtnDevolucion.setText("Devolución");
+        BtnDevolucion.setBackground(new java.awt.Color(255, 236, 200));
+        BtnDevolucion.setText("DEVOLUCIÓN");
         BtnDevolucion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BtnPrestamos.setBackground(new java.awt.Color(255, 243, 219));
-        BtnPrestamos.setText("Préstamos");
+        BtnPrestamos.setBackground(new java.awt.Color(255, 236, 200));
+        BtnPrestamos.setText("PRÉSTAMOS");
         BtnPrestamos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BtnMateriales.setBackground(new java.awt.Color(255, 243, 219));
-        BtnMateriales.setText("Materiales");
+        BtnMateriales.setBackground(new java.awt.Color(255, 236, 200));
+        BtnMateriales.setText("MATERIALES");
         BtnMateriales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BtnSolicitudes.setBackground(new java.awt.Color(255, 243, 219));
-        BtnSolicitudes.setText("Solicitudes");
+        BtnSolicitudes.setBackground(new java.awt.Color(255, 236, 200));
+        BtnSolicitudes.setText("SOLICITUDES");
         BtnSolicitudes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnSolicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(BtnMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                    .addComponent(BtnSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BtnMateriales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnDevolucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnPrestamos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(BtnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +192,7 @@ public class BibliotecaVista extends javax.swing.JFrame {
                 .addComponent(BtnMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         PnlContenido.setBackground(new java.awt.Color(236, 226, 208));

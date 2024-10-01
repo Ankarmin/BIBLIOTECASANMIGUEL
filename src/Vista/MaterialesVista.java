@@ -39,10 +39,10 @@ public class MaterialesVista extends javax.swing.JPanel {
         TxtVolumen.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         TxtVolumen.setForeground(Color.black);
         BtnAgregar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnAgregar.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnAgregar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnAgregar.setForeground(Color.black);
         BtnEliminar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnEliminar.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
         CmbFiltro.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         CmbFiltro.setForeground(Color.black);
@@ -86,11 +86,11 @@ public class MaterialesVista extends javax.swing.JPanel {
 
         CmbTipoMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Monografia" }));
 
-        BtnAgregar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnAgregar.setText("Agregar");
+        BtnAgregar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnAgregar.setText("AGREGAR");
 
-        BtnEliminar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnEliminar.setText("ELIMINAR");
 
         LblTitulo.setText("Título");
 

@@ -29,10 +29,10 @@ public class PrestamosVista extends javax.swing.JPanel {
 
     private void initStyles() {
         BtnPrestamosActivos.putClientProperty("JButton.buttonType", "roundRect");
-        BtnPrestamosActivos.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnPrestamosActivos.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnPrestamosActivos.setForeground(Color.black);
         BtnPrestar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnPrestar.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnPrestar.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnPrestar.setForeground(Color.black);
         CmbMaterial.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
         CmbMaterial.setForeground(Color.black);
@@ -87,18 +87,18 @@ public class PrestamosVista extends javax.swing.JPanel {
         jPanel2.add(LblCodigoMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 192, -1));
         jPanel2.add(TxtCodigoMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 130, 57));
 
-        BtnPrestar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnPrestar.setText("Prestar");
+        BtnPrestar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnPrestar.setText("PRESTAR");
         BtnPrestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPrestarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnPrestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 198, 56));
+        jPanel2.add(BtnPrestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 150, 50));
 
-        BtnPrestamosActivos.setBackground(new java.awt.Color(255, 243, 219));
-        BtnPrestamosActivos.setText("Prestamos Activos");
-        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 198, 56));
+        BtnPrestamosActivos.setBackground(new java.awt.Color(255, 236, 200));
+        BtnPrestamosActivos.setText("PRÉSTAMOS ACTIVOS");
+        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 198, 50));
 
         LblFechaDevolucion.setText("Fecha de devolución");
         jPanel2.add(LblFechaDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 192, -1));

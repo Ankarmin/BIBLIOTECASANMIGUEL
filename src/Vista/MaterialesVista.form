@@ -196,17 +196,17 @@
             <Component class="javax.swing.JButton" name="BtnAgregar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="db" green="f3" red="ff" type="rgb"/>
+                  <Color blue="c8" green="ec" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Agregar"/>
+                <Property name="text" type="java.lang.String" value="AGREGAR"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="BtnEliminar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="db" green="f3" red="ff" type="rgb"/>
+                  <Color blue="c8" green="ec" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="text" type="java.lang.String" value="ELIMINAR"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

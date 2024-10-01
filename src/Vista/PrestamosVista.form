@@ -131,9 +131,9 @@
             <Component class="javax.swing.JButton" name="BtnPrestar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="db" green="f3" red="ff" type="rgb"/>
+                  <Color blue="c8" green="ec" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Prestar"/>
+                <Property name="text" type="java.lang.String" value="PRESTAR"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPrestarActionPerformed"/>
@@ -143,23 +143,23 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="120" y="430" width="198" height="56"/>
+                  <AbsoluteConstraints x="150" y="430" width="150" height="50"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="BtnPrestamosActivos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="db" green="f3" red="ff" type="rgb"/>
+                  <Color blue="c8" green="ec" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Prestamos Activos"/>
+                <Property name="text" type="java.lang.String" value="PR&#xc9;STAMOS ACTIVOS"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="430" width="198" height="56"/>
+                  <AbsoluteConstraints x="340" y="430" width="198" height="50"/>
                 </Constraint>
               </Constraints>
             </Component>

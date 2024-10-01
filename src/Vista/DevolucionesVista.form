@@ -124,13 +124,13 @@
             <Component class="javax.swing.JButton" name="BtnDevolver">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="db" green="f3" red="ff" type="rgb"/>
+                  <Color blue="c8" green="ec" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Devolver"/>
+                <Property name="text" type="java.lang.String" value="DEVOLVER"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="240" y="410" width="175" height="54"/>
+                  <AbsoluteConstraints x="240" y="410" width="175" height="50"/>
                 </Constraint>
               </Constraints>
             </Component>

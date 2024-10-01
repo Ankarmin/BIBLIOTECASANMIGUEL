@@ -22,16 +22,16 @@ public class UsuariosVista extends javax.swing.JPanel {
         TxtNombre.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         TxtNombre.setForeground(Color.black);
         BtnAgregar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnAgregar.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnAgregar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnAgregar.setForeground(Color.black);
         BtnBuscar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnBuscar.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnBuscar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnBuscar.setForeground(Color.black);
         BtnEliminar.putClientProperty("JButton.buttonType", "roundRect");
-        BtnEliminar.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
         BtnUsuariosMorosos.putClientProperty("JButton.buttonType", "roundRect");
-        BtnUsuariosMorosos.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
+        BtnUsuariosMorosos.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnUsuariosMorosos.setForeground(Color.black);
     }
 
@@ -70,12 +70,12 @@ public class UsuariosVista extends javax.swing.JPanel {
         LblDni.setText("DNI");
         jPanel2.add(LblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 30, 40));
 
-        BtnAgregar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnAgregar.setText("Agregar");
+        BtnAgregar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnAgregar.setText("AGREGAR");
         jPanel2.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 120, 40));
 
-        BtnEliminar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnEliminar.setText("ELIMINAR");
         BtnEliminar.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnEliminar.setRolloverEnabled(false);
         jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 120, 40));
@@ -108,15 +108,15 @@ public class UsuariosVista extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(860, 110));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtnBuscar.setBackground(new java.awt.Color(255, 243, 219));
-        BtnBuscar.setText("Buscar");
+        BtnBuscar.setBackground(new java.awt.Color(255, 236, 200));
+        BtnBuscar.setText("BUSCAR");
         BtnBuscar.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnBuscar.setRolloverEnabled(false);
-        jPanel3.add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 120, 40));
+        jPanel3.add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 120, 40));
 
-        BtnUsuariosMorosos.setBackground(new java.awt.Color(255, 243, 219));
-        BtnUsuariosMorosos.setText("Ver Morosos");
-        jPanel3.add(BtnUsuariosMorosos, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 120, 40));
+        BtnUsuariosMorosos.setBackground(new java.awt.Color(255, 236, 200));
+        BtnUsuariosMorosos.setText("VER MOROSOS");
+        jPanel3.add(BtnUsuariosMorosos, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 140, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 860, 90));
 

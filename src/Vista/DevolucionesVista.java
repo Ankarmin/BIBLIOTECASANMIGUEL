@@ -23,7 +23,7 @@ public class DevolucionesVista extends javax.swing.JPanel {
         TxtFechaDevolucion.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
         TxtFechaDevolucion.setForeground(Color.black);
         BtnDevolver.putClientProperty("JButton.buttonType", "roundRect");
-        BtnDevolver.putClientProperty("FlatLaf.style", "font: 16 $semibold.font");
+        BtnDevolver.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnDevolver.setForeground(Color.black);
     }
 
@@ -60,9 +60,9 @@ public class DevolucionesVista extends javax.swing.JPanel {
         jPanel2.add(LblIdPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 192, -1));
         jPanel2.add(TxtFechaDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 130, 57));
 
-        BtnDevolver.setBackground(new java.awt.Color(255, 243, 219));
-        BtnDevolver.setText("Devolver");
-        jPanel2.add(BtnDevolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 175, 54));
+        BtnDevolver.setBackground(new java.awt.Color(255, 236, 200));
+        BtnDevolver.setText("DEVOLVER");
+        jPanel2.add(BtnDevolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 175, 50));
 
         PnlImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
