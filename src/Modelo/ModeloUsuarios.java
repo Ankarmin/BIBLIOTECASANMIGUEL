@@ -4,9 +4,6 @@ import DBRepositorio.UsuarioRepositorio;
 import DBRepositorio.MorosoRepositorio;
 import DBRepositorio.Moroso;
 import DBRepositorio.Usuario;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 
 public class ModeloUsuarios {
@@ -19,57 +16,37 @@ public class ModeloUsuarios {
         this.MorosoRepo = new MorosoRepositorio(openConexion);
     }
 
-    public List<Usuario> llenarTablaUsuarios(JTable Table) {
-        List<Usuario> Usuarios = UsuarioRepo.obtenerTodos();
-
-        DefaultTableModel model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        model.addColumn("IdBiblioteca");
-        model.addColumn("DNI");
-        model.addColumn("Nombres");
-        model.addColumn("Estado del usuario");
-        return Usuarios;
-    }
-
-    public List<Moroso> llenarTablaMorosos(JTable Table) {
-        List<Moroso> Morosos = MorosoRepo.obtenerTodos();
-        DefaultTableModel model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        model.addColumn("IdBiblioteca");
-        model.addColumn("DNI");
-        model.addColumn("Nombres");
-        model.addColumn("Fecha de retorno");
-        return Morosos;
-    }
-
     public void eliminarUsuario(int IdBiblio) {
         UsuarioRepo.eliminar(IdBiblio);
     }
 
-    public void agregarUsuario(String nombre, String DNI) {
-        Usuario temp = new Usuario(0, nombre, DNI);
+    public void agregarUsuario(String DNI, String nombre) {
+        Usuario temp = new Usuario(0, DNI, nombre);
         UsuarioRepo.agregar(temp);
     }
 
-    public void actualizarUsuario(String nombre, String DNI) {
-        Usuario temp = new Usuario(0, nombre, DNI);
+    public void actualizarUsuario(String DNI, String nombre) {
+        Usuario temp = new Usuario(0, DNI, nombre);
         UsuarioRepo.actualizar(temp);
     }
 
-    public void buscarUsuario(int idBiblio) {
+    public void buscarUsuario(Integer idBiblio) {
         Usuario temp = new Usuario();
         temp = UsuarioRepo.obtenerPorId(idBiblio);
     }
-
-    public boolean cambiarUsuario() {
-        return true;
+    public void eliminarMoroso(Integer IdBiblio){
+        MorosoRepo.eliminar(IdBiblio);
+    }
+    public void agregarMoroso(String DNI, String nombre){
+        //Moroso temp = new Moroso(0,nombre,DNI); Esperar a la actualizacion
+        //MorosoRepo.agregar(temp);
+    }
+    public void actualizarMoroso(String nombre, String DNI){
+        //Moroso temp = new Moroso(0,nombre,DNI); Esperar a la actualizacion
+        //MorosoRepo.actualizar(temp);
+    }
+    public void buscarMoroso(int IdBiblio){
+        Moroso temp = new Moroso();
+        temp = MorosoRepo.obtenerPorId(IdBiblio);
     }
 }
