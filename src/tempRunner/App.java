@@ -31,7 +31,8 @@ public class App {
         FrmBibliotecaControlador controladorBiblioteca = new FrmBibliotecaControlador();
 
         //METODO QUE CARGA EL JFRAME INICIAL (LA VENTANA)
-        //controladorBiblioteca.iniciar();
+        controladorBiblioteca.iniciar();
+
         try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
             UsuarioRepositorio usuarioDriver = new UsuarioRepositorio(openConexion);

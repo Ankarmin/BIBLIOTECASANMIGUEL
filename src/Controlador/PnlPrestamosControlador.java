@@ -86,7 +86,7 @@ public class PnlPrestamosControlador {
             if (resultado) {
                 JOptionPane.showMessageDialog(vista, "Préstamo de Libro registrado con éxito.");
             } else {
-                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.");
+                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.", null, JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(vista, "El ID de Biblioteca debe ser un número entero.", "Error de formato", JOptionPane.ERROR_MESSAGE);
@@ -125,7 +125,7 @@ public class PnlPrestamosControlador {
             if (resultado) {
                 JOptionPane.showMessageDialog(vista, "Préstamo de Monografía registrado con éxito.");
             } else {
-                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.");
+                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.", null, JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(vista, "El ID de Biblioteca debe ser un número entero.", "Error de formato", JOptionPane.ERROR_MESSAGE);
