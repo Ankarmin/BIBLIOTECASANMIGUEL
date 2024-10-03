@@ -1,6 +1,5 @@
 package Controlador;
 
-import Vista.BibliotecaVista;
 import Vista.PrestamosActivosVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;

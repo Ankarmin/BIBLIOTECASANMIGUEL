@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class FrmBibliotecaControlador {
 
     //ATRIBUTOS DESTINADOS A CONECTARSE CON LA BASE DE DATOS
-    private Connection openConexion; // ANOTACION: ESTA CONEXION SERÁ UTILIZADA POR TODOS LOS CONTROLADORES
+    private Connection openConexion; // ESTA CONEXION SERÁ UTILIZADA POR TODOS LOS CONTROLADORES
     private static final String URL = "jdbc:mysql://autorack.proxy.rlwy.net:50572/railway";
     private static final String USER = "root";
     private static final String PASSWORD = "TuuSNAhxOdMuZfOaGnaMDytrIOeUpwcN";
@@ -42,8 +42,7 @@ public class FrmBibliotecaControlador {
         controladorSolicitudes = new PnlSolicitudesControlador(openConexion);
         controladorPrestamosActivos = new PnlPrestamosActivosControlador(openConexion, this);
 
-        //MÉTODO QUE AGREGA LOS EVENTOS DE LOS BOTONES DE BIBLIOTECAVISTA (LO QUE APARECE EN EL MOQUPS YA TE LA SABES: USUARIOS,
-        //PRESTAMOS, DEVOLUCIONES, ETC...)
+        //MÉTODO QUE AGREGA LOS EVENTOS DE LOS BOTONES DE BIBLIOTECAVISTA
         SetEvents();
     }
 
@@ -57,16 +56,12 @@ public class FrmBibliotecaControlador {
         }
     }
 
-    //MÉTODO QUE CONFIGURA LOS EVENTOS DE CLICK DE LOS BOTONES DE BIBLITOECAVISTA
+    //MÉTODO QUE CONFIGURA LOS EVENTOS DE CLICK DE LOS BOTONES DE BIBLIOTECAVISTA
     public final void SetEvents() {
-        // OBSERVAMOS EL SIGUIENTE EJEMPLO: BASICAMENTE AÑADE UN EVENTO QUE "ESCUCHA" EL CLICK SOBRE EL BOTON
         frmBiblioteca.BtnUsuarios.addActionListener((e) -> {
-            // POR EJEMPLO, AQUI EL EVENTO CONSISTE EN LA LLAMADA AL MÉTODO MOSTRAR DEL CONTROLADOR DE USUARIOS
             controladorUsuarios.mostrar();
-        } // ESTE ES EL EVENTO EN CUESTIÓN, SOBREESCRIBE UN MÉTODO YA EXISTENTE (QUIERE DECIR QUE CAMBIA EL MÉTODO
-        // POR DEFECTO Y AGREGA EL QUE NOSOTROS LE INDIQUEMOS)
-        );
-        // Y ASI CON TODOS LOS DEMAS C:
+        });
+
         frmBiblioteca.BtnPrestamos.addActionListener((e) -> {
             controladorPrestamos.mostrar();
         });

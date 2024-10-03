@@ -1,6 +1,10 @@
 package Vista;
 
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class DevolucionesVista extends javax.swing.JPanel {
 
@@ -62,6 +66,11 @@ public class DevolucionesVista extends javax.swing.JPanel {
 
         BtnDevolver.setBackground(new java.awt.Color(255, 236, 200));
         BtnDevolver.setText("DEVOLVER");
+        BtnDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDevolverActionPerformed(evt);
+            }
+        });
         jPanel2.add(BtnDevolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 175, 50));
 
         PnlImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -98,6 +107,31 @@ public class DevolucionesVista extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDevolverActionPerformed
+        try {
+            int idBiblioteca = Integer.parseInt(TxtIdPrestamo.getText().trim());
+            String fechaDevolucionStr = TxtFechaDevolucion.getText().trim();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaDevolucion = dateFormat.parse(fechaDevolucionStr);
+
+            JOptionPane.showMessageDialog(this,
+                    "ID Biblioteca: " + idBiblioteca + "\n"
+                    + "Fecha Devolución: " + fechaDevolucionStr,
+                    null,
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El ID de Biblioteca debe ser un número entero.",
+                    "Error de Formato",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this,
+                    "La fecha de devolución no tiene el formato correcto. Use el formato dd/MM/yyyy.",
+                    "Error de Formato de Fecha",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnDevolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

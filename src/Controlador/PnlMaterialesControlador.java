@@ -7,7 +7,6 @@ import DBRepositorio.Libro;
 import DBRepositorio.LibroRepositorio;
 import DBRepositorio.Monografia;
 import DBRepositorio.MonografiaRepositorio;
-import Vista.BibliotecaVista;
 import Vista.MaterialesVista;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -138,12 +137,12 @@ public class PnlMaterialesControlador {
                 limpiarCampos();
                 cargarEventosTablaLibros();
                 estado = "Libro";
-            } else if ("Monografia".equals(opc) && !"Monografia".equals(estado)) {
+            } else if ("Monografía".equals(opc) && !"Monografía".equals(estado)) {
                 vista.TblMateriales.setModel(modeloMonografias);
                 ajustarAMonografias();
                 limpiarCampos();
                 cargarEventosTablaMonografias();
-                estado = "Monografia";
+                estado = "Monografía";
 
             }
         } //ASIGNACION DEL EVENTO

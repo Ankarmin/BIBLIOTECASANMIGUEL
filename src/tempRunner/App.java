@@ -8,7 +8,8 @@ public class App {
 
     //METODO MAIN PARA INCIAR EL PROGRAMA
     public static void main(String[] args) {
-        //FUNCION RARA PARA INCIAR LOS ESTILOS DE FLATLAF
+        //FUNCION RARA PARA INCIAR EL THEME DE FLATLAF
+        //Y ESTILOS DE UIManager
         FlatSolarizedLightIJTheme.setup();
         UIManager.put("Button.arc", 999);
         UIManager.put("Component.arc", 999);

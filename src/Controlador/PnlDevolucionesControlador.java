@@ -1,6 +1,5 @@
 package Controlador;
 
-import Vista.BibliotecaVista;
 import Vista.DevolucionesVista;
 import java.awt.BorderLayout;
 import java.sql.Connection;
@@ -21,10 +20,6 @@ public class PnlDevolucionesControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(vista, BorderLayout.CENTER);
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
-    }
-
-    public void irAPrestamosActivos() {
-        
     }
     
 }

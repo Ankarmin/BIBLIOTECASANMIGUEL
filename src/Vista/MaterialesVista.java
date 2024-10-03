@@ -84,7 +84,7 @@ public class MaterialesVista extends javax.swing.JPanel {
 
         PnlIzq.setBackground(new java.awt.Color(236, 226, 208));
 
-        CmbTipoMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Monografia" }));
+        CmbTipoMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Monografía" }));
 
         BtnAgregar.setBackground(new java.awt.Color(255, 236, 200));
         BtnAgregar.setText("AGREGAR");

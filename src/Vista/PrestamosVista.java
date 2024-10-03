@@ -13,18 +13,6 @@ public class PrestamosVista extends javax.swing.JPanel {
         setLocation(0, 0);
         initComponents();
         initStyles();
-        comboBox();
-    }
-
-    private void comboBox() {
-        CmbMaterial.addActionListener((e) -> {
-            String opc = (String) CmbMaterial.getSelectedItem();
-            if ("Libro".equals(opc)) {
-                LblCodigoMaterial.setText("ISBN");
-            } else if ("Monografía".equals(opc)) {
-                LblCodigoMaterial.setText("ISSN");
-            }
-        });
     }
 
     private void initStyles() {
@@ -49,7 +37,7 @@ public class PrestamosVista extends javax.swing.JPanel {
         TxtIDBiblioteca.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
         TxtIDBiblioteca.setForeground(Color.black);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -89,11 +77,6 @@ public class PrestamosVista extends javax.swing.JPanel {
 
         BtnPrestar.setBackground(new java.awt.Color(255, 236, 200));
         BtnPrestar.setText("PRESTAR");
-        BtnPrestar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrestarActionPerformed(evt);
-            }
-        });
         jPanel2.add(BtnPrestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 150, 50));
 
         BtnPrestamosActivos.setBackground(new java.awt.Color(255, 236, 200));
@@ -138,45 +121,18 @@ public class PrestamosVista extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnPrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrestarActionPerformed
-        try {
-            int idBiblioteca = Integer.parseInt(TxtIDBiblioteca.getText().trim());
-            String fechaDevolucionStr = TxtFechaDevolucion.getText().trim();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date fechaDevolucion = dateFormat.parse(fechaDevolucionStr);
-            String codigoMaterial = TxtCodigoMaterial.getText().trim();
-
-            JOptionPane.showMessageDialog(this,
-                    "ID Biblioteca: " + idBiblioteca + "\n"
-                    + "Fecha Devolución: " + fechaDevolucionStr + "\n"
-                    + "Código Material: " + codigoMaterial,
-                    null,
-                    JOptionPane.INFORMATION_MESSAGE);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,
-                    "El ID de Biblioteca debe ser un número entero.",
-                    "Error de Formato",
-                    JOptionPane.ERROR_MESSAGE);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this,
-                    "La fecha de devolución no tiene el formato correcto. Use el formato dd/MM/yyyy.",
-                    "Error de Formato de Fecha",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_BtnPrestarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnPrestamosActivos;
     public javax.swing.JButton BtnPrestar;
-    private javax.swing.JComboBox<String> CmbMaterial;
-    private javax.swing.JLabel LblCodigoMaterial;
+    public javax.swing.JComboBox<String> CmbMaterial;
+    public javax.swing.JLabel LblCodigoMaterial;
     private javax.swing.JLabel LblFechaDevolucion;
     private javax.swing.JLabel LblIDBiblioteca;
     private javax.swing.JPanel PnlImagen;
-    private javax.swing.JTextField TxtCodigoMaterial;
-    private javax.swing.JTextField TxtFechaDevolucion;
-    private javax.swing.JTextField TxtIDBiblioteca;
+    public javax.swing.JTextField TxtCodigoMaterial;
+    public javax.swing.JTextField TxtFechaDevolucion;
+    public javax.swing.JTextField TxtIDBiblioteca;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
