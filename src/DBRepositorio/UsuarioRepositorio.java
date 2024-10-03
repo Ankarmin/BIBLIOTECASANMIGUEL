@@ -9,18 +9,23 @@ import java.sql.Connection;
 
 public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
 
+    private final String searchHibridUsuarioPrestamo;
     private final String hasBorrowBook;
     private final String hasBorrowMonograph;
 
     public UsuarioRepositorio(Connection openConexion) {
         super(openConexion);
-        this.insertQuery = "INSERT INTO usuario (idBiblio, dni, nombres) VALUES (?, ?, ?)";
+        this.insertQuery = "INSERT INTO usuario (dni, nombres) VALUES (?, ?)";
         this.searchIDQuery = "SELECT * FROM usuario WHERE idBiblio = ?";
         this.searchAllQuery = "SELECT * FROM usuario";
         this.updateRowQuery = "UPDATE usuario SET dni = ?, nombres = ? WHERE idBiblio = ?";
         this.deleteRowQuery = "DELETE FROM usuario WHERE idBiblio = ?";
         this.hasBorrowBook = "SELECT * FROM prestamoLibro WHERE idBiblio = ?";
         this.hasBorrowMonograph = "SELECT * FROM prestamoMonografia WHERE idBiblio = ?";
+        this.searchHibridUsuarioPrestamo = "SELECT idBiblio, (SELECT u.nombres FROM usuario u WHERE u.idBiblio = p.idBiblio) as nombres, "
+                + "(SELECT u.dni FROM usuario u WHERE u.idBiblio = p.idBiblio) as dni, "
+                + "count(idBiblio) + (SELECT count(idBiblio) FROM prestamoMonografia pm WHERE pm.idBiblio = p.idBiblio) as prestamosTotales "
+                + "FROM prestamoLibro p GROUP BY idBiblio";
 
     }
 
@@ -55,9 +60,8 @@ public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
     public boolean agregar(Usuario filaNueva) {
         try {
             try (PreparedStatement pst = conexion.prepareStatement(insertQuery)) {
-                pst.setInt(1, filaNueva.getIdBiblio());
-                pst.setString(2, filaNueva.getDni());
-                pst.setString(3, filaNueva.getNombres());
+                pst.setString(1, filaNueva.getDni());
+                pst.setString(2, filaNueva.getNombres());
 
                 pst.executeUpdate();
             }
@@ -161,4 +165,31 @@ public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
             return false;
         }
     }
+
+    public List<UsuarioPrestamo> obtenerHibridoUsuarioPrestamo() {
+        List<UsuarioPrestamo> hibridosUsuarioPrestamo = new ArrayList<>();
+
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = conexion.prepareStatement(searchHibridUsuarioPrestamo)) {
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    UsuarioPrestamo hibridoUsuarioPrestamo = new UsuarioPrestamo(
+                            rs.getInt("idBiblio"),
+                            rs.getString("dni"),
+                            rs.getString("nombres"),
+                            (rs.getInt("prestamosTotales") != 0) ? "Si" : "No");
+                    hibridosUsuarioPrestamo.add(hibridoUsuarioPrestamo);
+                }
+                System.out.println("Prestamos de monografias recolectados");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al recopilar las monografias: " + e.getMessage());
+
+        }
+
+        return hibridosUsuarioPrestamo.isEmpty() ? new ArrayList<>() : hibridosUsuarioPrestamo;
+    }
+
 }

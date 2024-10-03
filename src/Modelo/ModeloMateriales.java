@@ -1,11 +1,43 @@
 package Modelo;
 
 public class ModeloMateriales {
-    public void AgregarLibro () {
+    public void agregarLibro () {
         
     }
     
-    public void AgregarMonografia () {
+    public void agregarMonografia () {
+        
+    }
+    
+    public void eliminarLibro () {
+        
+    }
+    
+    public void eliminarMonografia () {
+        
+    }
+    
+    public void modificarLibro() {
+        
+    }
+    
+    public void modificarMonografia () {
+        
+    }
+    
+    public void filtrarPorTitulo () {
+        
+    }
+    
+    public void filtrarPorAutor () {
+        
+    }
+    
+    public void filtrarPorTema() {
+        
+    }
+    
+    public void filtrarPorDisponibilidad() {
         
     }
     

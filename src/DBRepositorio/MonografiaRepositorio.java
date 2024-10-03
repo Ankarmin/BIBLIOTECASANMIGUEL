@@ -9,6 +9,9 @@ import java.sql.Connection;
 
 public class MonografiaRepositorio extends IConectar<Monografia, String> {
 
+    private String updateIncreaseStock;
+    private String updateReduceStock;
+
     public MonografiaRepositorio(Connection openConexion) {
         super(openConexion);
         this.insertQuery = "INSERT INTO monografia (issn, titulo, autor, tema, stockTotal, stockDisponible) VALUES (?, ?, ?, ?, ?, ?)";
@@ -16,6 +19,8 @@ public class MonografiaRepositorio extends IConectar<Monografia, String> {
         this.searchAllQuery = "SELECT * FROM monografia";
         this.updateRowQuery = "UPDATE monografia SET titulo = ?, autor = ?, tema = ?, stockTotal = ?, stockDisponible = ? WHERE issn = ?";
         this.deleteRowQuery = "DELETE FROM monografia WHERE issn = ?";
+        this.updateIncreaseStock = "UPDATE monografia SET stockDisponible = stockDisponible + 1, stockTotal = stockTotal + 1 WHERE issn = ?";
+        this.updateReduceStock = "UPDATE monografia SET stockDisponible = stockDisponible - 1 WHERE issn = ?";
     }
 
     @Override
@@ -134,6 +139,40 @@ public class MonografiaRepositorio extends IConectar<Monografia, String> {
 
         } catch (SQLException e) {
             System.out.println("No se pudo eliminar la fila de monografia: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean aumentarStock(String isbn) {
+        try {
+            try (PreparedStatement pst = conexion.prepareStatement(updateIncreaseStock)) {
+                pst.setString(1, isbn);
+
+                pst.executeUpdate();
+            }
+
+            System.out.println("Stock aumentado");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo actualizar la fila de libro: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean disminuirStock(String isbn) {
+        try {
+            try (PreparedStatement pst = conexion.prepareStatement(updateReduceStock)) {
+                pst.setString(1, isbn);
+
+                pst.executeUpdate();
+            }
+
+            System.out.println("Stock reducido");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo actualizar la fila de libro: " + e.getMessage());
             return false;
         }
     }

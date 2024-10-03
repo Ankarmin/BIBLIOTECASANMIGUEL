@@ -12,6 +12,9 @@ import java.sql.Connection;
 //ACUERDATE DE LOS GENERICOS QUE TIENE ICONECTAR, FAMILIAR, NO?
 public class LibroRepositorio extends IConectar<Libro, String> {
 
+    private String updateIncreaseStock;
+    private String updateReduceStock;
+
     //CONSTRUCTOR MAGICO
     public LibroRepositorio(Connection openConexion) {
         // SUPER! LLAMA AL CONSTRUCTOR PADRE DE LA CLASE (ICONECTAR, LO RECUERDAS?) Y ACTUA COMO SU REPRESENTANTE PARA
@@ -24,6 +27,8 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         this.searchAllQuery = "SELECT * FROM libro";
         this.updateRowQuery = "UPDATE libro SET titulo = ?, autor = ?, volumen = ?, tema = ?, stockTotal = ?, stockDisponible = ? WHERE isbn = ?";
         this.deleteRowQuery = "DELETE FROM libro WHERE isbn = ?";
+        this.updateIncreaseStock = "UPDATE libro SET stockDisponible = stockDisponible + 1, stockTotal = stockTotal + 1 WHERE isbn = ?";
+        this.updateReduceStock = "UPDATE libro SET stockDisponible = stockDisponible - 1 WHERE isbn = ?";
     }
 
     //AQUI VAMOS A OVERRADEAR (SOBREESCRIBIR) O IMPLEMENTAR LOS MÉTODOS QUE PAPI ICONECTAR NOS PIDE Q IMPLEMENTEMOS
@@ -157,4 +162,37 @@ public class LibroRepositorio extends IConectar<Libro, String> {
     }
 
     // SI SE NECESITARA, HABRAN MAS MÉTODOS. ESTOS NUEVOS METODOS SERAN SOLO DE LIBROREPOSITORIO POR LO QUE OVERRIDE NO LO UTILIZARE MAS
+    public boolean aumentarStock(String isbn) {
+        try {
+            try (PreparedStatement pst = conexion.prepareStatement(updateIncreaseStock)) {
+                pst.setString(1, isbn);
+
+                pst.executeUpdate();
+            }
+
+            System.out.println("Stock aumentado");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo actualizar la fila de libro: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean disminuirStock(String isbn) {
+        try {
+            try (PreparedStatement pst = conexion.prepareStatement(updateReduceStock)) {
+                pst.setString(1, isbn);
+
+                pst.executeUpdate();
+            }
+
+            System.out.println("Stock reducido");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo actualizar la fila de libro: " + e.getMessage());
+            return false;
+        }
+    }
 }

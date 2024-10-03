@@ -8,7 +8,9 @@ import java.util.List;
 import java.sql.Connection;
 
 public class MorosoRepositorio extends IConectar<Moroso, Integer> {
-
+    
+    private String searchHibridUsuarioPrestamo;
+    
     public MorosoRepositorio(Connection openConexion) {
         super(openConexion);
         this.insertQuery = "INSERT INTO moroso (idBiblio, fechaRecuperacion) VALUES (?, ?)";
@@ -16,6 +18,7 @@ public class MorosoRepositorio extends IConectar<Moroso, Integer> {
         this.searchAllQuery = "SELECT * FROM moroso";
         this.updateRowQuery = "UPDATE moroso SET fechaRecuperacion = ? WHERE idBiblio = ?";
         this.deleteRowQuery = "DELETE FROM moroso WHERE idBiblio = ?";
+        this.searchHibridUsuarioPrestamo = "SELECT * FROM moroso";
     }
 
     @Override

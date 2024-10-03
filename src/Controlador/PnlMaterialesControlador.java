@@ -9,6 +9,8 @@ import DBRepositorio.Monografia;
 import DBRepositorio.MonografiaRepositorio;
 import Vista.MaterialesVista;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -147,6 +149,27 @@ public class PnlMaterialesControlador {
             }
         } //ASIGNACION DEL EVENTO
         );
+
+        vista.BtnAgregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        vista.BtnModificar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        vista.BtnEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
     }
 

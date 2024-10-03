@@ -8,7 +8,9 @@ import java.util.List;
 import java.sql.Connection;
 
 public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> {
-    
+
+    private String searchHibridUsuarioPrestamo;
+
     public PrestamoLibroRepositorio(Connection openConexion) {
         super(openConexion);
         this.insertQuery = "INSERT INTO prestamoLibro (idPrestamo, isbn, idBiblio, fechaDevolucion) VALUES (?, ?, ?, ?)";
@@ -16,8 +18,11 @@ public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> 
         this.searchAllQuery = "SELECT * FROM prestamoLibro";
         this.updateRowQuery = "UPDATE prestamoLibro SET isbn = ?, idBiblio = ?, fechaDevolucion = ? WHERE idPrestamo = ?";
         this.deleteRowQuery = "DELETE FROM prestamoLibro WHERE idPrestamo = ?";
+        this.searchHibridUsuarioPrestamo = "SELECT idBiblio, (SELECT u.nombres FROM usuario u WHERE u.idBiblio = p.idBiblio) as nombres, "
+                + "(SELECT u.dni FROM usuario u WHERE u.idBiblio = p.idBiblio) as dni, "
+                + "count(idBiblio) as numPrestamos FROM prestamoLibro p GROUP BY idBiblio";
     }
-    
+
     @Override
     public boolean agregar(PrestamoLibro filaNueva) {
         try {
