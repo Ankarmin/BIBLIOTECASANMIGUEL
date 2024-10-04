@@ -65,11 +65,11 @@ public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> 
             }
             rs.close();
 
-            System.out.println("La monografia ha sido encontrada");
+            System.out.println("El libro ha sido encontrado");
             return encontrado;
 
         } catch (SQLException e) {
-            System.out.println("Error al buscar la monografia: " + e.getMessage());
+            System.out.println("Error al buscar el libro: " + e.getMessage());
             return encontrado;
         }
 
@@ -87,11 +87,11 @@ public class PrestamoLibroRepositorio extends IConectar<PrestamoLibro, Integer> 
                     PrestamoLibro prestamoLibro = new PrestamoLibro(rs.getInt("idPrestamo"), rs.getString("isbn"), rs.getInt("idBiblio"), rs.getString("fechaPrestamo"), rs.getString("fechaDevolucion"));
                     prestamosLibros.add(prestamoLibro);
                 }
-                System.out.println("Prestamos de monografias recolectados");
+                System.out.println("Prestamos de libros recolectados");
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al recopilar las monografias: " + e.getMessage());
+            System.out.println("Error al recopilar las libros: " + e.getMessage());
 
         }
 

@@ -20,16 +20,12 @@ public class UsuariosVista extends javax.swing.JPanel {
         TxtDNI.setForeground(Color.black);
         TxtNombre.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         TxtNombre.setForeground(Color.black);
-        BtnAgregar.putClientProperty("JButton.buttonType", "roundRect");
         BtnAgregar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnAgregar.setForeground(Color.black);
-        BtnBuscar.putClientProperty("JButton.buttonType", "roundRect");
         BtnBuscar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnBuscar.setForeground(Color.black);
-        BtnEliminar.putClientProperty("JButton.buttonType", "roundRect");
         BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
-        BtnCambiarUsuarios.putClientProperty("JButton.buttonType", "roundRect");
         BtnCambiarUsuarios.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnCambiarUsuarios.setForeground(Color.black);
     }

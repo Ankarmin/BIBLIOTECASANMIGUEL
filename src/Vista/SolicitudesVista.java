@@ -29,7 +29,6 @@ public class SolicitudesVista extends javax.swing.JPanel {
         BtnAgregar.putClientProperty("JButton.buttonType", "roundRect");
         BtnAgregar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnAgregar.setForeground(Color.black);
-        BtnEliminar.putClientProperty("JButton.buttonType", "roundRect");
         BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
     }

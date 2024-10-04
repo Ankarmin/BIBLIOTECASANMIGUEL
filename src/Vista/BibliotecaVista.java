@@ -45,19 +45,14 @@ public class BibliotecaVista extends javax.swing.JFrame {
         LblTexto7.setForeground(Color.black);
         LblTexto8.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         LblTexto8.setForeground(Color.black);
-        BtnDevolucion.putClientProperty("JButton.buttonType", "roundRect");
         BtnDevolucion.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnDevolucion.setForeground(Color.black);
-        BtnMateriales.putClientProperty("JButton.buttonType", "roundRect");
         BtnMateriales.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnMateriales.setForeground(Color.black);
-        BtnPrestamos.putClientProperty("JButton.buttonType", "roundRect");
         BtnPrestamos.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnPrestamos.setForeground(Color.black);
-        BtnSolicitudes.putClientProperty("JButton.buttonType", "roundRect");
         BtnSolicitudes.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnSolicitudes.setForeground(Color.black);
-        BtnUsuarios.putClientProperty("JButton.buttonType", "roundRect");
         BtnUsuarios.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         BtnUsuarios.setForeground(Color.black);
     }

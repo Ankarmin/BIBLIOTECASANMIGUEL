@@ -1,10 +1,6 @@
 package Vista;
 
 import java.awt.Color;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
 
 public class PrestamosVista extends javax.swing.JPanel {
 
@@ -16,10 +12,8 @@ public class PrestamosVista extends javax.swing.JPanel {
     }
 
     private void initStyles() {
-        BtnPrestamosActivos.putClientProperty("JButton.buttonType", "roundRect");
         BtnPrestamosActivos.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnPrestamosActivos.setForeground(Color.black);
-        BtnPrestar.putClientProperty("JButton.buttonType", "roundRect");
         BtnPrestar.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnPrestar.setForeground(Color.black);
         CmbMaterial.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
@@ -37,7 +31,7 @@ public class PrestamosVista extends javax.swing.JPanel {
         TxtIDBiblioteca.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
         TxtIDBiblioteca.setForeground(Color.black);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

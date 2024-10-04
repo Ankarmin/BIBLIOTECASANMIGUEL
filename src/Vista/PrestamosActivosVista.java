@@ -1,5 +1,7 @@
 package Vista;
 
+import java.awt.Color;
+
 public class PrestamosActivosVista extends javax.swing.JPanel {
 
     public PrestamosActivosVista() {
@@ -10,6 +12,8 @@ public class PrestamosActivosVista extends javax.swing.JPanel {
     }
 
     private void initStyles() {
+        CmbTipoMaterial.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
+        CmbTipoMaterial.setForeground(Color.black);
     }
 
     @SuppressWarnings("unchecked")
@@ -19,6 +23,7 @@ public class PrestamosActivosVista extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         SPTablaMateriales = new javax.swing.JScrollPane();
         TblPrestamosActivos = new javax.swing.JTable();
+        CmbTipoMaterial = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(236, 226, 208));
 
@@ -39,20 +44,26 @@ public class PrestamosActivosVista extends javax.swing.JPanel {
         ));
         SPTablaMateriales.setViewportView(TblPrestamosActivos);
 
+        CmbTipoMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Monografía" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CmbTipoMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CmbTipoMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
@@ -70,6 +81,7 @@ public class PrestamosActivosVista extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox<String> CmbTipoMaterial;
     private javax.swing.JScrollPane SPTablaMateriales;
     public javax.swing.JTable TblPrestamosActivos;
     private javax.swing.JPanel jPanel1;

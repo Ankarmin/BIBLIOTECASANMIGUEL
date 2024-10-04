@@ -60,7 +60,10 @@ public class PnlPrestamosControlador {
         try {
             // VALIDAR STOCK DISPONIBLE
             if (stockDisponible <= 0) {
-                JOptionPane.showMessageDialog(vista, "No hay stock disponible para prestar este libro.", "Error de Stock", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista,
+                        "No hay stock disponible para prestar este libro.",
+                        "Error de Stock",
+                        JOptionPane.ERROR_MESSAGE);
                 return; // SALIMOS DEL MÉTODO C:
             }
 
@@ -84,14 +87,24 @@ public class PnlPrestamosControlador {
             // AQUÍ REGISTRAMOS EL PRESTAMO EN LA BASE DE DATOS A TRAVÉS DEL MODELO
             boolean resultado = modeloPrestamos.prestarLibro(nuevoPrestamo);
             if (resultado) {
-                JOptionPane.showMessageDialog(vista, "Préstamo de Libro registrado con éxito.");
+                JOptionPane.showMessageDialog(vista,
+                        "Préstamo de Libro registrado con éxito.");
             } else {
-                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.", null, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista,
+                        "Error al registrar el préstamo.",
+                        null,
+                        JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(vista, "El ID de Biblioteca debe ser un número entero.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista,
+                    "El ID de Biblioteca debe ser un número entero.",
+                    "Error de formato",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(vista, "La fecha de devolución no tiene el formato correcto. Use el formato yyyy-MM-dd.", "Error de Formato de Fecha", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista,
+                    "La fecha de devolución no tiene el formato correcto. Use el formato yyyy-MM-dd.",
+                    "Error de Formato de Fecha",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -99,7 +112,10 @@ public class PnlPrestamosControlador {
         try {
             // VALIDAR STOCK DISPONIBLE
             if (stockDisponible <= 0) {
-                JOptionPane.showMessageDialog(vista, "No hay stock disponible para prestar esta monografía.", "Error de Stock", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista,
+                        "No hay stock disponible para prestar esta monografía.",
+                        "Error de Stock",
+                        JOptionPane.ERROR_MESSAGE);
                 return; // SALIMOS DEL MÉTODO C:
             }
 
@@ -123,14 +139,24 @@ public class PnlPrestamosControlador {
             // AQUÍ REGISTRAMOS EL PRESTAMO EN LA BASE DE DATOS A TRAVÉS DEL MODELO
             boolean resultado = modeloPrestamos.prestarMonografia(nuevoPrestamo);
             if (resultado) {
-                JOptionPane.showMessageDialog(vista, "Préstamo de Monografía registrado con éxito.");
+                JOptionPane.showMessageDialog(vista,
+                        "Préstamo de Monografía registrado con éxito.");
             } else {
-                JOptionPane.showMessageDialog(vista, "Error al registrar el préstamo.", null, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista,
+                        "Error al registrar el préstamo.",
+                        null,
+                        JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(vista, "El ID de Biblioteca debe ser un número entero.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista,
+                    "El ID de Biblioteca debe ser un número entero.",
+                    "Error de formato",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(vista, "La fecha de devolución no tiene el formato correcto. Use el formato yyyy-MM-dd.", "Error de Formato de Fecha", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista,
+                    "La fecha de devolución no tiene el formato correcto. Use el formato yyyy-MM-dd.",
+                    "Error de Formato de Fecha",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -152,8 +178,6 @@ public class PnlPrestamosControlador {
         return vista;
     }
 
-    //RECONOCE EN EL COMBOBOX EL LIBRO ENTRANTE DE MATERIALES,
-    //CAMBIANDO SU ITEM
     public void setLibroEntrante(Libro libroEntrante) {
         this.libroEntrante = libroEntrante;
         vista.CmbMaterial.setSelectedItem("Libro");
@@ -163,8 +187,6 @@ public class PnlPrestamosControlador {
         }
     }
 
-    //RECONOCE EN EL COMBOBOX EL MONOGRAFIA ENTRANTE DE MATERIALES,
-    //CAMBIANDO SU ITEM
     public void setMonografiaEntrante(Monografia monografiaEntrante) {
         this.monografiaEntrante = monografiaEntrante;
         vista.CmbMaterial.setSelectedItem("Monografía");

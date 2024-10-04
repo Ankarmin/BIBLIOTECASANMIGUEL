@@ -38,12 +38,12 @@ public class MaterialesVista extends javax.swing.JPanel {
         TxtTitulo.setForeground(Color.black);
         TxtVolumen.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         TxtVolumen.setForeground(Color.black);
-        BtnAgregar.putClientProperty("JButton.buttonType", "roundRect");
         BtnAgregar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnAgregar.setForeground(Color.black);
-        BtnEliminar.putClientProperty("JButton.buttonType", "roundRect");
         BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
+        BtnModificar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
+        BtnModificar.setForeground(Color.black);
         CmbFiltro.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         CmbFiltro.setForeground(Color.black);
         CmbTipoMaterial.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
@@ -105,6 +105,7 @@ public class MaterialesVista extends javax.swing.JPanel {
 
         LblCodigoMaterial.setText("ISBN");
 
+        BtnModificar.setBackground(new java.awt.Color(255, 236, 200));
         BtnModificar.setText("MODIFICAR");
 
         javax.swing.GroupLayout PnlIzqLayout = new javax.swing.GroupLayout(PnlIzq);
@@ -142,11 +143,13 @@ public class MaterialesVista extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
                         .addContainerGap(26, Short.MAX_VALUE)
                         .addGroup(PnlIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PnlIzqLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
                                 .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
+                                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)))))
                 .addContainerGap())
             .addGroup(PnlIzqLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
@@ -180,13 +183,13 @@ public class MaterialesVista extends javax.swing.JPanel {
                 .addComponent(LblTema, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtTema, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(PnlIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         PanelMateriales.add(PnlIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 640));
