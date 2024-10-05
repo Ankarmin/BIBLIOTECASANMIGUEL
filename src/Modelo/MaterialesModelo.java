@@ -27,15 +27,6 @@ public class MaterialesModelo {
 
     public boolean agregarLibro(Libro libro) {
 
-        System.out.println(libro.getIsbn());
-        System.out.println(libro.getTitulo());
-        System.out.println(libro.getAutor());
-        System.out.println(libro.getTema());
-        System.out.println(libro.getVolumen());
-        System.out.println(libro.getTema());
-        System.out.println(libro.getStockTotal());
-        System.out.println(libro.getStockDisponible());
-
         if (libro != null) {
             if (validarRegistroLibro(libro)) {
                 if (libroDriver.agregar(libro)) {
@@ -71,20 +62,74 @@ public class MaterialesModelo {
         }
     }
 
-    public void eliminarLibro() {
+    public boolean eliminarLibro(Libro libro) {
+        if (libro != null) {
+            if (validarCodigo(libro.getIsbn())) {
+                if (libroDriver.eliminar(libro.getIsbn())) {
+                    return true;
+                } else {
+                    this.error = "No se pudo agregar el libro";
+                    return false;
+                }
 
+            }
+            return false;
+        } else {
+            this.error = "No has seleccionado ningun libro";
+            return false;
+        }
     }
 
-    public void eliminarMonografia() {
-
+    public boolean eliminarMonografia(Monografia monografia) {
+        if (monografia != null) {
+            if (validarCodigo(monografia.getIssn())) {
+                if (monografiaDriver.eliminar(monografia.getIssn())) {
+                    return true;
+                } else {
+                    this.error = "No se pudo eliminar la monografia";
+                    return false;
+                }
+            }
+            return false;
+        } else {
+            this.error = "No has seleccionado ninguna monografía";
+            return false;
+        }
     }
 
-    public void modificarLibro() {
+    public boolean modificarLibro(Libro libro) {
+        if (libro != null) {
+            if (validarRegistroLibro(libro)) {
+                if (libroDriver.actualizar(libro)) {
+                    return true;
+                } else {
+                    this.error = "No se pudo modificar el libro";
+                    return false;
+                }
 
+            }
+            return false;
+        } else {
+            this.error = "No has seleccionado ningun libro";
+            return false;
+        }
     }
 
-    public void modificarMonografia() {
-
+    public boolean modificarMonografia(Monografia monografia) {
+        if (monografia != null) {
+            if (validarRegistroMonografia(monografia)) {
+                if (monografiaDriver.actualizar(monografia)) {
+                    return true;
+                } else {
+                    this.error = "No se pudo modificar la monografia";
+                    return false;
+                }
+            }
+            return false;
+        } else {
+            this.error = "No has seleccionado ninguna monografía";
+            return false;
+        }
     }
 
     public void filtrarPorTitulo() {

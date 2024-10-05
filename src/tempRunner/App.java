@@ -35,14 +35,14 @@ public class App {
         FrmBibliotecaControlador controladorBiblioteca = new FrmBibliotecaControlador();
 
         //METODO QUE CARGA EL JFRAME INICIAL (LA VENTANA)
-        //controladorBiblioteca.iniciar();
+        controladorBiblioteca.iniciar();
 
         try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
             MorosoRepositorio libroDriver = new MorosoRepositorio(openConexion);
 
             List<MorosoUsuario> lista = libroDriver.obtenerHibridoMorosoUsuario();
-            
+
             for (MorosoUsuario el : lista) {
                 System.out.println(el.getDni());
             }

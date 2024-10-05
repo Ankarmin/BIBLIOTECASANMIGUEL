@@ -128,6 +128,7 @@ public class PnlMaterialesControlador {
                     } else {
                         modelo.generarModeloLibro(vista.TblMateriales);
                         modelo.cargarModeloLibro(vista.TblMateriales);
+                        limpiarCampos();
                     }
                 } else {
                     if (!modelo.agregarMonografia(monografiaNueva)) {
@@ -135,6 +136,7 @@ public class PnlMaterialesControlador {
                     } else {
                         modelo.generarModeloMonografia(vista.TblMateriales);
                         modelo.cargarModeloMonografia(vista.TblMateriales);
+                        limpiarCampos();
                     }
                 }
             }
@@ -143,14 +145,46 @@ public class PnlMaterialesControlador {
         vista.BtnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if ("Libro".equals(estado)) {
+                    if (!modelo.modificarLibro(libroNuevo)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloLibro(vista.TblMateriales);
+                        modelo.cargarModeloLibro(vista.TblMateriales);
+                        limpiarCampos();
+                    }
+                } else {
+                    if (!modelo.modificarMonografia(monografiaNueva)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloMonografia(vista.TblMateriales);
+                        modelo.cargarModeloMonografia(vista.TblMateriales);
+                        limpiarCampos();
+                    }
+                }
             }
         });
 
         vista.BtnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if ("Libro".equals(estado)) {
+                    if (!modelo.eliminarLibro(libroNuevo)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloLibro(vista.TblMateriales);
+                        modelo.cargarModeloLibro(vista.TblMateriales);
+                        limpiarCampos();
+                    }
+                } else {
+                    if (!modelo.agregarMonografia(monografiaNueva)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloMonografia(vista.TblMateriales);
+                        modelo.cargarModeloMonografia(vista.TblMateriales);
+                        limpiarCampos();
+                    }
+                }
             }
         });
 

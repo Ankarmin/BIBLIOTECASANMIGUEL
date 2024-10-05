@@ -15,6 +15,11 @@ public class LibroRepositorio extends IConectar<Libro, String> {
     private final String updateIncreaseStock;
     private final String updateReduceStock;
 
+    private String searchTitlePartialQuery;
+    private String searchAuthorPartialQuery;
+    private String searchTopicsPartialQuery;
+    private String searchDisponiblityQuery;
+
     //CONSTRUCTOR MAGICO
     public LibroRepositorio(Connection openConexion) {
         // SUPER! LLAMA AL CONSTRUCTOR PADRE DE LA CLASE (ICONECTAR, LO RECUERDAS?) Y ACTUA COMO SU REPRESENTANTE PARA
@@ -29,6 +34,10 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         this.deleteRowQuery = "DELETE FROM libro WHERE isbn = ?";
         this.updateIncreaseStock = "UPDATE libro SET stockDisponible = stockDisponible + 1, stockTotal = stockTotal + 1 WHERE isbn = ?";
         this.updateReduceStock = "UPDATE libro SET stockDisponible = stockDisponible - 1 WHERE isbn = ?";
+        this.searchTitlePartialQuery = "SELECT * FROM libro WHERE titulo";
+        this.searchAuthorPartialQuery = "SELECT * FROM libro WHERE ";
+        this.searchTopicsPartialQuery = "";
+        this.searchDisponiblityQuery = "";
     }
 
     //AQUI VAMOS A OVERRADEAR (SOBREESCRIBIR) O IMPLEMENTAR LOS MÉTODOS QUE PAPI ICONECTAR NOS PIDE Q IMPLEMENTEMOS

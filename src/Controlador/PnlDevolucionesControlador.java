@@ -100,6 +100,17 @@ public class PnlDevolucionesControlador {
                     "Error de Formato de Fecha",
                     JOptionPane.ERROR_MESSAGE);
         }
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloLibro(bibliotecaControlador.getControladorPrestamosActivos().getVista().TblPrestamosActivos);
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                cargarModeloLibro(bibliotecaControlador.getControladorPrestamosActivos().getVista().TblPrestamosActivos);
+
     }
 
     public void devolverMonografia() {

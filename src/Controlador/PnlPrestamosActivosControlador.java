@@ -79,12 +79,10 @@ public class PnlPrestamosActivosControlador {
             String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
 
             if ("Libro".equals(opc)) {
-                modeloPrestamosActivos.generarModeloLibro(vista.TblPrestamosActivos);
                 modeloPrestamosActivos.cargarModeloLibro(vista.TblPrestamosActivos);
                 vista.TblPrestamosActivos.removeMouseListener(clickMonografiaPrestamo);
                 vista.TblPrestamosActivos.addMouseListener(clickLibroPrestamo);
             } else if ("Monografía".equals(opc)) {
-                modeloPrestamosActivos.generarModeloMonografia(vista.TblPrestamosActivos);
                 modeloPrestamosActivos.cargarModeloMonografia(vista.TblPrestamosActivos);
                 vista.TblPrestamosActivos.removeMouseListener(clickLibroPrestamo);
                 vista.TblPrestamosActivos.addMouseListener(clickMonografiaPrestamo);
@@ -95,8 +93,6 @@ public class PnlPrestamosActivosControlador {
     public void mostrar() {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(vista, BorderLayout.CENTER);
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
 
     public PrestamosActivosVista getVista() {
@@ -118,4 +114,11 @@ public class PnlPrestamosActivosControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
         bibliotecaControlador.getControladorDevoluciones().setMonografiaEntrante(prestamoMonografiaSeleccionada);
     }
+
+    public ModeloPrestamosActivos getModeloPrestamosActivos() {
+        return modeloPrestamosActivos;
+    }
+    
+    
+    
 }
