@@ -71,6 +71,7 @@ public class MaterialesVista extends javax.swing.JPanel {
         LblTipoMaterial = new javax.swing.JLabel();
         LblCodigoMaterial = new javax.swing.JLabel();
         BtnModificar = new javax.swing.JButton();
+        BtnLimpiar = new javax.swing.JButton();
         PnlDer = new javax.swing.JPanel();
         TxtFiltro = new javax.swing.JTextField();
         SPTablaMateriales = new javax.swing.JScrollPane();
@@ -112,6 +113,8 @@ public class MaterialesVista extends javax.swing.JPanel {
         BtnModificar.setBackground(new java.awt.Color(255, 236, 200));
         BtnModificar.setText("MODIFICAR");
 
+        BtnLimpiar.setText("LIMPIAR");
+
         javax.swing.GroupLayout PnlIzqLayout = new javax.swing.GroupLayout(PnlIzq);
         PnlIzq.setLayout(PnlIzqLayout);
         PnlIzqLayout.setHorizontalGroup(
@@ -147,13 +150,14 @@ public class MaterialesVista extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
                         .addContainerGap(26, Short.MAX_VALUE)
                         .addGroup(PnlIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
+                            .addGroup(PnlIzqLayout.createSequentialGroup()
+                                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PnlIzqLayout.createSequentialGroup()
                                 .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlIzqLayout.createSequentialGroup()
-                                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)))))
+                                .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(PnlIzqLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
@@ -192,7 +196,9 @@ public class MaterialesVista extends javax.swing.JPanel {
                     .addComponent(BtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PnlIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
 
@@ -295,6 +301,7 @@ public class MaterialesVista extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnAgregar;
     public javax.swing.JButton BtnEliminar;
+    public javax.swing.JButton BtnLimpiar;
     public javax.swing.JButton BtnModificar;
     private javax.swing.JComboBox<String> CmbFiltro;
     public javax.swing.JComboBox<String> CmbTipoMaterial;

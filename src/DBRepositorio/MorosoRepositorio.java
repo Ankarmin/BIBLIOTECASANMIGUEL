@@ -8,9 +8,9 @@ import java.util.List;
 import java.sql.Connection;
 
 public class MorosoRepositorio extends IConectar<Moroso, Integer> {
-    
-    private String searchHibridUsuarioPrestamo;
-    
+
+    private String searchHibridMorosoUsuario;
+
     public MorosoRepositorio(Connection openConexion) {
         super(openConexion);
         this.insertQuery = "INSERT INTO moroso (idBiblio, fechaRecuperacion) VALUES (?, ?)";
@@ -18,7 +18,10 @@ public class MorosoRepositorio extends IConectar<Moroso, Integer> {
         this.searchAllQuery = "SELECT * FROM moroso";
         this.updateRowQuery = "UPDATE moroso SET fechaRecuperacion = ? WHERE idBiblio = ?";
         this.deleteRowQuery = "DELETE FROM moroso WHERE idBiblio = ?";
-        this.searchHibridUsuarioPrestamo = "SELECT * FROM moroso";
+        this.searchHibridMorosoUsuario = "SELECT idBiblio, "
+                + "(SELECT dni FROM usuario u WHERE m.idBiblio = u.idBiblio) as dni, "
+                + "(SELECT nombres FROM usuario u WHERE m.idBiblio = u.idBiblio) as nombres, "
+                + "fechaRecuperacion FROM moroso m;";
     }
 
     @Override
@@ -127,6 +130,28 @@ public class MorosoRepositorio extends IConectar<Moroso, Integer> {
             System.out.println("No se pudo eliminar la fila: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<MorosoUsuario> obtenerHibridoMorosoUsuario() {
+        List<MorosoUsuario> morosoUsuarios = new ArrayList<>();
+
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = conexion.prepareStatement(searchHibridMorosoUsuario)) {
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    MorosoUsuario morosoUsuario = new MorosoUsuario(rs.getInt("idBiblio"), rs.getString("dni"), rs.getString("nombres"), rs.getString("fechaRecuperacion"));
+                    morosoUsuarios.add(morosoUsuario);
+                }
+                System.out.println("Morosos recolectados");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al recopilar morosos: " + e.getMessage());
+
+        }
+
+        return morosoUsuarios.isEmpty() ? new ArrayList<>() : morosoUsuarios;
     }
 
 }

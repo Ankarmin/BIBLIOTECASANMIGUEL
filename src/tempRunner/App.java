@@ -3,6 +3,8 @@ package tempRunner;
 import Controlador.FrmBibliotecaControlador;
 import DBRepositorio.Libro;
 import DBRepositorio.LibroRepositorio;
+import DBRepositorio.MorosoRepositorio;
+import DBRepositorio.MorosoUsuario;
 import DBRepositorio.UsuarioPrestamo;
 import DBRepositorio.UsuarioRepositorio;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
@@ -33,18 +35,22 @@ public class App {
         FrmBibliotecaControlador controladorBiblioteca = new FrmBibliotecaControlador();
 
         //METODO QUE CARGA EL JFRAME INICIAL (LA VENTANA)
-        controladorBiblioteca.iniciar();
+        //controladorBiblioteca.iniciar();
 
         try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            LibroRepositorio libroDriver = new LibroRepositorio(openConexion);
+            MorosoRepositorio libroDriver = new MorosoRepositorio(openConexion);
+
+            List<MorosoUsuario> lista = libroDriver.obtenerHibridoMorosoUsuario();
             
-            libroDriver.agregar(new Libro("1234567891", "Aprendiendo SQL", "María López", 1, "Bases de datos", 6, 5));
+            for (MorosoUsuario el : lista) {
+                System.out.println(el.getDni());
+            }
 
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());
         }
-         */
+
     }
 
 }
