@@ -118,7 +118,5 @@ public class PnlPrestamosActivosControlador {
     public ModeloPrestamosActivos getModeloPrestamosActivos() {
         return modeloPrestamosActivos;
     }
-    
-    
-    
+
 }

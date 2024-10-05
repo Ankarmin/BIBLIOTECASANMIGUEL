@@ -34,10 +34,10 @@ public class LibroRepositorio extends IConectar<Libro, String> {
         this.deleteRowQuery = "DELETE FROM libro WHERE isbn = ?";
         this.updateIncreaseStock = "UPDATE libro SET stockDisponible = stockDisponible + 1, stockTotal = stockTotal + 1 WHERE isbn = ?";
         this.updateReduceStock = "UPDATE libro SET stockDisponible = stockDisponible - 1 WHERE isbn = ?";
-        this.searchTitlePartialQuery = "SELECT * FROM libro WHERE titulo";
-        this.searchAuthorPartialQuery = "SELECT * FROM libro WHERE ";
-        this.searchTopicsPartialQuery = "";
-        this.searchDisponiblityQuery = "";
+        this.searchTitlePartialQuery = "SELECT * FROM libro WHERE titulo LIKE ?";
+        this.searchAuthorPartialQuery = "SELECT * FROM libro WHERE autor LIKE ?";
+        this.searchTopicsPartialQuery = "SELECT * FROM libro WHERE tema LIKE ?";
+        this.searchDisponiblityQuery = "SELECT * FROM libro WHERE stockDisponible > 0";
     }
 
     //AQUI VAMOS A OVERRADEAR (SOBREESCRIBIR) O IMPLEMENTAR LOS MÉTODOS QUE PAPI ICONECTAR NOS PIDE Q IMPLEMENTEMOS
@@ -203,4 +203,73 @@ public class LibroRepositorio extends IConectar<Libro, String> {
             return false;
         }
     }
+
+    public List<Libro> obtenerPorTitulo(String titulo) {
+        List<Libro> libros = new ArrayList<>();
+
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = conexion.prepareStatement(searchTitlePartialQuery)) {
+                pst.setString(1, titulo + "%");
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("volumen"), rs.getString("tema"), rs.getInt("stockTotal"), rs.getInt("stockDisponible"));
+                    libros.add(libro);
+                }
+                System.out.println("Libros recolectados");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al recopilar los libros: " + e.getMessage());
+
+        }
+
+        return libros.isEmpty() ? new ArrayList<>() : libros;
+    }
+
+    public List<Libro> obtenerPorAutor(String autor) {
+        List<Libro> libros = new ArrayList<>();
+
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = conexion.prepareStatement(searchAuthorPartialQuery)) {
+                pst.setString(1, autor + "%");
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("volumen"), rs.getString("tema"), rs.getInt("stockTotal"), rs.getInt("stockDisponible"));
+                    libros.add(libro);
+                }
+                System.out.println("Libros recolectados");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al recopilar los libros: " + e.getMessage());
+
+        }
+
+        return libros.isEmpty() ? new ArrayList<>() : libros;
+    }
+
+    public List<Libro> obtenerPorDisponibilidad() {
+        List<Libro> libros = new ArrayList<>();
+
+        try {
+            ResultSet rs;
+            try (PreparedStatement pst = conexion.prepareStatement(searchDisponiblityQuery)) {
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    Libro libro = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"), rs.getInt("volumen"), rs.getString("tema"), rs.getInt("stockTotal"), rs.getInt("stockDisponible"));
+                    libros.add(libro);
+                }
+                System.out.println("Libros recolectados");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error al recopilar los libros: " + e.getMessage());
+
+        }
+
+        return libros.isEmpty() ? new ArrayList<>() : libros;
+    }
+
 }

@@ -6,6 +6,8 @@ import DBRepositorio.Monografia;
 import Common.CommonFunctions;
 import DBRepositorio.MonografiaRepositorio;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -17,12 +19,16 @@ public class MaterialesModelo {
     LibroRepositorio libroDriver;
     MonografiaRepositorio monografiaDriver;
 
+    List<Libro> librosActuales;
+    List<Monografia> monografiasActuales;
+
     private TableModel modeloTablaLibros;
     private TableModel modeloTablaMonografias;
 
     public MaterialesModelo(Connection openConexion) {
         libroDriver = new LibroRepositorio(openConexion);
         monografiaDriver = new MonografiaRepositorio(openConexion);
+
     }
 
     public boolean agregarLibro(Libro libro) {
@@ -132,20 +138,101 @@ public class MaterialesModelo {
         }
     }
 
-    public void filtrarPorTitulo() {
+    public void filtrarPorTituloLibro(String titulo, JTable tablaMateriales) {
 
+        List<Libro> titulos = new ArrayList<>();
+
+        for (Libro libro : librosActuales) {
+            if (libro.getTitulo().startsWith(titulo)) {
+                titulos.add(libro);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Libro.getColumnas(), titulos);
     }
 
-    public void filtrarPorAutor() {
+    public void filtrarPorAutorLibro(String autor, JTable tablaMateriales) {
+        List<Libro> autores = new ArrayList<>();
 
+        for (Libro libro : librosActuales) {
+            if (libro.getAutor().startsWith(autor)) {
+                autores.add(libro);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Libro.getColumnas(), autores);
     }
 
-    public void filtrarPorTema() {
+    public void filtrarPorTemaLibro(String tema, JTable tablaMateriales) {
+        List<Libro> temas = new ArrayList<>();
 
+        for (Libro libro : librosActuales) {
+            if (libro.getTema().startsWith(tema)) {
+                temas.add(libro);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Libro.getColumnas(), temas);
     }
 
-    public void filtrarPorDisponibilidad() {
+    public void filtrarPorDisponibilidadLibro(JTable tablaMateriales) {
+        List<Libro> disponibles = new ArrayList<>();
 
+        for (Libro libro : librosActuales) {
+            if (libro.getStockDisponible() > 0) {
+                disponibles.add(libro);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Libro.getColumnas(), disponibles);
+    }
+
+    public void filtrarPorTituloMonografia(String titulo, JTable tablaMateriales) {
+        List<Monografia> titulos = new ArrayList<>();
+
+        for (Monografia monografia : monografiasActuales) {
+            if (monografia.getTitulo().startsWith(titulo)) {
+                titulos.add(monografia);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Monografia.getColumnas(), titulos);
+    }
+
+    public void filtrarPorAutorMonografia(String autor, JTable tablaMateriales) {
+        List<Monografia> autores = new ArrayList<>();
+
+        for (Monografia monografia : monografiasActuales) {
+            if (monografia.getAutor().startsWith(autor)) {
+                autores.add(monografia);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Monografia.getColumnas(), autores);
+    }
+
+    public void filtrarPorTemaMonografia(String tema, JTable tablaMateriales) {
+        List<Monografia> temas = new ArrayList<>();
+
+        for (Monografia monografia : monografiasActuales) {
+            if (monografia.getTema().startsWith(tema)) {
+                temas.add(monografia);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Monografia.getColumnas(), temas);
+    }
+
+    public void filtrarPorDisponibilidadMonografia(JTable tablaMateriales) {
+        List<Monografia> disponibles = new ArrayList<>();
+
+        for (Monografia monografia : monografiasActuales) {
+            if (monografia.getStockDisponible() > 0) {
+                disponibles.add(monografia);
+            }
+        }
+
+        CommonFunctions.llenarTabla(tablaMateriales, Monografia.getColumnas(), disponibles);
     }
 
     public void trimLibro(Libro libro) {
@@ -234,7 +321,7 @@ public class MaterialesModelo {
     }
 
     public boolean validarStockDisponible(int stockDisponible) {
-        if (stockDisponible > 0) {
+        if (stockDisponible >= 0) {
             return true;
         }
         this.error = "El stock disponible no puede ser menor o igual a 0";
@@ -248,13 +335,15 @@ public class MaterialesModelo {
     }
 
     public void generarModeloLibro(JTable tblMateriales) {
-        CommonFunctions.llenarTabla(tblMateriales, Libro.getColumnas(), libroDriver.obtenerTodos());
+        librosActuales = libroDriver.obtenerTodos();
+        CommonFunctions.llenarTabla(tblMateriales, Libro.getColumnas(), librosActuales);
         modeloTablaLibros = tblMateriales.getModel();
         tblMateriales.setModel(new DefaultTableModel());
     }
 
     public void generarModeloMonografia(JTable tblMateriales) {
-        CommonFunctions.llenarTabla(tblMateriales, Monografia.getColumnas(), monografiaDriver.obtenerTodos());
+        monografiasActuales = monografiaDriver.obtenerTodos();
+        CommonFunctions.llenarTabla(tblMateriales, Monografia.getColumnas(), monografiasActuales);
         modeloTablaMonografias = tblMateriales.getModel();
         tblMateriales.setModel(new DefaultTableModel());
     }

@@ -303,7 +303,7 @@ public class MaterialesVista extends javax.swing.JPanel {
     public javax.swing.JButton BtnEliminar;
     public javax.swing.JButton BtnLimpiar;
     public javax.swing.JButton BtnModificar;
-    private javax.swing.JComboBox<String> CmbFiltro;
+    public javax.swing.JComboBox<String> CmbFiltro;
     public javax.swing.JComboBox<String> CmbTipoMaterial;
     public javax.swing.JLabel LblAutor;
     public javax.swing.JLabel LblCodigoMaterial;

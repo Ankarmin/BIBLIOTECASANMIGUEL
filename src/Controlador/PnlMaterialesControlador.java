@@ -60,8 +60,17 @@ public class PnlMaterialesControlador {
     private DocumentListener cambiarTxtStockDisponibleLibro;
     private DocumentListener cambiarTxtStockDisponibleMonografia;
 
+    private DocumentListener cambiarTxtFiltroTituloLibro;
+    private DocumentListener cambiarTxtFiltroAutorLibro;
+    private DocumentListener cambiarTxtFiltroTemasLibro;
+
+    private DocumentListener cambiarTxtFiltroTituloMonografia;
+    private DocumentListener cambiarTxtFiltroAutorMonografia;
+    private DocumentListener cambiarTxtFiltroTemasMonografia;
+
     //EL ESTADO DE LA TABLA
     private String estado = "Libro";
+    private String filtro = "Título";
 
     //Constructor
     PnlMaterialesControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
@@ -86,6 +95,8 @@ public class PnlMaterialesControlador {
         setClickMonografia();
         setTxtEventos();
 
+        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloLibro);
+
         cargarEventosTxtLibro();
 
         //AQUI ES MAS DE LO MISMO PERO CON MONOGRAFIA
@@ -103,21 +114,103 @@ public class PnlMaterialesControlador {
                 ajustarALibros();
                 limpiarCampos();
                 cargarEventosTablaLibros();
+                removerEventosTxtFiltroMonografia();
                 cargarEventosTxtLibro();
+                vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloLibro);
                 estado = "Libro";
                 monografiaSeleccionada = null;
             } else if ("Monografía".equals(opc) && !"Monografía".equals(estado)) {
                 modelo.cargarModeloMonografia(vista.TblMateriales);
                 ajustarAMonografias();
                 limpiarCampos();
+                removerEventosTxtFiltroLibro();
                 cargarEventosTablaMonografias();
-                cargarEventosTablaMonografias();
+                cargarEventosTxtMonografia();
+                vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloMonografia);
                 estado = "Monografía";
                 libroSeleccionado = null;
 
             }
         } //ASIGNACION DEL EVENTO
         );
+
+        vista.CmbFiltro.addActionListener((e) -> {
+            String opc = (String) vista.CmbFiltro.getSelectedItem();
+            removerEventosTxtFiltroLibro();
+            removerEventosTxtFiltroMonografia();
+
+            if ("Libro".equals(estado)) {
+
+                switch (opc) {
+                    case "Título" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloLibro);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTituloLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+                    }
+                    case "Autor" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroAutorLibro);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorAutorLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+                    }
+                    case "Temas" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTemasLibro);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTemaLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+
+                    }
+                    case "Disponibilidad" -> {
+                        modelo.filtrarPorDisponibilidadLibro(vista.TblMateriales);
+                    }
+                    default ->
+                        throw new AssertionError();
+                }
+            } else {
+
+                switch (opc) {
+                    case "Título" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloMonografia);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTituloMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+                    }
+                    case "Autor" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloMonografia);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+                    }
+                    case "Temas" -> {
+                        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTemasMonografia);
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTemaMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        } else {
+                            modelo.cargarModeloLibro(vista.TblMateriales);
+                        }
+                    }
+                    case "Disponibilidad" -> {
+                        modelo.filtrarPorDisponibilidadMonografia(vista.TblMateriales);
+                    }
+                    default ->
+                        throw new AssertionError();
+                }
+            }
+
+        });
+
+        vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtIsbn);
 
         vista.BtnAgregar.addActionListener(new ActionListener() {
             @Override
@@ -694,6 +787,162 @@ public class PnlMaterialesControlador {
 
         };
 
+        cambiarTxtFiltroTituloLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTituloLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTituloLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+        cambiarTxtFiltroTituloMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTituloMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTituloMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+        cambiarTxtFiltroAutorLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+        cambiarTxtAutorMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+        cambiarTxtFiltroTemasLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTemaLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTemaLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloLibro(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+        cambiarTxtFiltroTemasMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTemaMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                    modelo.filtrarPorTemaMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                } else {
+                    modelo.cargarModeloMonografia(vista.TblMateriales);
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+
+    }
+
+    public void removerEventosTxtFiltroLibro() {
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTituloLibro);
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroAutorLibro);
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTemasLibro);
+    }
+
+    public void removerEventosTxtFiltroMonografia() {
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTituloMonografia);
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroAutorMonografia);
+        vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTemasMonografia);
     }
 
 }

@@ -42,4 +42,5 @@ public class ModeloPrestamosActivos {
     public void cargarModeloMonografia(JTable tblMateriales) {
         tblMateriales.setModel(this.modeloTablaPrestamoMonografias);
     }
+
 }
