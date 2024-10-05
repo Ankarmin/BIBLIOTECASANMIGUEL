@@ -301,9 +301,6 @@ public class MaterialesVista extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnAgregar;
     public javax.swing.JButton BtnEliminar;
-    public javax.swing.JButton BtnLimpiar;
-    public javax.swing.JButton BtnModificar;
-    public javax.swing.JComboBox<String> CmbFiltro;
     public javax.swing.JComboBox<String> CmbTipoMaterial;
     public javax.swing.JLabel LblAutor;
     public javax.swing.JLabel LblCodigoMaterial;
@@ -328,4 +325,9 @@ public class MaterialesVista extends javax.swing.JPanel {
     public javax.swing.JTextField TxtTitulo;
     public javax.swing.JTextField TxtVolumen;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton BtnLimpiar;
+    public javax.swing.JButton BtnModificar;
+    public javax.swing.JComboBox<String> CmbFiltro;
+
 }
