@@ -12,8 +12,8 @@ import java.sql.Connection;
 //ACUERDATE DE LOS GENERICOS QUE TIENE ICONECTAR, FAMILIAR, NO?
 public class LibroRepositorio extends IConectar<Libro, String> {
 
-    private String updateIncreaseStock;
-    private String updateReduceStock;
+    private final String updateIncreaseStock;
+    private final String updateReduceStock;
 
     //CONSTRUCTOR MAGICO
     public LibroRepositorio(Connection openConexion) {
@@ -53,7 +53,6 @@ public class LibroRepositorio extends IConectar<Libro, String> {
             return true;
 
         } catch (SQLException e) {
-            System.out.println("Error al registrar en la BD: " + e.getMessage());
             return false;
         }
     }

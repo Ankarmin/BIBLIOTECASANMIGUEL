@@ -77,6 +77,10 @@ public class MaterialesVista extends javax.swing.JPanel {
         TblMateriales = new javax.swing.JTable();
         CmbFiltro = new javax.swing.JComboBox<>();
         LblFiltros = new javax.swing.JLabel();
+        TxtStockTotal = new javax.swing.JTextField();
+        TxtStockDisponible = new javax.swing.JTextField();
+        LblStockDisponible = new javax.swing.JLabel();
+        LblStockTotal = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(236, 226, 208));
 
@@ -215,34 +219,58 @@ public class MaterialesVista extends javax.swing.JPanel {
 
         LblFiltros.setText("Filtros");
 
+        TxtStockTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtStockTotalActionPerformed(evt);
+            }
+        });
+
+        LblStockDisponible.setText("Stock Disponible");
+
+        LblStockTotal.setText("Stock Total");
+
         javax.swing.GroupLayout PnlDerLayout = new javax.swing.GroupLayout(PnlDer);
         PnlDer.setLayout(PnlDerLayout);
         PnlDerLayout.setHorizontalGroup(
             PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlDerLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(LblFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(PnlDerLayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(CmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(PnlDerLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PnlDerLayout.createSequentialGroup()
+                        .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtStockDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LblStockDisponible))
+                        .addGap(29, 29, 29)
+                        .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtStockTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LblStockTotal))
+                        .addGap(63, 63, 63)
+                        .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LblFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PnlDerLayout.createSequentialGroup()
+                                .addComponent(CmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(66, 66, 66))
         );
         PnlDerLayout.setVerticalGroup(
             PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlDerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LblFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblStockDisponible)
+                    .addComponent(LblStockTotal)
+                    .addComponent(LblFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PnlDerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtStockTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtStockDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(SPTablaMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         PanelMateriales.add(PnlDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 610, 640));
@@ -259,6 +287,10 @@ public class MaterialesVista extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TxtStockTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtStockTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtStockTotalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnAgregar;
@@ -269,6 +301,8 @@ public class MaterialesVista extends javax.swing.JPanel {
     public javax.swing.JLabel LblAutor;
     public javax.swing.JLabel LblCodigoMaterial;
     private javax.swing.JLabel LblFiltros;
+    private javax.swing.JLabel LblStockDisponible;
+    private javax.swing.JLabel LblStockTotal;
     public javax.swing.JLabel LblTema;
     private javax.swing.JLabel LblTipoMaterial;
     public javax.swing.JLabel LblTitulo;
@@ -281,6 +315,8 @@ public class MaterialesVista extends javax.swing.JPanel {
     public javax.swing.JTextField TxtAutor;
     public javax.swing.JTextField TxtCodigo;
     public javax.swing.JTextField TxtFiltro;
+    public javax.swing.JTextField TxtStockDisponible;
+    public javax.swing.JTextField TxtStockTotal;
     public javax.swing.JTextField TxtTema;
     public javax.swing.JTextField TxtTitulo;
     public javax.swing.JTextField TxtVolumen;

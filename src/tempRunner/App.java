@@ -1,6 +1,8 @@
 package tempRunner;
 
 import Controlador.FrmBibliotecaControlador;
+import DBRepositorio.Libro;
+import DBRepositorio.LibroRepositorio;
 import DBRepositorio.UsuarioPrestamo;
 import DBRepositorio.UsuarioRepositorio;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
@@ -35,17 +37,14 @@ public class App {
 
         try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            UsuarioRepositorio usuarioDriver = new UsuarioRepositorio(openConexion);
-            List<UsuarioPrestamo> up = usuarioDriver.obtenerHibridoUsuarioPrestamo();
-
-            for (UsuarioPrestamo upmini : up) {
-                System.out.println(upmini.getNombres());
-            }
+            LibroRepositorio libroDriver = new LibroRepositorio(openConexion);
+            
+            libroDriver.agregar(new Libro("1234567891", "Aprendiendo SQL", "María López", 1, "Bases de datos", 6, 5));
 
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());
         }
-
+         */
     }
 
 }

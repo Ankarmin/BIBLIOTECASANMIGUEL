@@ -7,6 +7,7 @@ import DBRepositorio.Libro;
 import DBRepositorio.LibroRepositorio;
 import DBRepositorio.Monografia;
 import DBRepositorio.MonografiaRepositorio;
+import Modelo.MaterialesModelo;
 import Vista.MaterialesVista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 
 public class PnlMaterialesControlador {
@@ -27,22 +30,35 @@ public class PnlMaterialesControlador {
     //LA VISTA DEL CONTROLADOR
     private MaterialesVista vista;
 
-    //LOS REPOSITORIOS A UTILIZAR
-    private final LibroRepositorio libroDriver;
-    private final MonografiaRepositorio monografiaDriver;
+    //EL MODELO DEL CONTROLADOR
+    private MaterialesModelo modelo;
 
     //LAS SELECCIONES QUE SE REALICEN EN LA TABLA(CON EL MOUSE)
     private Libro libroSeleccionado;
     private Monografia monografiaSeleccionada;
 
-    //LOS MODELO QUE SE VAN A CARGAR (LOS DEFINO AQUI PARA QUE NO SE RECARGUEN EN CADA CAMBIO YA QUE SERIA UNA TOTAL MIERDA
-    //SI SE RECARGARAN EN CADA CAMBIO)
-    private TableModel modeloLibros;
-    private TableModel modeloMonografias;
+    //LAS ENTIDADES GENERADAS AL ESCRIBIR EN LOS TXT
+    private Libro libroNuevo = new Libro();
+    private Monografia monografiaNueva = new Monografia();
 
     //EVENTOS PARA EL CLICK EN LA TABLA
-    private final MouseAdapter clickLibro;
-    private final MouseAdapter clickMonografia;
+    private MouseAdapter clickLibro;
+    private MouseAdapter clickMonografia;
+
+    //EVENTOS PARA CHANGE TXT
+    private DocumentListener cambiarTxtIsbn;
+    private DocumentListener cambiarTxtIssn;
+    private DocumentListener cambiarTxtTituloLibro;
+    private DocumentListener cambiarTxtTituloMonografia;
+    private DocumentListener cambiarTxtAutorLibro;
+    private DocumentListener cambiarTxtAutorMonografia;
+    private DocumentListener cambiarTxtVolumen;
+    private DocumentListener cambiarTxtTemaLibro;
+    private DocumentListener cambiarTxtTemaMonografia;
+    private DocumentListener cambiarTxtStockTotalLibro;
+    private DocumentListener cambiarTxtStockTotalMonografia;
+    private DocumentListener cambiarTxtStockDisponibleLibro;
+    private DocumentListener cambiarTxtStockDisponibleMonografia;
 
     //EL ESTADO DE LA TABLA
     private String estado = "Libro";
@@ -56,73 +72,23 @@ public class PnlMaterialesControlador {
         //INICIALIZACION DE LA VISTA
         vista = new MaterialesVista();
 
-        //INCIALIZACION DE LOS REPOSITORIOS
-        libroDriver = new LibroRepositorio(openConexion);
-        monografiaDriver = new MonografiaRepositorio(openConexion);
+        //INICIALIZACION DEL MODELO
+        modelo = new MaterialesModelo(openConexion);
+        modelo.generarModeloLibro(vista.TblMateriales);
+        modelo.generarModeloMonografia(vista.TblMateriales);
 
-        //GENERACION DE LOS MODELOS (PUEDES HACERLO ASI O RECARGAR CADA VEZ QUE SE CAMBIE DE TABLA, DEPENDIENDO DE TI AH)
-        CommonFunctions.llenarTabla(vista.TblMateriales, Monografia.getColumnas(), monografiaDriver.obtenerTodos());
-
-        //AQUI EXTRAEMOS EL MODELOD DE LA TABLA PARA TENERLO LISTO PARA EL CAMBIO
-        modeloMonografias = vista.TblMateriales.getModel();
-
-        // COMO ES EL SEGUNDO EN SER LLAMADO, LOS LIBROS SE VERAN PRIMERO EN LA TABLA
-        CommonFunctions.llenarTabla(vista.TblMateriales, Libro.getColumnas(), libroDriver.obtenerTodos());
-        modeloLibros = vista.TblMateriales.getModel();
+        //LIBROS POR DEFECTO
+        modelo.cargarModeloLibro(vista.TblMateriales);
 
         //EVENTOS DE CLICKS EN LA TABLA
         //EN ESTE CASO SE DEFINE UN EVENTO DE MOUSE QUE AUN NO ES ASIGNADO A NINGUN COMPONENTE (DIGASE BOTON, TABLA, COMBOBOX, ETC)
-        clickLibro = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                // BASICAMENTE LO QUE HACE ES RECUPERAR LOS DATOS DE UNA FILA DE LA TABLA Y LOS 
-                // ASIGNA AL ATRIBUTO LIBROSELECCIONADO, PARA LUEGO COLOCARLO EN LOS CAMPOS
-                // TEXTFIELD
-                List<Object> datos = new ArrayList<>();
-                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
-
-                if (filaSeleccionada != -1) {
-                    for (int i = 0; i < Libro.getColumnas().size(); i++) {
-                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
-                    }
-                }
-
-                libroSeleccionado = Libro.toLibro(datos);
-                llenarCamposLibro();
-
-                if (e.getClickCount() == 2) {
-                    irAPrestamos(libroSeleccionado);
-                }
-
-            }
-        };
+        setClickLibro();
+        setClickMonografia();
+        setTxtEventos();
+        
+        cargarEventosTxtLibro();
 
         //AQUI ES MAS DE LO MISMO PERO CON MONOGRAFIA
-        clickMonografia = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                List<Object> datos = new ArrayList<>();
-                //ACCEDIENDO A LA FILA SELECCIONADA
-                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
-
-                if (filaSeleccionada != -1) {
-                    for (int i = 0; i < Monografia.getColumnas().size(); i++) {
-                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
-                    }
-                }
-
-                monografiaSeleccionada = Monografia.toMonografia(datos);
-                llenarCamposMonografia();
-
-                if (e.getClickCount() == 2) {
-                    irAPrestamos(monografiaSeleccionada);
-                }
-
-            }
-        };
-
         //ASIGNACION INCIAL DE EVENTOS DE LIBROS
         cargarEventosTablaLibros();
 
@@ -131,46 +97,63 @@ public class PnlMaterialesControlador {
         vista.CmbTipoMaterial.addActionListener((e) -> {
             //EVALUA EL TIPO DE MATERIAL SELECCIONADO Y LO CAMBIO EN FUNCIÓN DE SU VALOR
             String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
-
+            
             if ("Libro".equals(opc) && !"Libro".equals(estado)) {
-                vista.TblMateriales.setModel(modeloLibros);
-                // MÉTODOS QUE SE VEN MAS ABAJO
+                modelo.cargarModeloLibro(vista.TblMateriales);
                 ajustarALibros();
                 limpiarCampos();
                 cargarEventosTablaLibros();
+                cargarEventosTxtLibro();
                 estado = "Libro";
+                monografiaSeleccionada = null;
             } else if ("Monografía".equals(opc) && !"Monografía".equals(estado)) {
-                vista.TblMateriales.setModel(modeloMonografias);
+                modelo.cargarModeloMonografia(vista.TblMateriales);
                 ajustarAMonografias();
                 limpiarCampos();
                 cargarEventosTablaMonografias();
+                cargarEventosTablaMonografias();
                 estado = "Monografía";
-
+                libroSeleccionado = null;
+                
             }
         } //ASIGNACION DEL EVENTO
         );
-
+        
         vista.BtnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if ("Libro".equals(estado)) {
+                    if (!modelo.agregarLibro(libroNuevo)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloLibro(vista.TblMateriales);
+                        modelo.cargarModeloLibro(vista.TblMateriales);
+                    }
+                } else {
+                    if (!modelo.agregarMonografia(monografiaNueva)) {
+                        System.out.println(modelo.mostrarError());
+                    } else {
+                        modelo.generarModeloMonografia(vista.TblMateriales);
+                        modelo.cargarModeloMonografia(vista.TblMateriales);
+                    }
+                }
             }
         });
-
+        
         vista.BtnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
             }
         });
-
+        
         vista.BtnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
             }
         });
-
+        
     }
 
     //ESTE METODO CARGA EL PANEL DE MATERIALES EN EL FRAME QUE SE LE ENVIE COMO PARAMETRO (EN ESTE CASO, BIBLIOTECA VISTA)
@@ -183,18 +166,18 @@ public class PnlMaterialesControlador {
 
     //QUITA EL EVENTO DE LA MONOGRAFIA QUE VIMOS MAS ARRIBA Y LO CAMBIA POR EL DE LOS LIBROS
     public void cargarEventosTablaLibros() {
-
+        
         vista.TblMateriales.removeMouseListener(clickMonografia);
         vista.TblMateriales.addMouseListener(clickLibro);
-
+        
     }
 
     //XD NO T VOY A EXPLICAR ESTO
     public void cargarEventosTablaMonografias() {
-
+        
         vista.TblMateriales.removeMouseListener(clickLibro);
         vista.TblMateriales.addMouseListener(clickMonografia);
-
+        
     }
 
     //LLENA LOS TEXTFIELDS CON LA INFORMACION DEL LIBRO
@@ -204,6 +187,8 @@ public class PnlMaterialesControlador {
         vista.TxtAutor.setText(libroSeleccionado.getAutor());
         vista.TxtVolumen.setText(String.valueOf(libroSeleccionado.getVolumen()));
         vista.TxtTema.setText(libroSeleccionado.getTema());
+        vista.TxtStockDisponible.setText(String.valueOf(libroSeleccionado.getStockDisponible()));
+        vista.TxtStockTotal.setText(String.valueOf(libroSeleccionado.getStockTotal()));
     }
 
     //LLENA LOS TEXTFIELDS CON LA INFORMACION DE LA MONOGRAFIA
@@ -235,7 +220,7 @@ public class PnlMaterialesControlador {
         vista.TxtVolumen.setEnabled(false);
         vista.LblCodigoMaterial.setText("ISSN");
     }
-
+    
     public void irAPrestamos(Libro libroSeleccionado) {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamos().getVista(), BorderLayout.CENTER);
@@ -243,7 +228,7 @@ public class PnlMaterialesControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
         bibliotecaControlador.getControladorPrestamos().setLibroEntrante(libroSeleccionado);
     }
-
+    
     public void irAPrestamos(Monografia monografiaSeleccionada) {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamos().getVista(), BorderLayout.CENTER);
@@ -251,5 +236,421 @@ public class PnlMaterialesControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
         bibliotecaControlador.getControladorPrestamos().setMonografiaEntrante(monografiaSeleccionada);
     }
+    
+    public void cargarEventosTxtLibro() {
+        //REMOVER
+        vista.TxtCodigo.getDocument().removeDocumentListener(cambiarTxtIssn);
+        vista.TxtTitulo.getDocument().removeDocumentListener(cambiarTxtTituloMonografia);
+        vista.TxtAutor.getDocument().removeDocumentListener(cambiarTxtAutorMonografia);
+        vista.TxtTema.getDocument().removeDocumentListener(cambiarTxtTemaMonografia);
+        vista.TxtStockTotal.getDocument().removeDocumentListener(cambiarTxtStockTotalMonografia);
+        vista.TxtStockDisponible.getDocument().removeDocumentListener(cambiarTxtStockDisponibleMonografia);
 
+        //AGREGAR
+        vista.TxtCodigo.getDocument().addDocumentListener(cambiarTxtIsbn);
+        vista.TxtTitulo.getDocument().addDocumentListener(cambiarTxtTituloLibro);
+        vista.TxtAutor.getDocument().addDocumentListener(cambiarTxtAutorLibro);
+        vista.TxtVolumen.getDocument().addDocumentListener(cambiarTxtVolumen);
+        vista.TxtTema.getDocument().addDocumentListener(cambiarTxtTemaLibro);
+        vista.TxtStockTotal.getDocument().addDocumentListener(cambiarTxtStockTotalLibro);
+        vista.TxtStockDisponible.getDocument().addDocumentListener(cambiarTxtStockDisponibleLibro);
+    }
+    
+    public void cargarEventosTxtMonografia() {
+        //REMOVER
+        vista.TxtCodigo.getDocument().removeDocumentListener(cambiarTxtIsbn);
+        vista.TxtTitulo.getDocument().removeDocumentListener(cambiarTxtTituloLibro);
+        vista.TxtAutor.getDocument().removeDocumentListener(cambiarTxtAutorLibro);
+        vista.TxtVolumen.getDocument().removeDocumentListener(cambiarTxtVolumen);
+        vista.TxtTema.getDocument().removeDocumentListener(cambiarTxtTemaLibro);
+        vista.TxtStockTotal.getDocument().removeDocumentListener(cambiarTxtStockTotalLibro);
+        vista.TxtStockDisponible.getDocument().removeDocumentListener(cambiarTxtStockDisponibleLibro);
+
+        //AGREGAR
+        vista.TxtCodigo.getDocument().addDocumentListener(cambiarTxtIssn);
+        vista.TxtTitulo.getDocument().addDocumentListener(cambiarTxtTituloMonografia);
+        vista.TxtAutor.getDocument().addDocumentListener(cambiarTxtAutorMonografia);
+        vista.TxtTema.getDocument().addDocumentListener(cambiarTxtTemaMonografia);
+        vista.TxtStockTotal.getDocument().addDocumentListener(cambiarTxtStockTotalMonografia);
+        vista.TxtStockDisponible.getDocument().addDocumentListener(cambiarTxtStockDisponibleMonografia);
+    }
+    
+    private void setClickLibro() {
+        clickLibro = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                // BASICAMENTE LO QUE HACE ES RECUPERAR LOS DATOS DE UNA FILA DE LA TABLA Y LOS 
+                // ASIGNA AL ATRIBUTO LIBROSELECCIONADO, PARA LUEGO COLOCARLO EN LOS CAMPOS
+                // TEXTFIELD
+                List<Object> datos = new ArrayList<>();
+                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
+                
+                if (filaSeleccionada != -1) {
+                    for (int i = 0; i < Libro.getColumnas().size(); i++) {
+                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
+                    }
+                }
+                
+                libroSeleccionado = Libro.toLibro(datos);
+                llenarCamposLibro();
+                
+                if (e.getClickCount() == 2) {
+                    irAPrestamos(libroSeleccionado);
+                }
+                
+            }
+        };
+    }
+    
+    private void setClickMonografia() {
+        clickMonografia = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                List<Object> datos = new ArrayList<>();
+                //ACCEDIENDO A LA FILA SELECCIONADA
+                int filaSeleccionada = vista.TblMateriales.getSelectedRow();
+                
+                if (filaSeleccionada != -1) {
+                    for (int i = 0; i < Monografia.getColumnas().size(); i++) {
+                        datos.add(vista.TblMateriales.getValueAt(filaSeleccionada, i));
+                    }
+                }
+                
+                monografiaSeleccionada = Monografia.toMonografia(datos);
+                llenarCamposMonografia();
+                
+                if (e.getClickCount() == 2) {
+                    irAPrestamos(monografiaSeleccionada);
+                }
+                
+            }
+        };
+    }
+    
+    private void setTxtEventos() {
+        
+        cambiarTxtIsbn = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                libroNuevo.setIsbn(vista.TxtCodigo.getText());
+                System.out.println(libroNuevo.getIsbn());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                libroNuevo.setIsbn(vista.TxtCodigo.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtIssn = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                monografiaNueva.setIssn(vista.TxtCodigo.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                monografiaNueva.setIssn(vista.TxtCodigo.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtTituloLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                libroNuevo.setTitulo(vista.TxtTitulo.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                libroNuevo.setTitulo(vista.TxtTitulo.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtTituloMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                monografiaNueva.setTitulo(vista.TxtTitulo.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                monografiaNueva.setTitulo(vista.TxtTitulo.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtAutorLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                libroNuevo.setAutor(vista.TxtAutor.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                libroNuevo.setAutor(vista.TxtAutor.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtAutorMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                monografiaNueva.setAutor(vista.TxtAutor.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                monografiaNueva.setAutor(vista.TxtAutor.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtVolumen = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String volumenTexto = vista.TxtVolumen.getText().trim();
+                
+                if (volumenTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setVolumen(Integer.parseInt(volumenTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setVolumen(-1);
+                    }
+                } else {
+                    libroNuevo.setVolumen(-1);
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String volumenTexto = vista.TxtVolumen.getText().trim();
+                
+                if (volumenTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setVolumen(Integer.parseInt(volumenTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setVolumen(-1);
+                    }
+                } else {
+                    libroNuevo.setVolumen(-1);
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtTemaLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                libroNuevo.setTema(vista.TxtTema.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                libroNuevo.setTema(vista.TxtTema.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+        
+        cambiarTxtTemaMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                monografiaNueva.setTema(vista.TxtTema.getText());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                monografiaNueva.setTema(vista.TxtTema.getText());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        };
+        
+        cambiarTxtStockTotalLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String stockTotalTexto = vista.TxtStockTotal.getText().trim();
+                
+                if (stockTotalTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setStockTotal(Integer.parseInt(stockTotalTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setStockTotal(-1);
+                    }
+                } else {
+                    libroNuevo.setStockTotal(-1);
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String stockTotalTexto = vista.TxtStockTotal.getText().trim();
+                
+                if (stockTotalTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setStockTotal(Integer.parseInt(stockTotalTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setStockTotal(-1);
+                    }
+                } else {
+                    libroNuevo.setStockTotal(-1);
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtStockTotalMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String stockTotalTexto = vista.TxtStockTotal.getText().trim();
+                
+                if (stockTotalTexto.matches("\\d+")) {
+                    try {
+                        monografiaNueva.setStockTotal(Integer.parseInt(stockTotalTexto));
+                    } catch (NumberFormatException err) {
+                        monografiaNueva.setStockTotal(-1);
+                    }
+                } else {
+                    monografiaNueva.setStockTotal(-1);
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String stockTotalTexto = vista.TxtStockTotal.getText().trim();
+                
+                if (stockTotalTexto.matches("\\d+")) {
+                    try {
+                        monografiaNueva.setStockTotal(Integer.parseInt(stockTotalTexto));
+                    } catch (NumberFormatException err) {
+                        monografiaNueva.setStockTotal(-1);
+                    }
+                } else {
+                    monografiaNueva.setStockTotal(-1);
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtStockDisponibleLibro = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String stockDisponibleTexto = vista.TxtStockDisponible.getText().trim();
+                
+                if (stockDisponibleTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setStockDisponible(Integer.parseInt(stockDisponibleTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setStockDisponible(-1);
+                    }
+                } else {
+                    libroNuevo.setStockDisponible(-1);
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String stockDisponibleTexto = vista.TxtStockDisponible.getText().trim();
+                
+                if (stockDisponibleTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setStockDisponible(Integer.parseInt(stockDisponibleTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setStockDisponible(-1);
+                    }
+                } else {
+                    libroNuevo.setStockDisponible(-1);
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+        cambiarTxtStockDisponibleMonografia = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String stockDisponibleTexto = vista.TxtStockDisponible.getText().trim();
+                
+                if (stockDisponibleTexto.matches("\\d+")) {
+                    try {
+                        monografiaNueva.setStockDisponible(Integer.parseInt(stockDisponibleTexto));
+                    } catch (NumberFormatException err) {
+                        monografiaNueva.setStockDisponible(-1);
+                    }
+                } else {
+                    monografiaNueva.setStockDisponible(-1);
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String stockDisponibleTexto = vista.TxtStockDisponible.getText().trim();
+                
+                if (stockDisponibleTexto.matches("\\d+")) {
+                    try {
+                        libroNuevo.setStockDisponible(Integer.parseInt(stockDisponibleTexto));
+                    } catch (NumberFormatException err) {
+                        libroNuevo.setStockDisponible(-1);
+                    }
+                } else {
+                    libroNuevo.setStockDisponible(-1);
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+            
+        };
+        
+    }
+    
 }
