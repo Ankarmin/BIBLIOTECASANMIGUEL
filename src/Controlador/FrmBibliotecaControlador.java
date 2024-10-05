@@ -96,6 +96,10 @@ public class FrmBibliotecaControlador {
     public PnlPrestamosActivosControlador getControladorPrestamosActivos() {
         return controladorPrestamosActivos;
     }
+    
+    public PnlMaterialesControlador getControladorMateriales(){
+        return controladorMateriales;
+    }
 
     public BibliotecaVista getFrmBiblioteca() {
         return frmBiblioteca;

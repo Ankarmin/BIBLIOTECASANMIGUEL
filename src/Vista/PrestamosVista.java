@@ -12,8 +12,8 @@ public class PrestamosVista extends javax.swing.JPanel {
     }
 
     private void initStyles() {
-        BtnPrestamosActivos.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
-        BtnPrestamosActivos.setForeground(Color.black);
+        BtnMateriales.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
+        BtnMateriales.setForeground(Color.black);
         BtnPrestar.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnPrestar.setForeground(Color.black);
         CmbMaterial.putClientProperty("FlatLaf.style", "font: 16 $h3.regular.font");
@@ -45,7 +45,7 @@ public class PrestamosVista extends javax.swing.JPanel {
         LblCodigoMaterial = new javax.swing.JLabel();
         TxtCodigoMaterial = new javax.swing.JTextField();
         BtnPrestar = new javax.swing.JButton();
-        BtnPrestamosActivos = new javax.swing.JButton();
+        BtnMateriales = new javax.swing.JButton();
         LblFechaDevolucion = new javax.swing.JLabel();
         PnlImagen = new javax.swing.JPanel();
 
@@ -73,9 +73,9 @@ public class PrestamosVista extends javax.swing.JPanel {
         BtnPrestar.setText("PRESTAR");
         jPanel2.add(BtnPrestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 150, 50));
 
-        BtnPrestamosActivos.setBackground(new java.awt.Color(255, 236, 200));
-        BtnPrestamosActivos.setText("PRÉSTAMOS ACTIVOS");
-        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 198, 50));
+        BtnMateriales.setBackground(new java.awt.Color(255, 236, 200));
+        BtnMateriales.setText("MATERIALES");
+        jPanel2.add(BtnMateriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 150, 50));
 
         LblFechaDevolucion.setText("Fecha de devolución");
         jPanel2.add(LblFechaDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 192, -1));
@@ -117,7 +117,7 @@ public class PrestamosVista extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton BtnPrestamosActivos;
+    public javax.swing.JButton BtnMateriales;
     public javax.swing.JButton BtnPrestar;
     public javax.swing.JComboBox<String> CmbMaterial;
     public javax.swing.JLabel LblCodigoMaterial;

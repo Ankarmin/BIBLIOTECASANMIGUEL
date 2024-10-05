@@ -32,8 +32,8 @@ public class PnlPrestamosControlador {
         modeloPrestamos = new ModeloPrestamos(new PrestamoLibroRepositorio(openConexion), new PrestamoMonografiaRepositorio(openConexion));
 
         //EVENTO BOTON PRRESTAMOS ACTIVOS
-        vista.BtnPrestamosActivos.addActionListener((e) -> {
-            irAPrestamosActivos();
+        vista.BtnMateriales.addActionListener((e) -> {
+            irAMateriales();
         });
 
         //EVENTO BOTON PRESTAR
@@ -167,13 +167,6 @@ public class PnlPrestamosControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
 
-    public void irAPrestamosActivos() {
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamosActivos().getVista(), BorderLayout.CENTER);
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
-        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
-    }
-
     public PrestamosVista getVista() {
         return vista;
     }
@@ -194,5 +187,12 @@ public class PnlPrestamosControlador {
             vista.TxtCodigoMaterial.setText(monografiaEntrante.getIssn());
             stockDisponible = monografiaEntrante.getStockDisponible();
         }
+    }
+
+    private void irAMateriales() {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorMateriales().getVista());
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
     }
 }

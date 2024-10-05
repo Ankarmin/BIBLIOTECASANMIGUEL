@@ -927,4 +927,7 @@ public final class PnlMaterialesControlador {
         vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTemasMonografia);
     }
 
+    public MaterialesVista getVista() {
+        return vista;
+    }
 }

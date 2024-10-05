@@ -83,7 +83,7 @@ public class DevolucionesVista extends javax.swing.JPanel {
 
         BtnPrestamosActivos.setBackground(new java.awt.Color(255, 236, 200));
         BtnPrestamosActivos.setText("PRESTAMOS ACTIVOS");
-        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 175, 50));
+        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 198, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

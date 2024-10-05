@@ -31,6 +31,10 @@ public class PnlDevolucionesControlador {
         prestamoLibroRepositorio = new PrestamoLibroRepositorio(openConexion);
         prestamoMonografiaRepositorio = new PrestamoMonografiaRepositorio(openConexion);
 
+        vista.BtnPrestamosActivos.addActionListener((e) -> {
+            irAPrestamosActivos();
+        });
+
         //EVENTO BOTON DEVOLVER
         vista.BtnDevolver.addActionListener((e) -> {
             if (vista.CmbMaterial.getSelectedItem() == "Libro") {
@@ -100,17 +104,7 @@ public class PnlDevolucionesControlador {
                     "Error de Formato de Fecha",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-        bibliotecaControlador.
-                getControladorPrestamosActivos().
-                getModeloPrestamosActivos().
-                generarModeloLibro(bibliotecaControlador.getControladorPrestamosActivos().getVista().TblPrestamosActivos);
-
-        bibliotecaControlador.
-                getControladorPrestamosActivos().
-                getModeloPrestamosActivos().
-                cargarModeloLibro(bibliotecaControlador.getControladorPrestamosActivos().getVista().TblPrestamosActivos);
-
+        actualizarTablaPrestamosActivosLibros();
     }
 
     public void devolverMonografia() {
@@ -165,6 +159,8 @@ public class PnlDevolucionesControlador {
                     "Error de Formato de Fecha",
                     JOptionPane.ERROR_MESSAGE);
         }
+        actualizarTablaPrestamosActivosMonografias();
+
     }
 
     public void setLibroEntrante(PrestamoLibro prestamoLibroEntrante) {
@@ -185,5 +181,44 @@ public class PnlDevolucionesControlador {
 
     public DevolucionesVista getVista() {
         return vista;
+    }
+
+    private void irAPrestamosActivos() {
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.removeAll();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorPrestamosActivos().getVista(), BorderLayout.CENTER);
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
+        bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
+    }
+
+    private void actualizarTablaPrestamosActivosLibros() {
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloLibro(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                cargarModeloLibro(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+    }
+
+    private void actualizarTablaPrestamosActivosMonografias() {
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloMonografia(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloMonografia(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
     }
 }
