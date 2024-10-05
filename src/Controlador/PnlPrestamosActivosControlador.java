@@ -1,10 +1,8 @@
 package Controlador;
 
-import Common.CommonFunctions;
 import DBRepositorio.PrestamoLibro;
-import DBRepositorio.PrestamoLibroRepositorio;
 import DBRepositorio.PrestamoMonografia;
-import DBRepositorio.PrestamoMonografiaRepositorio;
+import Modelo.ModeloPrestamosActivos;
 import Vista.PrestamosActivosVista;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -12,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.TableModel;
 
 public class PnlPrestamosActivosControlador {
 
@@ -21,11 +18,8 @@ public class PnlPrestamosActivosControlador {
     private final MouseAdapter clickMonografiaPrestamo;
     private PrestamoLibro prestamoLibroSeleccionado;
     private PrestamoMonografia prestamoMonografiaSeleccionada;
-    private final PrestamoLibroRepositorio prestamoLibroDriver;
-    private final PrestamoMonografiaRepositorio prestamoMonografiaDriver;
-    private final TableModel modeloPrestamoLibro;
-    private final TableModel modeloPrestamoMonografia;
     private final PrestamosActivosVista vista;
+    private ModeloPrestamosActivos modeloPrestamosActivos;
 
     public PnlPrestamosActivosControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
 
@@ -33,8 +27,10 @@ public class PnlPrestamosActivosControlador {
 
         vista = new PrestamosActivosVista();
 
-        prestamoLibroDriver = new PrestamoLibroRepositorio(openConexion);
-        prestamoMonografiaDriver = new PrestamoMonografiaRepositorio(openConexion);
+        modeloPrestamosActivos = new ModeloPrestamosActivos(openConexion);
+        modeloPrestamosActivos.generarModeloLibro(vista.TblPrestamosActivos);
+        modeloPrestamosActivos.generarModeloMonografia(vista.TblPrestamosActivos);
+        modeloPrestamosActivos.cargarModeloLibro(vista.TblPrestamosActivos);
 
         clickLibroPrestamo = new MouseAdapter() {
             @Override
@@ -76,24 +72,22 @@ public class PnlPrestamosActivosControlador {
             }
         };
 
-        modeloPrestamoLibro = vista.TblPrestamosActivos.getModel();
-        modeloPrestamoMonografia = vista.TblPrestamosActivos.getModel();
-
-        cargarTablaPrestamosLibros();
-        cargarEventosTablaPrestamosLibros();
+        vista.TblPrestamosActivos.removeMouseListener(clickMonografiaPrestamo);
+        vista.TblPrestamosActivos.addMouseListener(clickLibroPrestamo);
 
         vista.CmbTipoMaterial.addActionListener((e) -> {
-            // EVALUA EL TIPO DE MATERIAL SELECCIONADO Y LO CAMBIO EN FUNCIÓN DE SU VALOR
             String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
 
             if ("Libro".equals(opc)) {
-                vista.TblPrestamosActivos.setModel(modeloPrestamoLibro);
-                cargarTablaPrestamosLibros();
-                cargarEventosTablaPrestamosLibros();
+                modeloPrestamosActivos.generarModeloLibro(vista.TblPrestamosActivos);
+                modeloPrestamosActivos.cargarModeloLibro(vista.TblPrestamosActivos);
+                vista.TblPrestamosActivos.removeMouseListener(clickMonografiaPrestamo);
+                vista.TblPrestamosActivos.addMouseListener(clickLibroPrestamo);
             } else if ("Monografía".equals(opc)) {
-                vista.TblPrestamosActivos.setModel(modeloPrestamoMonografia);
-                cargarTablaPrestamosMonografias();
-                cargarEventosTablPrestamosMonografias();
+                modeloPrestamosActivos.generarModeloMonografia(vista.TblPrestamosActivos);
+                modeloPrestamosActivos.cargarModeloMonografia(vista.TblPrestamosActivos);
+                vista.TblPrestamosActivos.removeMouseListener(clickLibroPrestamo);
+                vista.TblPrestamosActivos.addMouseListener(clickMonografiaPrestamo);
             }
         });
     }
@@ -123,23 +117,5 @@ public class PnlPrestamosActivosControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
         bibliotecaControlador.getControladorDevoluciones().setMonografiaEntrante(prestamoMonografiaSeleccionada);
-    }
-
-    public void cargarEventosTablaPrestamosLibros() {
-        vista.TblPrestamosActivos.removeMouseListener(clickMonografiaPrestamo);
-        vista.TblPrestamosActivos.addMouseListener(clickLibroPrestamo);
-    }
-
-    public void cargarEventosTablPrestamosMonografias() {
-        vista.TblPrestamosActivos.removeMouseListener(clickLibroPrestamo);
-        vista.TblPrestamosActivos.addMouseListener(clickMonografiaPrestamo);
-    }
-
-    public void cargarTablaPrestamosLibros() {
-        CommonFunctions.llenarTabla(vista.TblPrestamosActivos, PrestamoLibro.getColumnas(), prestamoLibroDriver.obtenerTodos());
-    }
-
-    public void cargarTablaPrestamosMonografias() {
-        CommonFunctions.llenarTabla(vista.TblPrestamosActivos, PrestamoMonografia.getColumnas(), prestamoMonografiaDriver.obtenerTodos());
     }
 }

@@ -40,7 +40,7 @@ public class PnlPrestamosControlador {
         vista.BtnPrestar.addActionListener((e) -> {
             if (vista.CmbMaterial.getSelectedItem() == "Libro") {
                 prestarLibro();
-            } else if (vista.CmbMaterial.getSelectedItem() == "Monografia") {
+            } else if (vista.CmbMaterial.getSelectedItem() == "Monografía") {
                 prestarMonografia();
             }
         });

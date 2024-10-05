@@ -24,6 +24,8 @@ public class DevolucionesVista extends javax.swing.JPanel {
         TxtFechaDevolucion.setForeground(Color.black);
         BtnDevolver.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
         BtnDevolver.setForeground(Color.black);
+        BtnPrestamosActivos.putClientProperty("FlatLaf.style", "font: 15 $semibold.font");
+        BtnPrestamosActivos.setForeground(Color.black);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +41,7 @@ public class DevolucionesVista extends javax.swing.JPanel {
         TxtFechaDevolucion = new javax.swing.JTextField();
         BtnDevolver = new javax.swing.JButton();
         PnlImagen = new javax.swing.JPanel();
+        BtnPrestamosActivos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(236, 226, 208));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,7 +64,7 @@ public class DevolucionesVista extends javax.swing.JPanel {
 
         BtnDevolver.setBackground(new java.awt.Color(255, 236, 200));
         BtnDevolver.setText("DEVOLVER");
-        jPanel2.add(BtnDevolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 175, 50));
+        jPanel2.add(BtnDevolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 175, 50));
 
         PnlImagen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -77,6 +80,10 @@ public class DevolucionesVista extends javax.swing.JPanel {
         );
 
         jPanel2.add(PnlImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 210, 290));
+
+        BtnPrestamosActivos.setBackground(new java.awt.Color(255, 236, 200));
+        BtnPrestamosActivos.setText("PRESTAMOS ACTIVOS");
+        jPanel2.add(BtnPrestamosActivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 175, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,6 +108,7 @@ public class DevolucionesVista extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnDevolver;
+    public javax.swing.JButton BtnPrestamosActivos;
     public javax.swing.JComboBox<String> CmbMaterial;
     private javax.swing.JLabel LblFechaDevolucion;
     private javax.swing.JLabel LblIdPrestamos;

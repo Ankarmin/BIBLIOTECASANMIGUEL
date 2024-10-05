@@ -139,7 +139,7 @@ public class PnlDevolucionesControlador {
                         "Devolución hecha con éxito.");
             } else {
                 JOptionPane.showMessageDialog(vista,
-                        "Error al devolver la Monografía.",
+                        "Error al devolver el Monografía.",
                         null,
                         JOptionPane.ERROR_MESSAGE);
             }
