@@ -104,25 +104,76 @@ public final class PnlMaterialesControlador {
             String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
 
             if ("Libro".equals(opc) && !"Libro".equals(estado)) {
+                limpiarCampos();
                 modelo.cargarModeloLibro(vista.TblMateriales);
                 ajustarALibros();
-                limpiarCampos();
                 cargarEventosTablaLibros();
                 removerEventosTxtFiltroMonografia();
                 cargarEventosTxtLibro();
                 vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloLibro);
                 estado = "Libro";
                 monografiaSeleccionada = null;
+
+                String op = (String) vista.CmbFiltro.getSelectedItem();
+
+                switch (op) {
+                    case "Título" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTituloLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Autor" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorAutorLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Temas" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTemaLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Disponibilidad" -> {
+                        modelo.filtrarPorDisponibilidadLibro(vista.TblMateriales);
+                    }
+                    default ->
+                        throw new AssertionError();
+                }
+
             } else if ("Monografía".equals(opc) && !"Monografía".equals(estado)) {
+                limpiarCampos();
                 modelo.cargarModeloMonografia(vista.TblMateriales);
                 ajustarAMonografias();
-                limpiarCampos();
                 removerEventosTxtFiltroLibro();
                 cargarEventosTablaMonografias();
                 cargarEventosTxtMonografia();
                 vista.TxtFiltro.getDocument().addDocumentListener(cambiarTxtFiltroTituloMonografia);
                 estado = "Monografía";
                 libroSeleccionado = null;
+
+                String op = (String) vista.CmbFiltro.getSelectedItem();
+
+                switch (op) {
+                    case "Título" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTituloMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Autor" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Temas" -> {
+                        if (!"".equals(vista.TxtFiltro.getText().trim())) {
+                            modelo.filtrarPorTemaMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                        }
+                    }
+                    case "Disponibilidad" -> {
+                        modelo.filtrarPorDisponibilidadMonografia(vista.TblMateriales);
+                    }
+                    default ->
+                        throw new AssertionError();
+                }
 
             }
         } //ASIGNACION DEL EVENTO
@@ -175,7 +226,7 @@ public final class PnlMaterialesControlador {
                         if (!"".equals(vista.TxtFiltro.getText().trim())) {
                             modelo.filtrarPorTituloMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
                         } else {
-                            modelo.cargarModeloLibro(vista.TblMateriales);
+                            modelo.cargarModeloMonografia(vista.TblMateriales);
                         }
                     }
                     case "Autor" -> {
@@ -183,7 +234,7 @@ public final class PnlMaterialesControlador {
                         if (!"".equals(vista.TxtFiltro.getText().trim())) {
                             modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
                         } else {
-                            modelo.cargarModeloLibro(vista.TblMateriales);
+                            modelo.cargarModeloMonografia(vista.TblMateriales);
                         }
                     }
                     case "Temas" -> {
@@ -191,7 +242,7 @@ public final class PnlMaterialesControlador {
                         if (!"".equals(vista.TxtFiltro.getText().trim())) {
                             modelo.filtrarPorTemaMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
                         } else {
-                            modelo.cargarModeloLibro(vista.TblMateriales);
+                            modelo.cargarModeloMonografia(vista.TblMateriales);
                         }
                     }
                     case "Disponibilidad" -> {
@@ -821,7 +872,7 @@ public final class PnlMaterialesControlador {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if (!"".equals(vista.TxtFiltro.getText().trim())) {
-                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                    modelo.filtrarPorAutorLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
                 } else {
                     modelo.cargarModeloLibro(vista.TblMateriales);
                 }
@@ -830,7 +881,7 @@ public final class PnlMaterialesControlador {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (!"".equals(vista.TxtFiltro.getText().trim())) {
-                    modelo.filtrarPorAutorMonografia(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
+                    modelo.filtrarPorAutorLibro(vista.TxtFiltro.getText().trim(), vista.TblMateriales);
                 } else {
                     modelo.cargarModeloLibro(vista.TblMateriales);
                 }
@@ -927,4 +978,7 @@ public final class PnlMaterialesControlador {
         vista.TxtFiltro.getDocument().removeDocumentListener(cambiarTxtFiltroTemasMonografia);
     }
 
+    public MaterialesVista getVista() {
+        return vista;
+    }
 }

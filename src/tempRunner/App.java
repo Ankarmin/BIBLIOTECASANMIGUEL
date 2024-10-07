@@ -1,12 +1,8 @@
 package tempRunner;
 
 import Controlador.FrmBibliotecaControlador;
-import DBRepositorio.Libro;
-import DBRepositorio.LibroRepositorio;
 import DBRepositorio.MorosoRepositorio;
 import DBRepositorio.MorosoUsuario;
-import DBRepositorio.UsuarioPrestamo;
-import DBRepositorio.UsuarioRepositorio;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import java.sql.DriverManager;
 import java.sql.SQLException;

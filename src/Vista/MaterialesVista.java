@@ -44,6 +44,8 @@ public class MaterialesVista extends javax.swing.JPanel {
         BtnEliminar.setForeground(Color.black);
         BtnModificar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnModificar.setForeground(Color.black);
+        BtnLimpiar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
+        BtnLimpiar.setForeground(Color.black);
         CmbFiltro.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
         CmbFiltro.setForeground(Color.black);
         CmbTipoMaterial.putClientProperty("FlatLaf.style", "font: 14 $h3.regular.font");
@@ -113,6 +115,7 @@ public class MaterialesVista extends javax.swing.JPanel {
         BtnModificar.setBackground(new java.awt.Color(255, 236, 200));
         BtnModificar.setText("MODIFICAR");
 
+        BtnLimpiar.setBackground(new java.awt.Color(255, 236, 200));
         BtnLimpiar.setText("LIMPIAR");
 
         javax.swing.GroupLayout PnlIzqLayout = new javax.swing.GroupLayout(PnlIzq);

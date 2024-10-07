@@ -6,6 +6,7 @@ import DBRepositorio.Monografia;
 import Common.CommonFunctions;
 import DBRepositorio.MonografiaRepositorio;
 import java.sql.Connection;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -143,8 +144,24 @@ public class MaterialesModelo {
         List<Libro> titulos = new ArrayList<>();
 
         for (Libro libro : librosActuales) {
-            if (libro.getTitulo().startsWith(titulo)) {
-                titulos.add(libro);
+
+            try {
+                String tituloActual = libro.getTitulo();
+                String subStrTituloActual = tituloActual.substring(0, titulo.length());
+
+                titulo = titulo.toLowerCase();
+                subStrTituloActual = subStrTituloActual.toLowerCase();
+
+                String tituloNormalizado = Normalizer.normalize(titulo, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrTituloActualNormalizado = Normalizer.normalize(subStrTituloActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (tituloNormalizado.equals(subStrTituloActualNormalizado)) {
+                    titulos.add(libro);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
@@ -155,8 +172,24 @@ public class MaterialesModelo {
         List<Libro> autores = new ArrayList<>();
 
         for (Libro libro : librosActuales) {
-            if (libro.getAutor().startsWith(autor)) {
-                autores.add(libro);
+
+            try {
+                String autorActual = libro.getAutor();
+                String subStrAutorActual = autorActual.substring(0, autor.length());
+
+                autor = autor.toLowerCase();
+                subStrAutorActual = subStrAutorActual.toLowerCase();
+
+                String autorNormalizado = Normalizer.normalize(autor, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrAutorActualNormalizado = Normalizer.normalize(subStrAutorActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (autorNormalizado.equals(subStrAutorActualNormalizado)) {
+                    autores.add(libro);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
@@ -167,8 +200,24 @@ public class MaterialesModelo {
         List<Libro> temas = new ArrayList<>();
 
         for (Libro libro : librosActuales) {
-            if (libro.getTema().startsWith(tema)) {
-                temas.add(libro);
+
+            try {
+                String temaActual = libro.getTema();
+                String subStrTemaActual = temaActual.substring(0, tema.length());
+
+                tema = tema.toLowerCase();
+                subStrTemaActual = subStrTemaActual.toLowerCase();
+
+                String temaNormalizado = Normalizer.normalize(tema, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrTemaActualNormalizado = Normalizer.normalize(subStrTemaActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (temaNormalizado.equals(subStrTemaActualNormalizado)) {
+                    temas.add(libro);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
@@ -191,8 +240,23 @@ public class MaterialesModelo {
         List<Monografia> titulos = new ArrayList<>();
 
         for (Monografia monografia : monografiasActuales) {
-            if (monografia.getTitulo().startsWith(titulo)) {
-                titulos.add(monografia);
+            try {
+                String tituloActual = monografia.getTitulo();
+                String subStrTituloActual = tituloActual.substring(0, titulo.length());
+
+                titulo = titulo.toLowerCase();
+                subStrTituloActual = subStrTituloActual.toLowerCase();
+
+                String tituloNormalizado = Normalizer.normalize(titulo, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrTituloActualNormalizado = Normalizer.normalize(subStrTituloActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (tituloNormalizado.equals(subStrTituloActualNormalizado)) {
+                    titulos.add(monografia);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
@@ -203,8 +267,23 @@ public class MaterialesModelo {
         List<Monografia> autores = new ArrayList<>();
 
         for (Monografia monografia : monografiasActuales) {
-            if (monografia.getAutor().startsWith(autor)) {
-                autores.add(monografia);
+            try {
+                String autorActual = monografia.getAutor();
+                String subStrAutorActual = autorActual.substring(0, autor.length());
+
+                autor = autor.toLowerCase();
+                subStrAutorActual = subStrAutorActual.toLowerCase();
+
+                String autorNormalizado = Normalizer.normalize(autor, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrAutorActualNormalizado = Normalizer.normalize(subStrAutorActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (autorNormalizado.equals(subStrAutorActualNormalizado)) {
+                    autores.add(monografia);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
@@ -215,8 +294,23 @@ public class MaterialesModelo {
         List<Monografia> temas = new ArrayList<>();
 
         for (Monografia monografia : monografiasActuales) {
-            if (monografia.getTema().startsWith(tema)) {
-                temas.add(monografia);
+            try {
+                String temaActual = monografia.getTema();
+                String subStrTemaActual = temaActual.substring(0, tema.length());
+
+                tema = tema.toLowerCase();
+                subStrTemaActual = subStrTemaActual.toLowerCase();
+
+                String temaNormalizado = Normalizer.normalize(tema, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+                String subStrTemaActualNormalizado = Normalizer.normalize(subStrTemaActual, Normalizer.Form.NFD)
+                        .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+                if (temaNormalizado.equals(subStrTemaActualNormalizado)) {
+                    temas.add(monografia);
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+
             }
         }
 
