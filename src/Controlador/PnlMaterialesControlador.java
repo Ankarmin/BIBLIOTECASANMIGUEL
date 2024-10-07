@@ -104,9 +104,9 @@ public final class PnlMaterialesControlador {
             String opc = (String) vista.CmbTipoMaterial.getSelectedItem();
 
             if ("Libro".equals(opc) && !"Libro".equals(estado)) {
+                limpiarCampos();
                 modelo.cargarModeloLibro(vista.TblMateriales);
                 ajustarALibros();
-                limpiarCampos();
                 cargarEventosTablaLibros();
                 removerEventosTxtFiltroMonografia();
                 cargarEventosTxtLibro();
@@ -140,9 +140,9 @@ public final class PnlMaterialesControlador {
                 }
 
             } else if ("Monografía".equals(opc) && !"Monografía".equals(estado)) {
+                limpiarCampos();
                 modelo.cargarModeloMonografia(vista.TblMateriales);
                 ajustarAMonografias();
-                limpiarCampos();
                 removerEventosTxtFiltroLibro();
                 cargarEventosTablaMonografias();
                 cargarEventosTxtMonografia();
