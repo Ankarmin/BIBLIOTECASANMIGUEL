@@ -106,6 +106,7 @@ public class PnlPrestamosControlador {
                     "Error de Formato de Fecha",
                     JOptionPane.ERROR_MESSAGE);
         }
+        actualizarTablaPrestamosActivosLibros();
     }
 
     private void prestarMonografia() {
@@ -158,6 +159,7 @@ public class PnlPrestamosControlador {
                     "Error de Formato de Fecha",
                     JOptionPane.ERROR_MESSAGE);
         }
+        actualizarTablaPrestamosActivosMonografias();
     }
 
     public void mostrar() {
@@ -194,5 +196,37 @@ public class PnlPrestamosControlador {
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.add(bibliotecaControlador.getControladorMateriales().getVista());
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.revalidate();
         bibliotecaControlador.getFrmBiblioteca().PnlContenido.repaint();
+    }
+
+    private void actualizarTablaPrestamosActivosLibros() {
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloLibro(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                cargarModeloLibro(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+    }
+
+    private void actualizarTablaPrestamosActivosMonografias() {
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloMonografia(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
+
+        bibliotecaControlador.
+                getControladorPrestamosActivos().
+                getModeloPrestamosActivos().
+                generarModeloMonografia(bibliotecaControlador.
+                        getControladorPrestamosActivos().
+                        getVista().TblPrestamosActivos);
     }
 }
