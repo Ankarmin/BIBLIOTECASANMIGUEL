@@ -22,10 +22,11 @@ public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
         this.deleteRowQuery = "DELETE FROM usuario WHERE idBiblio = ?";
         this.hasBorrowBook = "SELECT * FROM prestamoLibro WHERE idBiblio = ?";
         this.hasBorrowMonograph = "SELECT * FROM prestamoMonografia WHERE idBiblio = ?";
-        this.searchHibridUsuarioPrestamo = "SELECT idBiblio, (SELECT u.nombres FROM usuario u WHERE u.idBiblio = p.idBiblio) as nombres, "
-                + "(SELECT u.dni FROM usuario u WHERE u.idBiblio = p.idBiblio) as dni, "
-                + "count(idBiblio) + (SELECT count(idBiblio) FROM prestamoMonografia pm WHERE pm.idBiblio = p.idBiblio) as prestamosTotales "
-                + "FROM prestamoLibro p GROUP BY idBiblio";
+        this.searchHibridUsuarioPrestamo = "SELECT idBiblio, nombres, "
+                + "dni, "
+                + "(SELECT count(idBiblio) FROM prestamoLibro pl WHERE pl.idBiblio + u.idBiblio) + "
+                + "(SELECT count(idBiblio) FROM prestamoMonografia pm WHERE pm.idBiblio = u.idBiblio) as prestamosTotales "
+                + "FROM usuario u GROUP BY idBiblio";
 
     }
 
