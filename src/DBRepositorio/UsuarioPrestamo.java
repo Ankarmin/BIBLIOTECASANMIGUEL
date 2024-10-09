@@ -18,7 +18,6 @@ public class UsuarioPrestamo extends Entidades {
         this.nombres = nombres;
         this.librosPendientes = librosPendientes;
     }
-    private static final Logger LOG = Logger.getLogger(UsuarioPrestamo.class.getName());
 
     public UsuarioPrestamo() {}
 

@@ -90,19 +90,22 @@ public class PnlUsuariosControlador {
             }
         };
         vista.BtnCambiarUsuarios.addActionListener((e) -> {
+            limpiarCampos();
             if ("Usuario".equals(estado)) {
                 vista.TblUsuarios.setModel(modeloMoroso);
                 estado = "Moroso";
-                limpiarCampos();
                 cargarEventosTablaMoroso();
                 vista.BtnAgregar.setVisible(false);
+                usuarios.generarModeloMoroso(vista.TblUsuarios);
+                usuarios.cargarModeloMoroso(vista.TblUsuarios);
                 vista.BtnCambiarUsuarios.setText("Ver Usuarios");
             } else {
                 vista.TblUsuarios.setModel(modeloUsuario);
                 estado = "Usuario";
-                limpiarCampos();
                 cargarEventosTablaUsuario();
                 vista.BtnAgregar.setVisible(true);
+                usuarios.generarModeloUsuario(vista.TblUsuarios);
+                usuarios.cargarModeloUsuario(vista.TblUsuarios);
                 vista.BtnCambiarUsuarios.setText("Ver Morosos");
             }
         });
@@ -121,6 +124,7 @@ public class PnlUsuariosControlador {
                 if (!usuarios.eliminarUsuario(usuarioNuevo)) {
                     mostrarError("Error al Eliminar");
                 } else {
+
                     usuarios.generarModeloUsuario(vista.TblUsuarios);
                     usuarios.cargarModeloUsuario(vista.TblUsuarios);
                     limpiarCampos();
@@ -154,12 +158,21 @@ public class PnlUsuariosControlador {
 
     public void setTxt() {
         if ("Usuario".equals(estado)) {
-            usuarioNuevo.setIdBiblioteca(Integer.parseInt(vista.TxtIdBiblio.getText()));
+            if (!vista.TxtIdBiblio.getText().isEmpty()) {
+                usuarioNuevo.setIdBiblioteca(Integer.parseInt(vista.TxtIdBiblio.getText()));
+            } else {
+                usuarioNuevo.setIdBiblioteca(0);
+            }
             usuarioNuevo.setDni(vista.TxtDNI.getText());
             usuarioNuevo.setNombres(vista.TxtNombre.getText());
             usuarioNuevo.setLibrosPendientes(vista.TxtLibrosPendientes.getText());
-        } else {
-            morosoNuevo.setIdBiblio(Integer.parseInt(vista.TxtIdBiblio.getText()));
+        }
+        if ("Moroso".equals(estado)) {
+            if (!vista.TxtIdBiblio.getText().isEmpty()) {
+                morosoNuevo.setIdBiblio(Integer.parseInt(vista.TxtIdBiblio.getText()));
+            } else {
+                morosoNuevo.setIdBiblio(0);
+            }
         }
     }
 
@@ -194,6 +207,7 @@ public class PnlUsuariosControlador {
         vista.TxtIdBiblio.setText("");
         vista.TxtDNI.setText("");
         vista.TxtNombre.setText("");
+        vista.TxtLibrosPendientes.setText("");
     }
 
     public void cargarEventosTablaUsuario() {
