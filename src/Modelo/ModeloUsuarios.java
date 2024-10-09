@@ -3,7 +3,6 @@ package Modelo;
 import Common.CommonFunctions;
 import DBRepositorio.UsuarioRepositorio;
 import DBRepositorio.MorosoRepositorio;
-import DBRepositorio.Moroso;
 import DBRepositorio.Usuario;
 import DBRepositorio.UsuarioPrestamo;
 import DBRepositorio.MorosoUsuario;

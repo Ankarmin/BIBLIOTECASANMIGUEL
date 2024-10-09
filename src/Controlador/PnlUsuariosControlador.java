@@ -1,10 +1,6 @@
 package Controlador;
 
-import Vista.BibliotecaVista;
 import Vista.UsuariosVista;
-import Common.CommonFunctions;
-import DBRepositorio.UsuarioRepositorio;
-import DBRepositorio.MorosoRepositorio;
 import DBRepositorio.UsuarioPrestamo;
 import DBRepositorio.MorosoUsuario;
 import java.awt.BorderLayout;
@@ -13,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.TableModel;
 import Modelo.ModeloUsuarios;
 import javax.swing.JOptionPane;
 
@@ -23,22 +18,16 @@ public class PnlUsuariosControlador {
 
     private UsuariosVista vista;
     private final ModeloUsuarios usuarios;
-    private final UsuarioRepositorio usuarioDriver;
-    private final MorosoRepositorio morosoDriver;
 
     private UsuarioPrestamo usuarioSeleccionado;
     private MorosoUsuario morosoSeleccionado;
 
     private UsuarioPrestamo usuarioNuevo = new UsuarioPrestamo();
     private MorosoUsuario morosoNuevo = new MorosoUsuario();
-    private TableModel modeloUsuario;
-    private TableModel modeloMoroso;
 
-    //EVENTOS PARA EL CLICK EN LA TABLA
     private final MouseAdapter clickUsuario;
     private final MouseAdapter clickMoroso;
 
-    //EL ESTADO DE LA TABLA
     private String estado = "Usuario";
 
     public PnlUsuariosControlador(Connection openConexion, FrmBibliotecaControlador bibliotecaControlador) {
@@ -46,15 +35,11 @@ public class PnlUsuariosControlador {
         this.bibliotecaControlador = bibliotecaControlador;
 
         vista = new UsuariosVista();
-        usuarioDriver = new UsuarioRepositorio(openConexion);
-        morosoDriver = new MorosoRepositorio(openConexion);
         usuarios = new ModeloUsuarios(openConexion);
-        CommonFunctions.llenarTabla(vista.TblUsuarios, MorosoUsuario.getColumnas(), morosoDriver.obtenerHibridoMorosoUsuario());
-        modeloMoroso = vista.TblUsuarios.getModel();
-
-        CommonFunctions.llenarTabla(vista.TblUsuarios, UsuarioPrestamo.getColumnas(), usuarioDriver.obtenerHibridoUsuarioPrestamo());
-        modeloUsuario = vista.TblUsuarios.getModel();
-
+        usuarios.generarModeloMoroso(vista.TblUsuarios);
+        usuarios.generarModeloUsuario(vista.TblUsuarios);
+        usuarios.cargarModeloUsuario(vista.TblUsuarios);
+        
         clickUsuario = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -92,19 +77,15 @@ public class PnlUsuariosControlador {
         vista.BtnCambiarUsuarios.addActionListener((e) -> {
             limpiarCampos();
             if ("Usuario".equals(estado)) {
-                vista.TblUsuarios.setModel(modeloMoroso);
                 estado = "Moroso";
                 cargarEventosTablaMoroso();
                 vista.BtnAgregar.setVisible(false);
-                usuarios.generarModeloMoroso(vista.TblUsuarios);
                 usuarios.cargarModeloMoroso(vista.TblUsuarios);
                 vista.BtnCambiarUsuarios.setText("Ver Usuarios");
             } else {
-                vista.TblUsuarios.setModel(modeloUsuario);
                 estado = "Usuario";
                 cargarEventosTablaUsuario();
                 vista.BtnAgregar.setVisible(true);
-                usuarios.generarModeloUsuario(vista.TblUsuarios);
                 usuarios.cargarModeloUsuario(vista.TblUsuarios);
                 vista.BtnCambiarUsuarios.setText("Ver Morosos");
             }
