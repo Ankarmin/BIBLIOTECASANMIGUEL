@@ -182,11 +182,11 @@ public class UsuarioRepositorio extends IConectar<Usuario, Integer> {
                             (rs.getInt("prestamosTotales") != 0) ? "Si" : "No");
                     hibridosUsuarioPrestamo.add(hibridoUsuarioPrestamo);
                 }
-                System.out.println("Prestamos de monografias recolectados");
+                System.out.println("Usuarios recolectados");
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error al recopilar las monografias: " + e.getMessage());
+            System.out.println("Error al recopilar las usuarios: " + e.getMessage());
 
         }
 

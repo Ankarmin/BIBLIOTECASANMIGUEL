@@ -2,6 +2,7 @@ package DBRepositorio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author Leonidas Garcia Lescano
@@ -17,6 +18,7 @@ public class UsuarioPrestamo extends Entidades {
         this.nombres = nombres;
         this.librosPendientes = librosPendientes;
     }
+    private static final Logger LOG = Logger.getLogger(UsuarioPrestamo.class.getName());
 
     public UsuarioPrestamo() {}
 

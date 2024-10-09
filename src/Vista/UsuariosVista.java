@@ -12,6 +12,8 @@ public class UsuariosVista extends javax.swing.JPanel {
     }
 
     private void initStyles() {
+        TxtIdBiblio.setVisible(false);
+        TxtLibrosPendientes.setVisible(false);
         LblDni.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
         LblDni.setForeground(Color.black);
         LblNombre.putClientProperty("FlatLaf.style", "font: 14 $semibold.font");
@@ -49,6 +51,7 @@ public class UsuariosVista extends javax.swing.JPanel {
         BtnBuscar = new javax.swing.JButton();
         BtnCambiarUsuarios = new javax.swing.JButton();
         TxtIdBiblio = new javax.swing.JTextField();
+        TxtLibrosPendientes = new javax.swing.JTextField();
         TxtId = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(236, 226, 208));
@@ -68,12 +71,12 @@ public class UsuariosVista extends javax.swing.JPanel {
 
         BtnAgregar.setBackground(new java.awt.Color(255, 236, 200));
         BtnAgregar.setText("AGREGAR");
-        jPanel2.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 120, 40));
+        jPanel2.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 120, 40));
 
         BtnEliminar.setBackground(new java.awt.Color(255, 236, 200));
         BtnEliminar.setText("ELIMINAR");
         BtnEliminar.setPreferredSize(new java.awt.Dimension(130, 30));
-        jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 120, 40));
+        jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 120, 40));
         jPanel2.add(TxtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 160, 40));
         jPanel2.add(TxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 160, 40));
 
@@ -106,12 +109,13 @@ public class UsuariosVista extends javax.swing.JPanel {
         BtnBuscar.setBackground(new java.awt.Color(255, 236, 200));
         BtnBuscar.setText("BUSCAR");
         BtnBuscar.setPreferredSize(new java.awt.Dimension(130, 30));
-        jPanel3.add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 120, 40));
+        jPanel3.add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 140, 40));
 
         BtnCambiarUsuarios.setBackground(new java.awt.Color(255, 236, 200));
         BtnCambiarUsuarios.setText("VER MOROSOS");
-        jPanel3.add(BtnCambiarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 140, 40));
-        jPanel3.add(TxtIdBiblio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 40));
+        jPanel3.add(BtnCambiarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, 140, 40));
+        jPanel3.add(TxtIdBiblio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 160, 40));
+        jPanel3.add(TxtLibrosPendientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 160, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 860, 90));
 
@@ -142,6 +146,7 @@ public class UsuariosVista extends javax.swing.JPanel {
     public javax.swing.JTextField TxtDNI;
     private javax.swing.JTextField TxtId;
     public javax.swing.JTextField TxtIdBiblio;
+    public javax.swing.JTextField TxtLibrosPendientes;
     public javax.swing.JTextField TxtNombre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

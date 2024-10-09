@@ -5,8 +5,8 @@ import Vista.UsuariosVista;
 import Common.CommonFunctions;
 import DBRepositorio.UsuarioRepositorio;
 import DBRepositorio.MorosoRepositorio;
-import DBRepositorio.Usuario;
-import DBRepositorio.Moroso;
+import DBRepositorio.UsuarioPrestamo;
+import DBRepositorio.MorosoUsuario;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,22 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
 import Modelo.ModeloUsuarios;
+import javax.swing.JOptionPane;
 
 public class PnlUsuariosControlador {
 
     private final FrmBibliotecaControlador bibliotecaControlador;
 
     private UsuariosVista vista;
-
+    private final ModeloUsuarios usuarios;
     private final UsuarioRepositorio usuarioDriver;
     private final MorosoRepositorio morosoDriver;
 
-    //LAS SELECCIONES QUE SE REALICEN EN LA TABLA(CON EL MOUSE)
-    private Usuario usuarioSeleccionado;
-    private Moroso morosoSeleccionado;
-    private ModeloUsuarios usuarios;
-    //LOS MODELO QUE SE VAN A CARGAR (LOS DEFINO AQUI PARA QUE NO SE RECARGUEN EN CADA CAMBIO YA QUE SERIA UNA TOTAL MIERDA
-    //SI SE RECARGARAN EN CADA CAMBIO)
+    private UsuarioPrestamo usuarioSeleccionado;
+    private MorosoUsuario morosoSeleccionado;
+
+    private UsuarioPrestamo usuarioNuevo = new UsuarioPrestamo();
+    private MorosoUsuario morosoNuevo = new MorosoUsuario();
     private TableModel modeloUsuario;
     private TableModel modeloMoroso;
 
@@ -49,10 +49,10 @@ public class PnlUsuariosControlador {
         usuarioDriver = new UsuarioRepositorio(openConexion);
         morosoDriver = new MorosoRepositorio(openConexion);
         usuarios = new ModeloUsuarios(openConexion);
-        CommonFunctions.llenarTabla(vista.TblUsuarios, Moroso.getColumnas(), morosoDriver.obtenerTodos());
+        CommonFunctions.llenarTabla(vista.TblUsuarios, MorosoUsuario.getColumnas(), morosoDriver.obtenerHibridoMorosoUsuario());
         modeloMoroso = vista.TblUsuarios.getModel();
 
-        CommonFunctions.llenarTabla(vista.TblUsuarios, Usuario.getColumnas(), usuarioDriver.obtenerTodos());
+        CommonFunctions.llenarTabla(vista.TblUsuarios, UsuarioPrestamo.getColumnas(), usuarioDriver.obtenerHibridoUsuarioPrestamo());
         modeloUsuario = vista.TblUsuarios.getModel();
 
         clickUsuario = new MouseAdapter() {
@@ -62,12 +62,12 @@ public class PnlUsuariosControlador {
                 int filaSeleccionada = vista.TblUsuarios.getSelectedRow();
 
                 if (filaSeleccionada != -1) {
-                    for (int i = 0; i < Usuario.getColumnas().size(); i++) {
+                    for (int i = 0; i < UsuarioPrestamo.getColumnas().size(); i++) {
                         datos.add(vista.TblUsuarios.getValueAt(filaSeleccionada, i));
                     }
                 }
 
-                usuarioSeleccionado = Usuario.toUsuario(datos);
+                usuarioSeleccionado = UsuarioPrestamo.toUsuarioPrestamo(datos);
                 llenarCamposUsuario();
 
             }
@@ -77,16 +77,15 @@ public class PnlUsuariosControlador {
             public void mouseClicked(MouseEvent e) {
 
                 List<Object> datos = new ArrayList<>();
-                //ACCEDIENDO A LA FILA SELECCIONADA
                 int filaSeleccionada = vista.TblUsuarios.getSelectedRow();
 
                 if (filaSeleccionada != -1) {
-                    for (int i = 0; i < Moroso.getColumnas().size(); i++) {
+                    for (int i = 0; i < MorosoUsuario.getColumnas().size(); i++) {
                         datos.add(vista.TblUsuarios.getValueAt(filaSeleccionada, i));
                     }
                 }
 
-                morosoSeleccionado = Moroso.toMoroso(datos);
+                morosoSeleccionado = MorosoUsuario.toMorosoUsuario(datos);
                 llenarCamposMoroso();
             }
         };
@@ -96,45 +95,78 @@ public class PnlUsuariosControlador {
                 estado = "Moroso";
                 limpiarCampos();
                 cargarEventosTablaMoroso();
+                vista.BtnAgregar.setVisible(false);
                 vista.BtnCambiarUsuarios.setText("Ver Usuarios");
             } else {
                 vista.TblUsuarios.setModel(modeloUsuario);
                 estado = "Usuario";
                 limpiarCampos();
                 cargarEventosTablaUsuario();
-               
+                vista.BtnAgregar.setVisible(true);
                 vista.BtnCambiarUsuarios.setText("Ver Morosos");
             }
         });
         vista.BtnEliminar.addActionListener((e) -> {
+            setTxt();
+            if ("Moroso".equals(estado)) {
+                if (!usuarios.eliminarMoroso(morosoNuevo)) {
+                    mostrarError("Error al Eliminar");
+                } else {
+                    usuarios.generarModeloMoroso(vista.TblUsuarios);
+                    usuarios.cargarModeloMoroso(vista.TblUsuarios);
+                    limpiarCampos();
+                }
+            }
             if ("Usuario".equals(estado)) {
-                eliminarUsuario();
-                limpiarCampos();
-                actualizarTablaUsuario();
-            } else {
-                eliminarMoroso();
-                limpiarCampos();
-                cargarEventosTablaMoroso();
+                if (!usuarios.eliminarUsuario(usuarioNuevo)) {
+                    mostrarError("Error al Eliminar");
+                } else {
+                    usuarios.generarModeloUsuario(vista.TblUsuarios);
+                    usuarios.cargarModeloUsuario(vista.TblUsuarios);
+                    limpiarCampos();
+                }
+            }
+        }
+        );
+        vista.BtnAgregar.addActionListener((e) -> {
+            setTxt();
+            if ("Usuario".equals(estado)) {
+                if (!usuarios.agregarUsuario(usuarioNuevo)) {
+                    mostrarError("Error al Agregar");
+                } else {
+                    usuarios.generarModeloUsuario(vista.TblUsuarios);
+                    usuarios.cargarModeloUsuario(vista.TblUsuarios);
+                }
+            }
+
+        });
+        vista.BtnBuscar.addActionListener((e) -> {
+            setTxt();
+            if ("Usuario".equals(estado)) {
+                usuarios.filtrarPorNombreUsuario(usuarioNuevo.getNombres(), vista.TblUsuarios);
+            }
+            if ("Moroso".equals(estado)) {
+                usuarios.filtrarPorNombreMoroso(morosoNuevo.getNombres(), vista.TblUsuarios);
             }
         });
-        vista.BtnAgregar.addActionListener((e)->{
-           if ("Usuario".equals(estado)){
-               agregarUsuario();
-               limpiarCampos();
-               actualizarTablaUsuario();
-           } else{
-               agregarMoroso();
-               limpiarCampos();
-               actualizarTablaMoroso();
-           }
-        });
-        vista.BtnBuscar.addActionListener((e)->{
-           if ("Usuario".equals(estado)){
-               buscarUsuario();
-           } else{
-               buscarMoroso();
-           }
-        });
+
+    }
+
+    public void setTxt() {
+        if ("Usuario".equals(estado)) {
+            usuarioNuevo.setIdBiblioteca(Integer.parseInt(vista.TxtIdBiblio.getText()));
+            usuarioNuevo.setDni(vista.TxtDNI.getText());
+            usuarioNuevo.setNombres(vista.TxtNombre.getText());
+            usuarioNuevo.setLibrosPendientes(vista.TxtLibrosPendientes.getText());
+        } else {
+            morosoNuevo.setIdBiblio(Integer.parseInt(vista.TxtIdBiblio.getText()));
+        }
+    }
+
+    public void mostrarError(String tipoError) {
+        JOptionPane.showMessageDialog(vista,
+                usuarios.mostrarError(), tipoError,
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public void mostrar() {
@@ -146,15 +178,16 @@ public class PnlUsuariosControlador {
     }
 
     public void llenarCamposUsuario() {
-        vista.TxtIdBiblio.setText(String.valueOf(usuarioSeleccionado.getIdBiblio()));
+        vista.TxtIdBiblio.setText(String.valueOf(usuarioSeleccionado.getIdBiblioteca()));
         vista.TxtNombre.setText(usuarioSeleccionado.getNombres());
         vista.TxtDNI.setText(usuarioSeleccionado.getDni());
+        vista.TxtLibrosPendientes.setText(usuarioSeleccionado.getLibrosPendientes());
     }
 
     public void llenarCamposMoroso() {
         vista.TxtIdBiblio.setText(String.valueOf(morosoSeleccionado.getIdBiblio()));
-        //Nombres
-        //DNI
+        vista.TxtDNI.setText(morosoSeleccionado.getDni());
+        vista.TxtNombre.setText(morosoSeleccionado.getNombres());
     }
 
     public void limpiarCampos() {
@@ -171,37 +204,5 @@ public class PnlUsuariosControlador {
     public void cargarEventosTablaMoroso() {
         vista.TblUsuarios.removeMouseListener(clickUsuario);
         vista.TblUsuarios.addMouseListener(clickMoroso);
-    }
-    public void agregarUsuario(){
-        String nombre=vista.TxtNombre.getText();
-        String dni =vista.TxtDNI.getText();
-        usuarios.agregarUsuario(dni, nombre );
-    }
-    public void agregarMoroso(){
-        String nombre=vista.TxtNombre.getText();
-        String dni =vista.TxtDNI.getText();
-        usuarios.agregarMoroso(dni, nombre);
-    }
-    public  void eliminarUsuario(){
-        int idBiblio = Integer.parseInt(vista.TxtIdBiblio.getText());
-        usuarios.eliminarUsuario(idBiblio);
-    }
-    public void eliminarMoroso(){
-        int idBiblio = Integer.parseInt(vista.TxtIdBiblio.getText());
-        usuarios.eliminarMoroso(idBiblio);
-    }
-    public void buscarUsuario(){
-        
-    }
-    public void buscarMoroso(){
-        
-    }
-    public void actualizarTablaUsuario(){
-        CommonFunctions.llenarTabla(vista.TblUsuarios, Usuario.getColumnas(), usuarioDriver.obtenerTodos());
-        modeloUsuario = vista.TblUsuarios.getModel();
-    }
-    public void actualizarTablaMoroso(){
-        CommonFunctions.llenarTabla(vista.TblUsuarios, Moroso.getColumnas(), morosoDriver.obtenerTodos());
-        modeloMoroso = vista.TblUsuarios.getModel();
     }
 }

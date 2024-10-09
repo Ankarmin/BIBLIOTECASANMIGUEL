@@ -1,8 +1,8 @@
 package tempRunner;
 
 import Controlador.FrmBibliotecaControlador;
-import DBRepositorio.MorosoRepositorio;
-import DBRepositorio.MorosoUsuario;
+import DBRepositorio.UsuarioRepositorio;
+import DBRepositorio.UsuarioPrestamo;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -35,11 +35,11 @@ public class App {
 
         try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            MorosoRepositorio libroDriver = new MorosoRepositorio(openConexion);
+            UsuarioRepositorio usuarioDriver = new UsuarioRepositorio(openConexion);
 
-            List<MorosoUsuario> lista = libroDriver.obtenerHibridoMorosoUsuario();
+            List<UsuarioPrestamo> lista = usuarioDriver.obtenerHibridoUsuarioPrestamo();
 
-            for (MorosoUsuario el : lista) {
+            for (UsuarioPrestamo el : lista) {
                 System.out.println(el.getDni());
             }
 
