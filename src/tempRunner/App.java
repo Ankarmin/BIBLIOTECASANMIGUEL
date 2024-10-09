@@ -33,7 +33,7 @@ public class App {
         //METODO QUE CARGA EL JFRAME INICIAL (LA VENTANA)
         controladorBiblioteca.iniciar();
 
-        try {
+        /*try {
             Connection openConexion = DriverManager.getConnection(URL, USER, PASSWORD);
             UsuarioRepositorio usuarioDriver = new UsuarioRepositorio(openConexion);
 
@@ -45,7 +45,7 @@ public class App {
 
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());
-        }
+        }*/
 
     }
 
