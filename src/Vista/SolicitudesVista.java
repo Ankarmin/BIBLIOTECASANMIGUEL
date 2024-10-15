@@ -1,14 +1,19 @@
 package Vista;
 
+
 import java.awt.Color;
+import java.util.List;
+import DBRepositorio.Solicitud;
+import javax.swing.table.DefaultTableModel;
 
 public class SolicitudesVista extends javax.swing.JPanel {
-
+    private DefaultTableModel modeloTabla;
     public SolicitudesVista() {
         setSize(860, 640);
         setLocation(0, 0);
         initComponents();
         initStyles();
+        initTableModel();
     }
 
     private void initStyles() {
@@ -32,7 +37,12 @@ public class SolicitudesVista extends javax.swing.JPanel {
         BtnEliminar.putClientProperty("FlatLaf.style", "font: 13 $semibold.font");
         BtnEliminar.setForeground(Color.black);
     }
-
+    private void initTableModel() {
+        modeloTabla = new DefaultTableModel(
+            new Object[]{"ID", "Título", "Autor", "Tema", "Comentario"}, 0
+        );
+        TblMateriales.setModel(modeloTabla);  // Asignar el modelo a la tabla
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -208,4 +218,29 @@ public class SolicitudesVista extends javax.swing.JPanel {
     public javax.swing.JTextField TxtTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
+    public void cargarSolicitudesEnTabla(List<Solicitud> solicitudes) {
+        modeloTabla.setRowCount(0); // Limpiar la tabla antes de agregar nuevas filas
+        for (Solicitud solicitud : solicitudes) {
+            modeloTabla.addRow(new Object[]{
+                solicitud.getIdSolicitud(),
+                solicitud.getTitulo(),
+                solicitud.getAutor(),
+                solicitud.getTema(),
+                solicitud.getComentarios()
+            });
+        }
+    }
+    public Solicitud getSolicitudEnFila(int fila) {
+        if (fila >= 0 && fila < modeloTabla.getRowCount()) {
+            Solicitud solicitud = new Solicitud();
+            solicitud.setIdSolicitud((int) modeloTabla.getValueAt(fila, 0));
+            solicitud.setTitulo((String) modeloTabla.getValueAt(fila, 1));
+            solicitud.setAutor((String) modeloTabla.getValueAt(fila, 2));
+            solicitud.setTema((String) modeloTabla.getValueAt(fila, 3));
+            solicitud.setComentarios((String) modeloTabla.getValueAt(fila, 4));
+            return solicitud;
+        }
+        return null;
+    }
 }
