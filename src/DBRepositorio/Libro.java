@@ -12,7 +12,7 @@ public class Libro extends Entidades {
     private String isbn, titulo, autor, tema;
     private int volumen, stockTotal, stockDisponible;
 
-    // CONSTRUCTOR PARAMETRIZADO
+    // CONSTRUCTOR PARAMETRIZADOa
     public Libro(String isbn, String titulo, String autor, int volumen, String tema, int stockTotal, int stockDisponible) {
         this.isbn = isbn;
         this.titulo = titulo;
