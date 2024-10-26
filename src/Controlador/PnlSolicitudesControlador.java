@@ -87,20 +87,9 @@ public class PnlSolicitudesControlador {
     
     public void agregarSolicitud() {
          // Verificación individual de los campos de texto
-        if (vista.TxtTitulo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(vista, "El campo 'Título' no puede estar vacío.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            vista.TxtTitulo.requestFocus();  // Colocar el cursor en el campo vacío
-            return;
-        }
 
-        if (vista.TxtAutor.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(vista, "El campo 'Autor' no puede estar vacío.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            vista.TxtAutor.requestFocus();  // Colocar el cursor en el campo vacío
-            return;
-        }
-
-        if (vista.TxtTema.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(vista, "El campo 'Tema' no puede estar vacío.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        if (vista.TxtAComentario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(vista, "El campo 'Comentario' no puede estar vacío.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             vista.TxtTema.requestFocus();  // Colocar el cursor en el campo vacío
             return;
         }
